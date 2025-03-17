@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Button from "../../common/Button/Button";
 import { useLanguage } from "../../../context/LanguageContext";
 import styles from "./Hero.module.css";
@@ -7,42 +7,60 @@ const Hero = () => {
 	const { strings } = useLanguage();
 	const textRef = useRef(null);
 
+	// Simple typing effect that's resilient to re-renders
 	useEffect(() => {
+		if (!textRef.current) return;
+
 		const texts = strings.hero.roles;
-		let index = 0;
+		let currentIndex = 0;
 		let charIndex = 0;
 		let isDeleting = false;
-		let textElement = textRef.current;
+		let typingTimer = null;
 
 		const type = () => {
-			const currentText = texts[index];
+			const currentText = texts[currentIndex];
 
-			if (isDeleting) {
-				textElement.textContent = currentText.substring(0, charIndex - 1);
-				charIndex--;
-			} else {
-				textElement.textContent = currentText.substring(0, charIndex + 1);
-				charIndex++;
+			if (textRef.current) {
+				// Protection in case component unmounts
+				if (isDeleting) {
+					textRef.current.textContent = currentText.substring(0, charIndex - 1);
+					charIndex--;
+				} else {
+					textRef.current.textContent = currentText.substring(0, charIndex + 1);
+					charIndex++;
+				}
+
+				let typingSpeed = isDeleting ? 50 : 100;
+
+				if (!isDeleting && charIndex === currentText.length) {
+					isDeleting = true;
+					typingSpeed = 1000; // Pause at end
+				} else if (isDeleting && charIndex === 0) {
+					isDeleting = false;
+					currentIndex = (currentIndex + 1) % texts.length;
+					typingSpeed = 500; // Pause before typing next
+				}
+
+				typingTimer = setTimeout(type, typingSpeed);
 			}
-
-			let typingSpeed = isDeleting ? 50 : 100;
-
-			if (!isDeleting && charIndex === currentText.length) {
-				isDeleting = true;
-				typingSpeed = 1000; // Pause at end
-			} else if (isDeleting && charIndex === 0) {
-				isDeleting = false;
-				index = (index + 1) % texts.length;
-				typingSpeed = 500; // Pause before typing next
-			}
-
-			setTimeout(type, typingSpeed);
 		};
 
-		const timeout = setTimeout(type, 1000);
+		// Reset and start animation
+		if (textRef.current) {
+			textRef.current.textContent = "";
+			charIndex = 0;
+			isDeleting = false;
+			currentIndex = 0;
 
-		return () => clearTimeout(timeout);
-	}, [strings.hero.roles]);
+			// Small delay before starting
+			typingTimer = setTimeout(type, 200);
+		}
+
+		// Clean up
+		return () => {
+			clearTimeout(typingTimer);
+		};
+	}, [strings.hero.roles]); // Restart animation when language changes
 
 	return (
 		<section id="home" className={styles.hero}>
@@ -89,9 +107,7 @@ const Hero = () => {
 						</span>
 						<span className={`${styles.profession} fadeInUp delay-2`}>
 							<span>{strings.hero.profession} </span>
-							<span ref={textRef} className={styles.typingText}>
-								Developer
-							</span>
+							<span ref={textRef} className={styles.typingText}></span>
 						</span>
 					</h1>
 
