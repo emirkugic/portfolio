@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { ThemeProvider } from "./context/ThemeContext";
+import { LanguageProvider } from "./context/LanguageContext";
 import MainLayout from "./components/layout/MainLayout";
 import Home from "./pages/Home";
 import "./styles/global.css";
@@ -18,18 +19,20 @@ function App() {
 	}, []);
 
 	return (
-		<ThemeProvider>
-			{isLoading ? (
-				<div className="loading-screen">
-					<div className="spinner"></div>
-					<div className="loading-text">Loading amazing things...</div>
-				</div>
-			) : (
-				<MainLayout>
-					<Home />
-				</MainLayout>
-			)}
-		</ThemeProvider>
+		<LanguageProvider>
+			<ThemeProvider>
+				{isLoading ? (
+					<div className="loading-screen">
+						<div className="spinner"></div>
+						<div className="loading-text">Loading amazing things...</div>
+					</div>
+				) : (
+					<MainLayout>
+						<Home />
+					</MainLayout>
+				)}
+			</ThemeProvider>
+		</LanguageProvider>
 	);
 }
 
