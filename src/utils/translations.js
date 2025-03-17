@@ -176,7 +176,7 @@ export const translations = {
 		hero: {
 			greeting: "Zdravo, ja sam",
 			profession: "Ja sam",
-			roles: ["Developer", "Dizajner", "Rješavač problema"],
+			roles: ["Developer", "Dizajner", "Programer"],
 			description:
 				"Kreiram lijepe, responzivne web stranice i aplikacije koje pomažu biznisima da rastu i napreduju u digitalnom svijetu.",
 			viewWork: "Pogledaj Moj Rad",

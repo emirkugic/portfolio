@@ -45,12 +45,12 @@ export const skillsData = {
 export const projectsData = [
 	{
 		id: 1,
-		title: "E-commerce Website",
+		title: "mojDnevnik",
 		category: "web",
-		image: "/image1.png",
-		technologies: ["React", "Node.js", "MongoDB", "Express"],
+		image: "/mojDnevnik.png",
+		technologies: ["React", ".NET", "MongoDB"],
 		description:
-			"A fully functional e-commerce platform with payment integration, user authentication, and admin dashboard.",
+			"A fully functional fullstack School Management System with features like attendance, grades, and student management.",
 		link: "#",
 		github: "#",
 	},

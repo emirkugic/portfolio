@@ -20,19 +20,19 @@ const Portfolio = () => {
 	const projects = [
 		{
 			id: 1,
-			title: "E-commerce Website",
+			title: "mojDnevnik",
 			category: "web",
-			image: "/image1.png",
-			technologies: ["React", "Node.js", "MongoDB", "Express"],
+			image: "/mojDnevnik.png",
+			technologies: ["React", ".NET", "MongoDB"],
 			description:
-				"A fully functional e-commerce platform with payment integration, user authentication, and admin dashboard.",
-			link: "#",
-			github: "#",
+				"A fullstack School Management System with features like attendance tracking, grade management, and parent-teacher communication.",
+			link: "https://mojdnevnik.com.alamelschools.ba/",
+			github: "https://github.com/emirkugic/al-amel-ednevnik",
 		},
 		{
 			id: 2,
 			title: "Mobile Banking App",
-			category: "mobile",
+			category: "web",
 			image: "/image1.png",
 			technologies: ["React Native", "Firebase", "Redux"],
 			description:
