@@ -1,8 +1,10 @@
 import React, { useEffect, useRef } from "react";
 import Card from "../../common/Card/Card";
+import { useLanguage } from "../../../context/LanguageContext";
 import styles from "./Portfolio.module.css";
 
 const ProjectCard = ({ project, onClick, isVisible, delay = 0 }) => {
+	const { strings } = useLanguage();
 	const cardRef = useRef(null);
 
 	useEffect(() => {
@@ -36,7 +38,7 @@ const ProjectCard = ({ project, onClick, isVisible, delay = 0 }) => {
 							))}
 						</div>
 						<div className={styles.projectViewDetails}>
-							<span>View Details</span>
+							<span>{strings.portfolio.viewDetails}</span>
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
 								width="20"

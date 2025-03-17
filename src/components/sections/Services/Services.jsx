@@ -1,20 +1,22 @@
 import React from "react";
 import ServiceCard from "./ServiceCard";
+import { useLanguage } from "../../../context/LanguageContext";
 import useIntersectionObserver from "../../../hooks/useIntersectionObserver";
 import styles from "./Services.module.css";
 
 const Services = () => {
+	const { strings } = useLanguage();
 	const [ref, isVisible] = useIntersectionObserver({
 		threshold: 0.1,
 		triggerOnce: true,
 	});
 
+	// Use the translated service titles and descriptions
 	const services = [
 		{
 			id: 1,
-			title: "Web Development",
-			description:
-				"Custom website development tailored to your business needs, including e-commerce, corporate sites, and web applications.",
+			title: strings.services.items.webDev.title,
+			description: strings.services.items.webDev.description,
 			icon: (
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
@@ -35,9 +37,8 @@ const Services = () => {
 		},
 		{
 			id: 2,
-			title: "Mobile App Development",
-			description:
-				"Native and cross-platform mobile applications for iOS and Android that provide a seamless user experience.",
+			title: strings.services.items.mobileDev.title,
+			description: strings.services.items.mobileDev.description,
 			icon: (
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
@@ -57,9 +58,8 @@ const Services = () => {
 		},
 		{
 			id: 3,
-			title: "UI/UX Design",
-			description:
-				"User-centric design that focuses on creating intuitive, engaging, and accessible digital experiences.",
+			title: strings.services.items.uiux.title,
+			description: strings.services.items.uiux.description,
 			icon: (
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
@@ -81,9 +81,8 @@ const Services = () => {
 		},
 		{
 			id: 4,
-			title: "E-commerce Solutions",
-			description:
-				"Complete e-commerce solutions including shopping carts, payment gateways, inventory management, and customer portals.",
+			title: strings.services.items.ecommerce.title,
+			description: strings.services.items.ecommerce.description,
 			icon: (
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
@@ -104,9 +103,8 @@ const Services = () => {
 		},
 		{
 			id: 5,
-			title: "API Development",
-			description:
-				"Robust and scalable API solutions for seamless integration between your applications and third-party services.",
+			title: strings.services.items.api.title,
+			description: strings.services.items.api.description,
 			icon: (
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
@@ -127,9 +125,8 @@ const Services = () => {
 		},
 		{
 			id: 6,
-			title: "Technical Consulting",
-			description:
-				"Expert advice on technology stack, architecture, and best practices to help you make informed decisions.",
+			title: strings.services.items.consulting.title,
+			description: strings.services.items.consulting.description,
 			icon: (
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
@@ -152,10 +149,8 @@ const Services = () => {
 	return (
 		<section id="services" className={styles.services}>
 			<div className="container">
-				<h2 className="section-title">My Services</h2>
-				<p className="section-subtitle">
-					Here's what I can do for you and your business
-				</p>
+				<h2 className="section-title">{strings.services.title}</h2>
+				<p className="section-subtitle">{strings.services.subtitle}</p>
 
 				<div className={styles.servicesGrid} ref={ref}>
 					{services.map((service, index) => (
@@ -173,14 +168,13 @@ const Services = () => {
 				>
 					<div className={styles.servicesContactContent}>
 						<h3 className={styles.servicesContactTitle}>
-							Need a custom service package?
+							{strings.services.contact.title}
 						</h3>
 						<p className={styles.servicesContactText}>
-							Contact me today for a free consultation to discuss your project
-							requirements and how I can help.
+							{strings.services.contact.text}
 						</p>
 						<a href="#contact" className={styles.servicesContactButton}>
-							Get in Touch
+							{strings.services.contact.button}
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
 								width="20"

@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import { useLanguage } from "../../../context/LanguageContext";
 import useIntersectionObserver from "../../../hooks/useIntersectionObserver";
 import Button from "../../common/Button/Button";
 import styles from "./Contact.module.css";
 
 const Contact = () => {
+	const { strings } = useLanguage();
 	const [ref, isVisible] = useIntersectionObserver({
 		threshold: 0.1,
 		triggerOnce: true,
@@ -79,7 +81,7 @@ const Contact = () => {
 			setIsSubmitting(false);
 			setSubmitMessage({
 				type: "success",
-				text: "Your message has been sent successfully! I will get back to you soon.",
+				text: strings.contact.form.success,
 			});
 
 			// Reset form
@@ -99,8 +101,8 @@ const Contact = () => {
 
 	const contactInfo = [
 		{
-			title: "Email",
-			value: "hello@example.com",
+			title: strings.contact.info.email,
+			value: "emirkugic0@gmail.com",
 			icon: (
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
@@ -119,8 +121,8 @@ const Contact = () => {
 			),
 		},
 		{
-			title: "Phone",
-			value: "+1 (234) 567-890",
+			title: strings.contact.info.phone,
+			value: "+387 62 909 200",
 			icon: (
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
@@ -138,8 +140,8 @@ const Contact = () => {
 			),
 		},
 		{
-			title: "Location",
-			value: "San Francisco, CA",
+			title: strings.contact.info.location,
+			value: "Sarajevo, Bosnia",
 			icon: (
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
@@ -162,22 +164,19 @@ const Contact = () => {
 	return (
 		<section id="contact" className={styles.contact}>
 			<div className="container">
-				<h2 className="section-title">Get In Touch</h2>
-				<p className="section-subtitle">
-					Have a project in mind or want to work together? Feel free to contact
-					me.
-				</p>
+				<h2 className="section-title">{strings.contact.title}</h2>
+				<p className="section-subtitle">{strings.contact.subtitle}</p>
 
 				<div className={styles.contactContainer} ref={ref}>
 					<div
 						className={`${styles.contactInfo} ${isVisible ? "fadeInLeft" : ""}`}
 					>
 						<div className={styles.contactInfoContent}>
-							<h3 className={styles.contactInfoTitle}>Contact Information</h3>
+							<h3 className={styles.contactInfoTitle}>
+								{strings.contact.info.title}
+							</h3>
 							<p className={styles.contactInfoText}>
-								Feel free to reach out to me anytime. I'm always open to
-								discussing new projects, creative ideas, or opportunities to be
-								part of your vision.
+								{strings.contact.info.text}
 							</p>
 
 							<ul className={styles.contactInfoList}>
@@ -197,7 +196,9 @@ const Contact = () => {
 							</ul>
 
 							<div className={styles.contactSocial}>
-								<h4 className={styles.contactSocialTitle}>Follow Me</h4>
+								<h4 className={styles.contactSocialTitle}>
+									{strings.contact.info.followMe}
+								</h4>
 								<div className={styles.contactSocialLinks}>
 									<a
 										href="#"
@@ -294,7 +295,8 @@ const Contact = () => {
 							<div className={styles.formGrid}>
 								<div className={styles.formGroup}>
 									<label htmlFor="name" className={styles.formLabel}>
-										Full Name <span className={styles.required}>*</span>
+										{strings.contact.form.name}{" "}
+										<span className={styles.required}>*</span>
 									</label>
 									<input
 										type="text"
@@ -314,7 +316,8 @@ const Contact = () => {
 
 								<div className={styles.formGroup}>
 									<label htmlFor="email" className={styles.formLabel}>
-										Email Address <span className={styles.required}>*</span>
+										{strings.contact.form.email}{" "}
+										<span className={styles.required}>*</span>
 									</label>
 									<input
 										type="email"
@@ -334,7 +337,8 @@ const Contact = () => {
 
 								<div className={styles.formGroup}>
 									<label htmlFor="subject" className={styles.formLabel}>
-										Subject <span className={styles.required}>*</span>
+										{strings.contact.form.subject}{" "}
+										<span className={styles.required}>*</span>
 									</label>
 									<input
 										type="text"
@@ -354,7 +358,8 @@ const Contact = () => {
 
 								<div className={`${styles.formGroup} ${styles.formGroupFull}`}>
 									<label htmlFor="message" className={styles.formLabel}>
-										Message <span className={styles.required}>*</span>
+										{strings.contact.form.message}{" "}
+										<span className={styles.required}>*</span>
 									</label>
 									<textarea
 										id="message"
@@ -419,7 +424,9 @@ const Contact = () => {
 											)
 										}
 									>
-										{isSubmitting ? "Sending Message..." : "Send Message"}
+										{isSubmitting
+											? strings.contact.form.sending
+											: strings.contact.form.send}
 									</Button>
 								</div>
 							</div>

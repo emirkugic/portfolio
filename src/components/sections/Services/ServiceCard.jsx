@@ -1,8 +1,10 @@
 import React, { useEffect, useRef } from "react";
 import Card from "../../common/Card/Card";
+import { useLanguage } from "../../../context/LanguageContext";
 import styles from "./Services.module.css";
 
 const ServiceCard = ({ service, isVisible, delay = 0 }) => {
+	const { strings } = useLanguage();
 	const cardRef = useRef(null);
 
 	useEffect(() => {
@@ -20,7 +22,7 @@ const ServiceCard = ({ service, isVisible, delay = 0 }) => {
 				<h3 className={styles.serviceTitle}>{service.title}</h3>
 				<p className={styles.serviceDescription}>{service.description}</p>
 				<a href="#contact" className={styles.serviceLink}>
-					Learn More
+					{strings.services.learnMore}
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						width="18"

@@ -1,9 +1,11 @@
 import React from "react";
 import Button from "../../common/Button/Button";
+import { useLanguage } from "../../../context/LanguageContext";
 import useIntersectionObserver from "../../../hooks/useIntersectionObserver";
 import styles from "./About.module.css";
 
 const About = () => {
+	const { strings } = useLanguage();
 	const [ref, isVisible] = useIntersectionObserver({
 		threshold: 0.1,
 		triggerOnce: true,
@@ -12,7 +14,7 @@ const About = () => {
 	return (
 		<section id="about" className={styles.about}>
 			<div className="container">
-				<h2 className="section-title">About Me</h2>
+				<h2 className="section-title">{strings.about.title}</h2>
 
 				<div className={styles.aboutContent} ref={ref}>
 					<div
@@ -24,65 +26,73 @@ const About = () => {
 						<div className={styles.imageDecoration}></div>
 						<div className={styles.experienceBadge}>
 							<span className={styles.experienceYears}>3+</span>
-							<span className={styles.experienceText}>Years of Experience</span>
+							<span className={styles.experienceText}>
+								{strings.about.stats.experience}
+							</span>
 						</div>
 					</div>
 
 					<div
 						className={`${styles.aboutInfo} ${isVisible ? "fadeInRight" : ""}`}
 					>
-						<h3 className={styles.aboutHeading}>Full-Stack Developer</h3>
+						<h3 className={styles.aboutHeading}>{strings.about.heading}</h3>
 
-						<p className={styles.aboutBio}>
-							I'm a passionate Full-Stack Developer with 3 years of experience
-							in creating modern web applications and websites. I specialize in
-							building responsive, user-friendly interfaces that deliver
-							exceptional experiences across all devices.
-						</p>
+						<p className={styles.aboutBio}>{strings.about.bio1}</p>
 
-						<p className={styles.aboutBio}>
-							I love turning complex problems into simple, beautiful, and
-							intuitive designs. My goal is to create software that not only
-							functions flawlessly but also provides an enjoyable user
-							experience.
-						</p>
+						<p className={styles.aboutBio}>{strings.about.bio2}</p>
 
 						<div className={styles.aboutStats}>
 							<div className={styles.statItem}>
 								<span className={styles.statNumber}>10+</span>
-								<span className={styles.statLabel}>Projects Completed</span>
+								<span className={styles.statLabel}>
+									{strings.about.stats.projects}
+								</span>
 							</div>
 							<div className={styles.statItem}>
 								<span className={styles.statNumber}>10+</span>
-								<span className={styles.statLabel}>Happy Clients</span>
+								<span className={styles.statLabel}>
+									{strings.about.stats.clients}
+								</span>
 							</div>
 							<div className={styles.statItem}>
 								<span className={styles.statNumber}>3+</span>
-								<span className={styles.statLabel}>Years Experience</span>
+								<span className={styles.statLabel}>
+									{strings.about.stats.experience}
+								</span>
 							</div>
 						</div>
 
 						<div className={styles.aboutDetails}>
 							<div className={styles.detailItem}>
-								<span className={styles.detailLabel}>Name:</span>
+								<span className={styles.detailLabel}>
+									{strings.about.details.name}
+								</span>
 								<span className={styles.detailValue}>Emir Kugić</span>
 							</div>
 							<div className={styles.detailItem}>
-								<span className={styles.detailLabel}>Email:</span>
+								<span className={styles.detailLabel}>
+									{strings.about.details.email}
+								</span>
 								<span className={styles.detailValue}>emirkugic0@gmail.com</span>
 							</div>
 							<div className={styles.detailItem}>
-								<span className={styles.detailLabel}>Phone:</span>
+								<span className={styles.detailLabel}>
+									{strings.about.details.phone}
+								</span>
 								<span className={styles.detailValue}>+387 62 909 200</span>
 							</div>
 							<div className={styles.detailItem}>
-								<span className={styles.detailLabel}>Location:</span>
+								<span className={styles.detailLabel}>
+									{strings.about.details.location}
+								</span>
 								<span className={styles.detailValue}>Sarajevo, Bosnia</span>
 							</div>
 							<div className={styles.detailItem}>
-								<span className={styles.detailLabel}>Availability:</span>
+								<span className={styles.detailLabel}>
+									{strings.about.details.availability}
+								</span>
 								<span className={styles.detailValue}>
-									Freelance & Full-time
+									{strings.about.details.availabilityValue}
 								</span>
 							</div>
 						</div>
@@ -109,7 +119,7 @@ const About = () => {
 									</svg>
 								}
 							>
-								Download CV
+								{strings.about.downloadCV}
 							</Button>
 						</div>
 					</div>

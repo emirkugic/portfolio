@@ -1,8 +1,10 @@
 import React from "react";
 import Logo from "../../common/Logo/Logo";
+import { useLanguage } from "../../../context/LanguageContext";
 import styles from "./Footer.module.css";
 
 const Footer = () => {
+	const { strings } = useLanguage();
 	const currentYear = new Date().getFullYear();
 
 	return (
@@ -11,10 +13,7 @@ const Footer = () => {
 				<div className={styles.footerTop}>
 					<div className={styles.footerInfo}>
 						<Logo />
-						<p className={styles.footerDesc}>
-							Crafting beautiful, functional digital experiences that help
-							businesses thrive online. Let's build something amazing together.
-						</p>
+						<p className={styles.footerDesc}>{strings.footer.description}</p>
 						<div className={styles.socialLinks}>
 							<a
 								href="https://github.com"
@@ -83,52 +82,64 @@ const Footer = () => {
 
 					<div className={styles.footerLinks}>
 						<div className={styles.linkColumn}>
-							<h3 className={styles.columnTitle}>Site Links</h3>
+							<h3 className={styles.columnTitle}>
+								{strings.footer.links.siteLinks}
+							</h3>
 							<ul className={styles.linkList}>
 								<li>
-									<a href="#home">Home</a>
+									<a href="#home">{strings.nav.home}</a>
 								</li>
 								<li>
-									<a href="#about">About</a>
+									<a href="#about">{strings.nav.about}</a>
 								</li>
 								<li>
-									<a href="#skills">Skills</a>
+									<a href="#skills">{strings.nav.skills}</a>
 								</li>
 								<li>
-									<a href="#portfolio">Portfolio</a>
+									<a href="#portfolio">{strings.nav.portfolio}</a>
 								</li>
 								<li>
-									<a href="#services">Services</a>
+									<a href="#services">{strings.nav.services}</a>
 								</li>
 								<li>
-									<a href="#contact">Contact</a>
+									<a href="#contact">{strings.nav.contact}</a>
 								</li>
 							</ul>
 						</div>
 
 						<div className={styles.linkColumn}>
-							<h3 className={styles.columnTitle}>Services</h3>
+							<h3 className={styles.columnTitle}>
+								{strings.footer.links.services}
+							</h3>
 							<ul className={styles.linkList}>
 								<li>
-									<a href="#services">Web Development</a>
+									<a href="#services">{strings.footer.servicesLinks.webDev}</a>
 								</li>
 								<li>
-									<a href="#services">Mobile Apps</a>
+									<a href="#services">
+										{strings.footer.servicesLinks.mobileApps}
+									</a>
 								</li>
 								<li>
-									<a href="#services">UI/UX Design</a>
+									<a href="#services">{strings.footer.servicesLinks.uiux}</a>
 								</li>
 								<li>
-									<a href="#services">E-commerce</a>
+									<a href="#services">
+										{strings.footer.servicesLinks.ecommerce}
+									</a>
 								</li>
 								<li>
-									<a href="#services">Consulting</a>
+									<a href="#services">
+										{strings.footer.servicesLinks.consulting}
+									</a>
 								</li>
 							</ul>
 						</div>
 
 						<div className={styles.linkColumn}>
-							<h3 className={styles.columnTitle}>Contact</h3>
+							<h3 className={styles.columnTitle}>
+								{strings.footer.links.contact}
+							</h3>
 							<ul className={styles.contactList}>
 								<li>
 									<svg
@@ -187,7 +198,7 @@ const Footer = () => {
 
 				<div className={styles.footerBottom}>
 					<p className={styles.copyright}>
-						&copy; {currentYear} Emir Kugić. All rights reserved.
+						&copy; {currentYear} Emir Kugić. {strings.footer.copyright}
 					</p>
 					<div className={styles.footerNav}>
 						<a href="#terms">Terms of Service</a>

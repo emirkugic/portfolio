@@ -1,9 +1,12 @@
 import React from "react";
 import Modal from "../../common/Modal/Modal";
 import Button from "../../common/Button/Button";
+import { useLanguage } from "../../../context/LanguageContext";
 import styles from "./Portfolio.module.css";
 
 const ProjectModal = ({ project, isOpen, onClose }) => {
+	const { strings } = useLanguage();
+
 	if (!project) return null;
 
 	return (
@@ -16,7 +19,7 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
 				<div className={styles.projectModalInfo}>
 					<div className={styles.projectModalSection}>
 						<h4 className={styles.projectModalSectionTitle}>
-							Project Description
+							{strings.portfolio.projectDetails.description}
 						</h4>
 						<p className={styles.projectModalDescription}>
 							{project.description}
@@ -24,7 +27,9 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
 					</div>
 
 					<div className={styles.projectModalSection}>
-						<h4 className={styles.projectModalSectionTitle}>Technologies</h4>
+						<h4 className={styles.projectModalSectionTitle}>
+							{strings.portfolio.projectDetails.technologies}
+						</h4>
 						<div className={styles.projectModalTechnologies}>
 							{project.technologies.map((tech, index) => (
 								<span key={index} className={styles.projectModalTechnology}>
@@ -58,7 +63,7 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
 								</svg>
 							}
 						>
-							Live Demo
+							{strings.portfolio.projectDetails.liveDemo}
 						</Button>
 
 						<Button
@@ -82,7 +87,7 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
 								</svg>
 							}
 						>
-							View Code
+							{strings.portfolio.projectDetails.viewCode}
 						</Button>
 					</div>
 				</div>

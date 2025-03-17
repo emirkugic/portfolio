@@ -1,12 +1,14 @@
 import React, { useEffect, useRef } from "react";
 import Button from "../../common/Button/Button";
+import { useLanguage } from "../../../context/LanguageContext";
 import styles from "./Hero.module.css";
 
 const Hero = () => {
+	const { strings } = useLanguage();
 	const textRef = useRef(null);
 
 	useEffect(() => {
-		const texts = ["Developer", "Designer", "Problem Solver"];
+		const texts = strings.hero.roles;
 		let index = 0;
 		let charIndex = 0;
 		let isDeleting = false;
@@ -40,7 +42,7 @@ const Hero = () => {
 		const timeout = setTimeout(type, 1000);
 
 		return () => clearTimeout(timeout);
-	}, []);
+	}, [strings.hero.roles]);
 
 	return (
 		<section id="home" className={styles.hero}>
@@ -79,12 +81,14 @@ const Hero = () => {
 			<div className={`container ${styles.heroContainer}`}>
 				<div className={styles.heroContent}>
 					<h1 className={styles.heroTitle}>
-						<span className={`${styles.greeting} fadeInDown`}>Hello, I'm</span>
+						<span className={`${styles.greeting} fadeInDown`}>
+							{strings.hero.greeting}
+						</span>
 						<span className={`${styles.name} fadeInUp delay-1`}>
 							Emir Kugić
 						</span>
 						<span className={`${styles.profession} fadeInUp delay-2`}>
-							<span>I'm a </span>
+							<span>{strings.hero.profession} </span>
 							<span ref={textRef} className={styles.typingText}>
 								Developer
 							</span>
@@ -92,8 +96,7 @@ const Hero = () => {
 					</h1>
 
 					<p className={`${styles.heroDescription} fadeInUp delay-3`}>
-						I create beautiful, responsive websites and applications that help
-						businesses grow and thrive in the digital world.
+						{strings.hero.description}
 					</p>
 
 					<div className={`${styles.heroButtons} fadeInUp delay-4`}>
@@ -118,7 +121,7 @@ const Hero = () => {
 								</svg>
 							}
 						>
-							View My Work
+							{strings.hero.viewWork}
 						</Button>
 
 						<Button
@@ -142,7 +145,7 @@ const Hero = () => {
 								</svg>
 							}
 						>
-							Contact Me
+							{strings.hero.contactMe}
 						</Button>
 					</div>
 				</div>

@@ -1,10 +1,12 @@
 import React from "react";
 import Card from "../../common/Card/Card";
 import SkillItem from "./SkillItem";
+import { useLanguage } from "../../../context/LanguageContext";
 import useIntersectionObserver from "../../../hooks/useIntersectionObserver";
 import styles from "./Skills.module.css";
 
 const Skills = () => {
+	const { strings } = useLanguage();
 	const [ref, isVisible] = useIntersectionObserver({
 		threshold: 0.1,
 		triggerOnce: true,
@@ -40,11 +42,8 @@ const Skills = () => {
 	return (
 		<section id="skills" className={styles.skills}>
 			<div className="container">
-				<h2 className="section-title">My Skills</h2>
-				<p className="section-subtitle">
-					Here are my technical skills and expertise that I've acquired over the
-					years
-				</p>
+				<h2 className="section-title">{strings.skills.title}</h2>
+				<p className="section-subtitle">{strings.skills.subtitle}</p>
 
 				<div className={styles.skillsContainer} ref={ref}>
 					<div className={`${styles.skillsGrid} ${isVisible ? "fadeIn" : ""}`}>
@@ -70,7 +69,9 @@ const Skills = () => {
 										<polyline points="10 17 15 12 10 7"></polyline>
 									</svg>
 								</div>
-								<h3 className={styles.skillCardTitle}>Frontend</h3>
+								<h3 className={styles.skillCardTitle}>
+									{strings.skills.frontend}
+								</h3>
 							</div>
 							<div className={styles.skillsList}>
 								{frontendSkills.map((skill, index) => (
@@ -112,7 +113,9 @@ const Skills = () => {
 										<line x1="16" y1="20" x2="16.01" y2="20"></line>
 									</svg>
 								</div>
-								<h3 className={styles.skillCardTitle}>Backend</h3>
+								<h3 className={styles.skillCardTitle}>
+									{strings.skills.backend}
+								</h3>
 							</div>
 							<div className={styles.skillsList}>
 								{backendSkills.map((skill, index) => (
@@ -148,7 +151,9 @@ const Skills = () => {
 										<path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
 									</svg>
 								</div>
-								<h3 className={styles.skillCardTitle}>Other Skills</h3>
+								<h3 className={styles.skillCardTitle}>
+									{strings.skills.otherSkills}
+								</h3>
 							</div>
 							<div className={styles.skillsList}>
 								{otherSkills.map((skill, index) => (

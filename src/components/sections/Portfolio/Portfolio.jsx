@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import ProjectCard from "./ProjectCard";
 import ProjectModal from "./ProjectModal";
+import { useLanguage } from "../../../context/LanguageContext";
 import useIntersectionObserver from "../../../hooks/useIntersectionObserver";
 import styles from "./Portfolio.module.css";
 
 const Portfolio = () => {
+	const { strings } = useLanguage();
 	const [ref, isVisible] = useIntersectionObserver({
 		threshold: 0.1,
 		triggerOnce: true,
@@ -111,10 +113,8 @@ const Portfolio = () => {
 	return (
 		<section id="portfolio" className={styles.portfolio}>
 			<div className="container">
-				<h2 className="section-title">My Portfolio</h2>
-				<p className="section-subtitle">
-					Check out some of my latest projects and work samples
-				</p>
+				<h2 className="section-title">{strings.portfolio.title}</h2>
+				<p className="section-subtitle">{strings.portfolio.subtitle}</p>
 
 				<div className={styles.portfolioFilters}>
 					<button
@@ -123,7 +123,7 @@ const Portfolio = () => {
 						}`}
 						onClick={() => handleFilterClick("all")}
 					>
-						All
+						{strings.portfolio.filters.all}
 					</button>
 					<button
 						className={`${styles.filterButton} ${
@@ -131,7 +131,7 @@ const Portfolio = () => {
 						}`}
 						onClick={() => handleFilterClick("web")}
 					>
-						Web Development
+						{strings.portfolio.filters.web}
 					</button>
 					<button
 						className={`${styles.filterButton} ${
@@ -139,7 +139,7 @@ const Portfolio = () => {
 						}`}
 						onClick={() => handleFilterClick("mobile")}
 					>
-						Mobile Apps
+						{strings.portfolio.filters.mobile}
 					</button>
 					<button
 						className={`${styles.filterButton} ${
@@ -147,7 +147,7 @@ const Portfolio = () => {
 						}`}
 						onClick={() => handleFilterClick("ui")}
 					>
-						UI/UX Design
+						{strings.portfolio.filters.ui}
 					</button>
 				</div>
 
