@@ -1,0 +1,477 @@
+.hero {
+	min-height: 100vh;
+	display: flex;
+	align-items: center;
+	position: relative;
+	overflow: hidden;
+	padding: 6rem 0;
+}
+
+.heroBackground {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 0;
+	opacity: 0.05;
+	overflow: hidden;
+}
+
+.animatedGrid {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-image: linear-gradient(
+			to right,
+			var(--text-tertiary) 1px,
+			transparent 1px
+		),
+		linear-gradient(to bottom, var(--text-tertiary) 1px, transparent 1px);
+	background-size: 40px 40px;
+	opacity: 0.3;
+}
+
+.codeLines {
+	position: absolute;
+	top: 10%;
+	left: 5%;
+	font-family: monospace;
+	color: var(--text-tertiary);
+	font-size: 14px;
+	opacity: 0.6;
+	transform: rotate(-5deg);
+}
+
+.codeLine {
+	margin-bottom: 0.5rem;
+	white-space: nowrap;
+}
+
+.codeLine span {
+	color: var(--accent-primary);
+}
+
+.codeLine .string {
+	color: var(--accent-tertiary);
+}
+
+.heroContainer {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 4rem;
+	align-items: center;
+	position: relative;
+	z-index: 1;
+}
+
+.heroContent {
+	position: relative;
+	z-index: 5;
+}
+
+.heroTitle {
+	font-size: 4rem;
+	margin-bottom: 2rem;
+	display: flex;
+	flex-direction: column;
+	line-height: 1.1;
+}
+
+.greeting {
+	font-size: 1.5rem;
+	font-weight: 500;
+	color: var(--text-secondary);
+	margin-bottom: 0.5rem;
+}
+
+.name {
+	font-size: 4rem;
+	font-weight: 800;
+	background: var(--accent-gradient);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	margin-bottom: 0.5rem;
+}
+
+.profession {
+	display: flex;
+	font-size: 2.5rem;
+	color: var(--text-primary);
+	font-weight: 700;
+	gap: 0.5rem;
+}
+
+.typingText {
+	color: var(--accent-primary);
+	position: relative;
+}
+
+.typingText::after {
+	content: "|";
+	position: absolute;
+	right: -8px;
+	animation: blink-caret 0.75s step-end infinite;
+}
+
+.heroDescription {
+	font-size: 1.2rem;
+	margin-bottom: 2.5rem;
+	max-width: 600px;
+	color: var(--text-secondary);
+}
+
+.heroButtons {
+	display: flex;
+	gap: 1rem;
+	margin-bottom: 4rem;
+}
+
+.heroDecoration {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 5;
+}
+
+.codeBlock {
+	position: relative;
+	z-index: 2;
+	width: 100%;
+	max-width: 450px;
+	perspective: 1000px;
+	animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+	0% {
+		transform: translateY(0px) rotateY(-5deg);
+	}
+	50% {
+		transform: translateY(-20px) rotateY(5deg);
+	}
+	100% {
+		transform: translateY(0px) rotateY(-5deg);
+	}
+}
+
+.codeEditor {
+	background-color: var(--bg-secondary);
+	border-radius: var(--border-radius-md);
+	box-shadow: var(--shadow-lg);
+	overflow: hidden;
+}
+
+.codeEditorHeader {
+	background-color: var(--bg-tertiary);
+	padding: 0.75rem 1rem;
+	display: flex;
+	align-items: center;
+}
+
+.codeEditorDot {
+	width: 12px;
+	height: 12px;
+	border-radius: 50%;
+	margin-right: 0.5rem;
+}
+
+.codeEditorDot:nth-child(1) {
+	background-color: #ff5f56;
+}
+
+.codeEditorDot:nth-child(2) {
+	background-color: #ffbd2e;
+}
+
+.codeEditorDot:nth-child(3) {
+	background-color: #27c93f;
+}
+
+.codeEditorTitle {
+	margin-left: 1rem;
+	font-size: 0.9rem;
+	color: var(--text-secondary);
+}
+
+.codeEditorContent {
+	padding: 1.5rem;
+	font-family: monospace;
+	font-size: 0.9rem;
+}
+
+.codeEditorLine {
+	margin-bottom: 0.5rem;
+	white-space: nowrap;
+}
+
+.codeComment {
+	color: var(--text-tertiary);
+}
+
+.codeKeyword {
+	color: #c678dd;
+}
+
+.codeVariable {
+	color: #e06c75;
+}
+
+.codeProperty {
+	color: #e06c75;
+}
+
+.codeString {
+	color: #98c379;
+}
+
+.codeMethod {
+	color: #61afef;
+}
+
+.floatingElements {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 2;
+	pointer-events: auto;
+}
+
+.floatingElement {
+	position: absolute;
+	border-radius: var(--border-radius-md);
+	padding: 0.25rem 0.75rem;
+	font-size: 0.85rem;
+	font-weight: 600;
+	box-shadow: var(--shadow-md);
+	opacity: 0.7;
+	cursor: pointer;
+	transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+}
+
+.floatingElement:hover {
+	transform: scale(1.2) translateY(-10px) !important;
+	box-shadow: var(--shadow-lg);
+	opacity: 1;
+	z-index: 10;
+}
+
+/* Positions and colors for each element */
+.floatingElementHtml {
+	top: 5%;
+	right: 5%;
+	background-color: #e34c26;
+	color: white;
+	animation: floatElement 8s ease-in-out infinite;
+}
+
+.floatingElementCss {
+	bottom: 5%;
+	left: 5%;
+	background-color: #264de4;
+	color: white;
+	animation: floatElement 7s ease-in-out 1s infinite;
+}
+
+.floatingElementJs {
+	top: 5%;
+	left: 5%;
+	background-color: #f7df1e;
+	color: #333;
+	animation: floatElement 9s ease-in-out 2s infinite;
+}
+
+.floatingElementReact {
+	bottom: 5%;
+	right: 5%;
+	background-color: #61dafb;
+	color: #282c34;
+	animation: floatElement 10s ease-in-out 1.5s infinite;
+}
+
+.floatingElementNet {
+	top: 25%;
+	left: 2%;
+	background-color: #512bd4;
+	color: white;
+	animation: floatElement 11s ease-in-out 0.5s infinite;
+}
+
+.floatingElementSpring {
+	bottom: 25%;
+	right: 2%;
+	background-color: #6db33f;
+	color: white;
+	animation: floatElement 9.5s ease-in-out 1.2s infinite;
+}
+
+.floatingElementLaravel {
+	top: 25%;
+	right: 2%;
+	background-color: #ff2d20;
+	color: white;
+	animation: floatElement 8.5s ease-in-out 2.2s infinite;
+}
+
+.floatingElementFlutter {
+	bottom: 25%;
+	left: 2%;
+	background-color: #02569b;
+	color: white;
+	animation: floatElement 10.5s ease-in-out 1.8s infinite;
+}
+
+.floatingElementGit {
+	top: 45%;
+	right: 2%;
+	background-color: #f05032;
+	color: white;
+	animation: floatElement 7.5s ease-in-out 0.3s infinite;
+}
+
+.floatingElementDocker {
+	bottom: 45%;
+	left: 2%;
+	background-color: #2496ed;
+	color: white;
+	animation: floatElement 9s ease-in-out 0.7s infinite;
+}
+
+.floatingElementNode {
+	top: 65%;
+	left: 3%;
+	background-color: #339933;
+	color: white;
+	animation: floatElement 8s ease-in-out 1.4s infinite;
+}
+
+.floatingElementPython {
+	bottom: 65%;
+	right: 3%;
+	background-color: #3776ab;
+	color: white;
+	animation: floatElement 7s ease-in-out 0.9s infinite;
+}
+
+@keyframes floatElement {
+	0% {
+		transform: translate(0, 0) rotate(0deg);
+	}
+	25% {
+		transform: translate(10px, -15px) rotate(3deg);
+	}
+	50% {
+		transform: translate(0, -25px) rotate(0deg);
+	}
+	75% {
+		transform: translate(-10px, -15px) rotate(-3deg);
+	}
+	100% {
+		transform: translate(0, 0) rotate(0deg);
+	}
+}
+
+@media screen and (max-width: 1200px) {
+	.heroTitle {
+		font-size: 3.5rem;
+	}
+
+	.name {
+		font-size: 3.5rem;
+	}
+
+	.profession {
+		font-size: 2.2rem;
+	}
+
+	.codeEditorContent {
+		font-size: 0.8rem;
+	}
+}
+
+@media screen and (max-width: 992px) {
+	.heroContainer {
+		grid-template-columns: 1fr;
+		text-align: center;
+	}
+
+	.heroContent {
+		order: 1;
+	}
+
+	.heroDecoration {
+		order: 2;
+		margin-top: 2rem;
+	}
+
+	.heroTitle {
+		font-size: 3rem;
+	}
+
+	.name {
+		font-size: 3rem;
+	}
+
+	.profession {
+		font-size: 2rem;
+		justify-content: center;
+	}
+
+	.heroDescription {
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.heroButtons {
+		justify-content: center;
+	}
+
+	.scrollIndicator {
+		position: static;
+		margin-top: 2rem;
+	}
+
+	.codeEditorContent {
+		padding: 1rem;
+	}
+}
+
+@media screen and (max-width: 576px) {
+	.heroTitle {
+		font-size: 2.5rem;
+	}
+
+	.name {
+		font-size: 2.5rem;
+	}
+
+	.profession {
+		font-size: 1.8rem;
+	}
+
+	.greeting {
+		font-size: 1.2rem;
+	}
+
+	.heroDescription {
+		font-size: 1rem;
+	}
+
+	.heroButtons {
+		flex-direction: column;
+		gap: 1rem;
+	}
+
+	.codeBlock {
+		max-width: 320px;
+	}
+
+	.codeEditorContent {
+		font-size: 0.7rem;
+	}
+}

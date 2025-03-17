@@ -1,0 +1,175 @@
+.services {
+	background-color: var(--bg-primary);
+	position: relative;
+}
+
+.servicesGrid {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 2rem;
+	margin-bottom: 4rem;
+}
+
+.serviceCardWrapper {
+	transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.serviceCard {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	padding: 2.5rem 1.5rem;
+	transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.serviceIcon {
+	width: 70px;
+	height: 70px;
+	border-radius: 50%;
+	background: rgba(94, 114, 228, 0.1);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 1.5rem;
+	color: var(--accent-primary);
+	transition: all 0.3s ease;
+}
+
+.serviceCard:hover .serviceIcon {
+	background: var(--accent-gradient);
+	color: white;
+	transform: scale(1.1);
+}
+
+.serviceTitle {
+	font-size: 1.4rem;
+	margin-bottom: 1rem;
+	transition: color 0.3s ease;
+}
+
+.serviceCard:hover .serviceTitle {
+	color: var(--accent-primary);
+}
+
+.serviceDescription {
+	color: var(--text-secondary);
+	line-height: 1.7;
+	margin-bottom: 1.5rem;
+	flex-grow: 1;
+}
+
+.serviceLink {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	color: var(--accent-primary);
+	font-weight: 500;
+	transition: all 0.3s ease;
+	text-decoration: none;
+}
+
+.serviceLink svg {
+	transition: transform 0.3s ease;
+}
+
+.serviceLink:hover {
+	color: var(--accent-hover);
+}
+
+.serviceLink:hover svg {
+	transform: translateX(3px);
+}
+
+.servicesContact {
+	background: var(--accent-gradient);
+	border-radius: var(--border-radius-lg);
+	padding: 3rem;
+	color: white;
+	box-shadow: var(--shadow-lg);
+	position: relative;
+	overflow: hidden;
+}
+
+.servicesContact::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 300px;
+	height: 300px;
+	background-image: radial-gradient(
+		rgba(255, 255, 255, 0.15) 2px,
+		transparent 2px
+	);
+	background-size: 20px 20px;
+	opacity: 0.3;
+}
+
+.servicesContactContent {
+	max-width: 600px;
+	position: relative;
+	z-index: 1;
+}
+
+.servicesContactTitle {
+	font-size: 2rem;
+	margin-bottom: 1rem;
+}
+
+.servicesContactText {
+	font-size: 1.1rem;
+	margin-bottom: 2rem;
+	opacity: 0.9;
+}
+
+.servicesContactButton {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.8rem;
+	background-color: white;
+	color: var(--accent-primary);
+	padding: 0.75rem 1.5rem;
+	border-radius: var(--border-radius-md);
+	font-weight: 500;
+	text-decoration: none;
+	transition: all 0.3s ease;
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.servicesContactButton svg {
+	transition: transform 0.3s ease;
+}
+
+.servicesContactButton:hover {
+	background-color: var(--bg-primary);
+	transform: translateY(-3px);
+	box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+}
+
+.servicesContactButton:hover svg {
+	transform: translateX(3px);
+}
+
+@media screen and (max-width: 992px) {
+	.servicesGrid {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.servicesContact {
+		padding: 2rem;
+	}
+
+	.servicesContactTitle {
+		font-size: 1.8rem;
+	}
+}
+
+@media screen and (max-width: 576px) {
+	.servicesGrid {
+		grid-template-columns: 1fr;
+	}
+}

@@ -1,0 +1,250 @@
+.contact {
+	background-color: var(--bg-secondary);
+	position: relative;
+}
+
+.contactContainer {
+	display: grid;
+	grid-template-columns: 1fr 1.5fr;
+	gap: 3rem;
+	margin-top: 2rem;
+}
+
+/* Contact Info Section */
+.contactInfo {
+	position: relative;
+	background: var(--accent-gradient);
+	border-radius: var(--border-radius-lg);
+	color: white;
+	overflow: hidden;
+}
+
+.contactInfoContent {
+	position: relative;
+	z-index: 2;
+	padding: 3rem;
+}
+
+.contactInfoTitle {
+	font-size: 1.8rem;
+	margin-bottom: 1.5rem;
+}
+
+.contactInfoText {
+	opacity: 0.9;
+	line-height: 1.7;
+	margin-bottom: 2rem;
+}
+
+.contactInfoList {
+	list-style: none;
+	padding: 0;
+	margin: 0 0 2rem;
+}
+
+.contactInfoItem {
+	display: flex;
+	align-items: flex-start;
+	margin-bottom: 1.5rem;
+}
+
+.contactInfoIcon {
+	width: 45px;
+	height: 45px;
+	border-radius: 50%;
+	background-color: rgba(255, 255, 255, 0.15);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-right: 1rem;
+	flex-shrink: 0;
+}
+
+.contactInfoItemTitle {
+	font-size: 1.1rem;
+	margin: 0 0 0.3rem;
+}
+
+.contactInfoItemValue {
+	opacity: 0.9;
+	margin: 0;
+}
+
+.contactSocial {
+	border-top: 1px solid rgba(255, 255, 255, 0.2);
+	padding-top: 1.5rem;
+}
+
+.contactSocialTitle {
+	font-size: 1.1rem;
+	margin-bottom: 1rem;
+}
+
+.contactSocialLinks {
+	display: flex;
+	gap: 1rem;
+}
+
+.contactSocialLink {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	background-color: rgba(255, 255, 255, 0.15);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: white;
+	transition: all 0.3s ease;
+}
+
+.contactSocialLink:hover {
+	background-color: white;
+	color: var(--accent-primary);
+	transform: translateY(-3px);
+}
+
+.contactDecoration {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	width: 200px;
+	height: 200px;
+	background-image: radial-gradient(
+		rgba(255, 255, 255, 0.15) 2px,
+		transparent 2px
+	);
+	background-size: 20px 20px;
+	opacity: 0.3;
+	z-index: 1;
+}
+
+/* Contact Form Section */
+.contactForm {
+	background-color: var(--bg-primary);
+	border-radius: var(--border-radius-lg);
+	box-shadow: var(--shadow-md);
+	padding: 3rem;
+}
+
+.formGrid {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 1.5rem;
+}
+
+.formGroup {
+	margin-bottom: 1rem;
+}
+
+.formGroupFull {
+	grid-column: span 2;
+}
+
+.formLabel {
+	display: block;
+	margin-bottom: 0.5rem;
+	font-weight: 500;
+	color: var(--text-primary);
+}
+
+.formControl {
+	width: 100%;
+	padding: 0.75rem 1rem;
+	border: 1px solid var(--bg-tertiary);
+	border-radius: var(--border-radius-md);
+	background-color: var(--bg-primary);
+	color: var(--text-primary);
+	font-family: "Poppins", sans-serif;
+	font-size: 1rem;
+	transition: all 0.3s ease;
+}
+
+.formControl:focus {
+	outline: none;
+	border-color: var(--accent-primary);
+	box-shadow: 0 0 0 3px rgba(94, 114, 228, 0.1);
+}
+
+.formControl::placeholder {
+	color: var(--text-tertiary);
+}
+
+.formControl.error {
+	border-color: #e53e3e;
+}
+
+.formError {
+	color: #e53e3e;
+	font-size: 0.875rem;
+	margin-top: 0.5rem;
+}
+
+.required {
+	color: #e53e3e;
+}
+
+.formMessage {
+	margin-top: 1.5rem;
+	padding: 1rem;
+	border-radius: var(--border-radius-md);
+	text-align: center;
+}
+
+.formMessage.success {
+	background-color: rgba(72, 187, 120, 0.1);
+	color: #48bb78;
+	border: 1px solid rgba(72, 187, 120, 0.2);
+}
+
+.formMessage.error {
+	background-color: rgba(229, 62, 62, 0.1);
+	color: #e53e3e;
+	border: 1px solid rgba(229, 62, 62, 0.2);
+}
+
+.spinner {
+	animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+@media screen and (max-width: 992px) {
+	.contactContainer {
+		grid-template-columns: 1fr;
+	}
+
+	.contactInfo {
+		order: 2;
+	}
+
+	.contactForm {
+		order: 1;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.contactInfoContent {
+		padding: 2rem;
+	}
+
+	.contactForm {
+		padding: 2rem;
+	}
+}
+
+@media screen and (max-width: 576px) {
+	.formGrid {
+		grid-template-columns: 1fr;
+	}
+
+	.formGroupFull {
+		grid-column: span 1;
+	}
+}

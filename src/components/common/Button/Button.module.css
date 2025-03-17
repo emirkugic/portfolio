@@ -1,0 +1,107 @@
+.button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	font-family: "Poppins", sans-serif;
+	font-weight: 500;
+	border: none;
+	border-radius: var(--border-radius-md);
+	cursor: pointer;
+	transition: all var(--transition-normal);
+	text-decoration: none;
+	outline: none;
+}
+
+/* Variants */
+.primary {
+	background: var(--accent-gradient);
+	color: white;
+	box-shadow: 0 4px 15px rgba(94, 114, 228, 0.3);
+}
+
+.primary:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 7px 20px rgba(94, 114, 228, 0.4);
+}
+
+.primary:active {
+	transform: translateY(0);
+	box-shadow: 0 4px 10px rgba(94, 114, 228, 0.4);
+}
+
+.secondary {
+	background: transparent;
+	color: var(--accent-primary);
+	border: 2px solid var(--accent-primary);
+}
+
+.secondary:hover {
+	background: rgba(94, 114, 228, 0.05);
+	transform: translateY(-2px);
+}
+
+.secondary:active {
+	transform: translateY(0);
+}
+
+.tertiary {
+	background: transparent;
+	color: var(--text-primary);
+	border: none;
+	padding: 0.5rem 0;
+	border-radius: 0;
+	position: relative;
+}
+
+.tertiary::after {
+	content: "";
+	position: absolute;
+	width: 0;
+	height: 2px;
+	bottom: 0;
+	left: 0;
+	background-color: var(--accent-primary);
+	transition: width var(--transition-normal);
+}
+
+.tertiary:hover {
+	color: var(--accent-primary);
+}
+
+.tertiary:hover::after {
+	width: 100%;
+}
+
+/* Sizes */
+.small {
+	font-size: 0.875rem;
+	padding: 0.5rem 1rem;
+}
+
+.medium {
+	font-size: 1rem;
+	padding: 0.75rem 1.5rem;
+}
+
+.large {
+	font-size: 1.125rem;
+	padding: 1rem 2rem;
+}
+
+.fullWidth {
+	width: 100%;
+}
+
+/* With Icon */
+.withIcon {
+	gap: 0.5rem;
+}
+
+.icon {
+	display: flex;
+	align-items: center;
+}
+
+.iconRight {
+	flex-direction: row-reverse;
+}

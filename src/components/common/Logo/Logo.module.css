@@ -1,0 +1,51 @@
+.logo {
+	display: flex;
+	align-items: center;
+	text-decoration: none;
+	gap: 0.6rem;
+}
+
+.logoIcon {
+	display: flex;
+	align-items: center;
+	font-size: 1.3rem;
+	font-weight: 700;
+}
+
+.bracket {
+	color: var(--accent-primary);
+}
+
+.letter {
+	color: var(--text-primary);
+	font-family: "Montserrat", sans-serif;
+	font-weight: 800;
+	margin: 0 0.1rem;
+}
+
+.logoText {
+	font-family: "Montserrat", sans-serif;
+	font-weight: 700;
+	font-size: 1.4rem;
+	color: var(--text-primary);
+}
+
+@media screen and (max-width: 768px) {
+	.logoText {
+		font-size: 1.2rem;
+	}
+
+	.logoIcon {
+		font-size: 1.1rem;
+	}
+}
+
+@media screen and (max-width: 576px) {
+	.logoText {
+		display: none;
+	}
+
+	.logoIcon {
+		font-size: 1.5rem;
+	}
+}
