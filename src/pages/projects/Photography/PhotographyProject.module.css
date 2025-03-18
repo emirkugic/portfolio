@@ -1,1012 +1,1194 @@
 /* src/pages/projects/Photography/PhotographyProject.module.css */
-/* Using photo prefix for all class names to avoid conflicts */
+/* Minimal Modern Photography CSS */
 
-/* General Styles */
-.photoProject {
-	font-family: "Poppins", sans-serif;
-	color: #4a4a4a;
-	--photo-primary: #3a7bd5;
-	--photo-primary-light: #6fa5e5;
-	--photo-primary-dark: #2a5a9d;
-	--photo-accent: #64c3a6;
-	--photo-light: #f7f9fb;
-	--photo-light-gray: #e9ecef;
-	--photo-text: #4a4a4a;
-	--photo-text-light: #868e96;
-	--photo-white: #ffffff;
-	--photo-dark: #343a40;
-	--photo-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-	--photo-radius: 8px;
-	--photo-transition: all 0.3s ease;
-	line-height: 1.6;
-	/* Add padding to account for main site header */
-	padding-top: var(--header-height, 80px);
-}
-
+/* Base Styles & Variables */
 .photoContainer {
-	width: 100%;
-	max-width: 1200px;
-	margin: 0 auto;
-	padding: 0 2rem;
+	--photo-font-primary: "Inter", "Helvetica Neue", sans-serif;
+	--photo-font-secondary: "Playfair Display", serif;
+
+	/* Monochromatic color scheme with minimal accent */
+	--photo-bg: #ffffff;
+	--photo-text: #1a1a1a;
+	--photo-text-light: #666666;
+	--photo-text-lighter: #999999;
+	--photo-accent: #d1d1d1;
+	--photo-black: #000000;
+	--photo-white: #ffffff;
+	--photo-border: #e5e5e5;
+
+	/* Spacing */
+	--photo-space-xs: 0.5rem;
+	--photo-space-sm: 1rem;
+	--photo-space-md: 2rem;
+	--photo-space-lg: 4rem;
+	--photo-space-xl: 8rem;
+
+	/* Effects */
+	--photo-transition: 0.3s ease;
+	--photo-transition-slow: 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+
+	/* Typography */
+	--photo-text-xs: 0.75rem;
+	--photo-text-sm: 0.875rem;
+	--photo-text-base: 1rem;
+	--photo-text-lg: 1.125rem;
+	--photo-text-xl: 1.5rem;
+	--photo-text-2xl: 2rem;
+	--photo-text-3xl: 3rem;
+	--photo-text-4xl: 4rem;
+	--photo-text-5xl: 5rem;
+
+	/* Main styles */
+	font-family: var(--photo-font-primary);
+	color: var(--photo-text);
+	background-color: var(--photo-bg);
+	line-height: 1.5;
+	padding-top: var(--header-height, 80px);
+	overflow-x: hidden;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	letter-spacing: -0.01em;
 }
 
-.photoSectionHeader {
-	text-align: center;
-	margin-bottom: 3rem;
-}
-
-.photoSectionTitle {
-	font-size: 2.5rem;
-	font-weight: 700;
-	color: var(--photo-dark);
-	margin-bottom: 0.5rem;
-}
-
-.photoSectionDivider {
-	width: 60px;
-	height: 3px;
-	background: linear-gradient(
-		to right,
-		var(--photo-primary),
-		var(--photo-accent)
-	);
-	margin: 0.5rem auto 1rem;
-	border-radius: 3px;
-}
-
-.photoSectionSubtitle {
-	font-size: 1.1rem;
-	color: var(--photo-text-light);
-	max-width: 700px;
-	margin: 0 auto;
-}
-
-.photoButton {
-	display: inline-block;
-	background: linear-gradient(
-		to right,
-		var(--photo-primary),
-		var(--photo-primary-light)
-	);
-	color: var(--photo-white);
-	padding: 0.8rem 2rem;
-	border-radius: 30px;
-	font-weight: 500;
-	font-size: 1rem;
-	border: none;
-	cursor: pointer;
-	transition: var(--photo-transition);
-	text-decoration: none;
-	box-shadow: 0 4px 12px rgba(58, 123, 213, 0.2);
-}
-
-.photoButton:hover {
-	transform: translateY(-3px);
-	box-shadow: 0 8px 16px rgba(58, 123, 213, 0.3);
-}
-
-.photoButtonOutline {
-	display: inline-block;
-	background: transparent;
-	color: var(--photo-white);
-	padding: 0.8rem 2rem;
-	border-radius: 30px;
-	font-weight: 500;
-	font-size: 1rem;
-	border: 2px solid var(--photo-white);
-	cursor: pointer;
-	transition: var(--photo-transition);
-	text-decoration: none;
-}
-
-.photoButtonOutline:hover {
-	background: rgba(255, 255, 255, 0.1);
-	transform: translateY(-3px);
-}
-
-/* Header Styles */
+/* Header */
 .photoHeader {
 	position: fixed;
-	/* Position below the main header */
 	top: var(--header-height, 80px);
 	left: 0;
 	right: 0;
-	padding: 1.5rem 0;
-	z-index: 90; /* Lower z-index than main header */
-	transition: var(--photo-transition);
-	background: rgba(255, 255, 255, 0.95);
-	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-	transform: translateY(0);
+	padding: 1.5rem 2rem;
+	z-index: 90;
+	transition: all var(--photo-transition);
+	mix-blend-mode: difference;
 }
 
-/* Header hidden state (for scroll direction) */
-.photoHeaderHidden {
-	transform: translateY(-100%);
+.photoHeaderScrolled {
+	padding: 1rem 2rem;
+	background-color: rgba(255, 255, 255, 0.98);
+	mix-blend-mode: normal;
+	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05);
 }
 
-.photoHeaderContent {
+.photoHeaderScrolled .photoLogo {
+	color: var(--photo-text);
+}
+
+.photoHeaderInner {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	max-width: 1800px;
+	margin: 0 auto;
 }
 
 .photoLogo {
-	display: flex;
-	flex-direction: column;
-	line-height: 1;
-}
-
-.photoLogo h2 {
-	font-size: 1.8rem;
-	font-weight: 700;
-	color: var(--photo-primary);
-	margin: 0;
-}
-
-.photoLogo span {
-	font-size: 0.9rem;
-	color: var(--photo-text);
-	font-weight: 400;
-}
-
-.photoNav {
-	display: flex;
-}
-
-.photoNavList {
-	display: flex;
-	list-style: none;
-	margin: 0;
-	padding: 0;
-}
-
-.photoNavLink {
-	color: var(--photo-text);
-	text-decoration: none;
-	padding: 0.5rem 1rem;
+	font-size: 1rem;
 	font-weight: 500;
-	transition: var(--photo-transition);
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	color: var(--photo-white);
+	text-decoration: none;
+	transition: color var(--photo-transition);
+}
+
+.photoHeaderScrolled .photoLogo {
+	color: var(--photo-text);
+}
+
+.photoMenuToggle {
+	width: 30px;
+	height: 20px;
 	position: relative;
-}
-
-.photoNavLink:hover {
-	color: var(--photo-primary);
-}
-
-.photoNavLink::after {
-	content: "";
-	position: absolute;
-	bottom: 0;
-	left: 50%;
-	width: 0;
-	height: 2px;
-	background-color: var(--photo-primary);
-	transition: var(--photo-transition);
-	transform: translateX(-50%);
-}
-
-.photoNavLink:hover::after {
-	width: 70%;
-}
-
-.photoMobileMenuBtn {
-	display: none;
 	background: none;
 	border: none;
 	cursor: pointer;
-	width: 30px;
-	height: 24px;
-	position: relative;
-	z-index: 200;
+	z-index: 100;
+	transition: var(--photo-transition);
 }
 
-.photoMobileMenuBtn span {
-	display: block;
-	width: 100%;
-	height: 2px;
-	background-color: var(--photo-primary);
+.photoMenuToggle span {
 	position: absolute;
+	width: 100%;
+	height: 1px;
+	background-color: currentColor;
 	left: 0;
 	transition: var(--photo-transition);
 }
 
-.photoMobileMenuBtn span:nth-child(1) {
+.photoMenuToggle span:first-child {
+	top: 5px;
+}
+
+.photoMenuToggle span:last-child {
+	bottom: 5px;
+}
+
+.photoMenuActive span:first-child {
+	transform: rotate(45deg);
+	top: 9px;
+}
+
+.photoMenuActive span:last-child {
+	transform: rotate(-45deg);
+	bottom: 10px;
+}
+
+.photoNav {
+	position: fixed;
 	top: 0;
-}
-
-.photoMobileMenuBtn span:nth-child(2) {
-	top: 50%;
-	transform: translateY(-50%);
-}
-
-.photoMobileMenuBtn span:nth-child(3) {
-	bottom: 0;
-}
-
-.photoMobileMenuBtn.photoActive span:nth-child(1) {
-	top: 50%;
-	transform: translateY(-50%) rotate(45deg);
-}
-
-.photoMobileMenuBtn.photoActive span:nth-child(2) {
-	opacity: 0;
-}
-
-.photoMobileMenuBtn.photoActive span:nth-child(3) {
-	bottom: 50%;
-	transform: translateY(50%) rotate(-45deg);
-}
-
-/* Hero Section Styles */
-.photoHero {
+	right: -100%;
+	width: 100%;
 	height: 100vh;
-	background: url("https://i.imgur.com/BOO2k9l.jpeg") center/cover no-repeat;
-	position: relative;
-	/* Add margin to account for the project header height */
-	margin-top: calc(var(--header-height, 80px) + 10px);
+	background-color: var(--photo-white);
 	display: flex;
 	align-items: center;
+	justify-content: center;
+	z-index: 90;
+	transition: right var(--photo-transition-slow);
 }
 
-.photoHeroOverlay {
+.photoNavOpen {
+	right: 0;
+}
+
+.photoNavClose {
 	position: absolute;
 	top: 0;
 	left: 0;
-	right: 0;
-	bottom: 0;
-	background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.4));
-	display: flex;
-	align-items: center;
-}
-
-.photoHeroContent {
-	max-width: 700px;
-	color: var(--photo-white);
-	padding: 2rem 0;
-}
-
-.photoHeroTitle {
-	font-size: 3.5rem;
-	font-weight: 800;
-	line-height: 1.2;
-	margin-bottom: 1.5rem;
-}
-
-.photoHeroSubtitle {
-	font-size: 1.5rem;
-	margin-bottom: 2.5rem;
-	opacity: 0.9;
-}
-
-.photoHeroButtons {
-	display: flex;
-	gap: 1rem;
-}
-
-/* About Section Styles */
-.photoAbout {
-	padding: 6rem 0;
-	background-color: var(--photo-light);
-}
-
-.photoAboutContent {
-	display: grid;
-	grid-template-columns: 1fr 1.5fr;
-	gap: 4rem;
-	align-items: center;
-}
-
-.photoAboutImage {
-	position: relative;
-}
-
-.photoAboutImage img {
-	width: 100%;
-	height: auto;
-	border-radius: var(--photo-radius);
-	box-shadow: var(--photo-shadow);
-}
-
-.photoAboutImageBox {
-	position: absolute;
-	bottom: -20px;
-	right: -20px;
-	background: linear-gradient(
-		to right,
-		var(--photo-primary),
-		var(--photo-primary-light)
-	);
-	color: var(--photo-white);
-	padding: 1rem 2rem;
-	border-radius: var(--photo-radius);
-	font-weight: 500;
-	box-shadow: var(--photo-shadow);
-}
-
-.photoAboutHeading {
-	font-size: 2rem;
-	margin-bottom: 1.5rem;
-	color: var(--photo-dark);
-}
-
-.photoAboutText p {
-	margin-bottom: 1.5rem;
-	color: var(--photo-text);
-}
-
-.photoAboutStats {
-	display: grid;
-	grid-template-columns: repeat(3, 1fr);
-	gap: 1.5rem;
-	margin-top: 2.5rem;
-}
-
-.photoAboutStat {
-	text-align: center;
-	padding: 1.5rem;
-	background-color: var(--photo-white);
-	border-radius: var(--photo-radius);
-	box-shadow: var(--photo-shadow);
-	transition: var(--photo-transition);
-}
-
-.photoAboutStat:hover {
-	transform: translateY(-5px);
-	box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-}
-
-.photoAboutStat h4 {
-	font-size: 2.5rem;
-	font-weight: 700;
-	margin-bottom: 0.5rem;
-	color: var(--photo-primary);
-}
-
-.photoAboutStat p {
-	margin-bottom: 0;
-	color: var(--photo-text-light);
-}
-
-/* Gallery Section Styles */
-.photoGallery {
-	padding: 6rem 0;
-	background-color: var(--photo-white);
-}
-
-.photoGalleryGrid {
-	display: grid;
-	grid-template-columns: repeat(4, 1fr);
-	gap: 1.5rem;
-	margin-bottom: 3rem;
-}
-
-.photoGalleryItem {
-	position: relative;
-	border-radius: var(--photo-radius);
-	overflow: hidden;
-	cursor: pointer;
-	box-shadow: var(--photo-shadow);
-	aspect-ratio: 1/1;
-	transition: var(--photo-transition);
-}
-
-.photoGalleryItem:hover {
-	transform: translateY(-5px);
-	box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-}
-
-.photoGalleryItem img {
 	width: 100%;
 	height: 100%;
-	object-fit: cover;
-	transition: var(--photo-transition);
 }
 
-.photoGalleryItem:hover img {
-	transform: scale(1.05);
-}
-
-.photoGalleryItemOverlay {
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	padding: 1.5rem;
-	background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
-	color: var(--photo-white);
-	transform: translateY(100%);
-	transition: var(--photo-transition);
-}
-
-.photoGalleryItem:hover .photoGalleryItemOverlay {
-	transform: translateY(0);
-}
-
-.photoGalleryItemOverlay h3 {
-	font-size: 1.2rem;
-	margin-bottom: 0.5rem;
-}
-
-.photoGalleryItemOverlay p {
-	font-size: 0.9rem;
+.photoNavList {
+	list-style: none;
+	padding: 0;
 	margin: 0;
-	opacity: 0.8;
-}
-
-.photoGalleryButton {
-	text-align: center;
-}
-
-/* Services Section Styles */
-.photoServices {
-	padding: 6rem 0;
-	background-color: var(--photo-light);
-}
-
-.photoServicesGrid {
-	display: grid;
-	grid-template-columns: repeat(4, 1fr);
-	gap: 2rem;
-}
-
-.photoServicesCard {
-	background-color: var(--photo-white);
-	border-radius: var(--photo-radius);
-	padding: 2rem;
-	text-align: center;
-	box-shadow: var(--photo-shadow);
-	transition: var(--photo-transition);
-}
-
-.photoServicesCard:hover {
-	transform: translateY(-5px);
-	box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-}
-
-.photoServicesIcon {
-	font-size: 3rem;
-	margin-bottom: 1.5rem;
-}
-
-.photoServicesTitle {
-	font-size: 1.3rem;
-	margin-bottom: 1rem;
-	color: var(--photo-dark);
-}
-
-.photoServicesDescription {
-	font-size: 0.95rem;
-	color: var(--photo-text-light);
-	margin-bottom: 1.5rem;
-}
-
-.photoServicesLink {
-	color: var(--photo-primary);
-	text-decoration: none;
-	font-weight: 500;
 	position: relative;
-	padding-bottom: 0.2rem;
+	z-index: 1;
 }
 
-.photoServicesLink::after {
+.photoNavList li {
+	margin: 1.5rem 0;
+	text-align: center;
+	opacity: 0;
+	transform: translateY(20px);
+	transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.photoNavOpen .photoNavList li {
+	opacity: 1;
+	transform: translateY(0);
+	transition-delay: calc(0.1s * var(--i, 0));
+}
+
+.photoNavList a {
+	font-size: 2rem;
+	font-weight: 300;
+	color: var(--photo-text);
+	text-decoration: none;
+	transition: color var(--photo-transition);
+	position: relative;
+	display: inline-block;
+}
+
+.photoNavList a::after {
 	content: "";
 	position: absolute;
 	bottom: 0;
 	left: 0;
 	width: 0;
 	height: 1px;
-	background-color: var(--photo-primary);
-	transition: var(--photo-transition);
+	background-color: var(--photo-text);
+	transition: width var(--photo-transition);
 }
 
-.photoServicesLink:hover::after {
-	width: 100%;
-}
-
-/* Testimonials Section Styles */
-.photoTestimonials {
-	padding: 6rem 0;
-	background-color: var(--photo-white);
-}
-
-.photoTestimonialsGrid {
-	display: grid;
-	grid-template-columns: repeat(3, 1fr);
-	gap: 2rem;
-}
-
-.photoTestimonialCard {
-	background-color: var(--photo-light);
-	border-radius: var(--photo-radius);
-	padding: 2.5rem 2rem 2rem;
-	position: relative;
-	box-shadow: var(--photo-shadow);
-	transition: var(--photo-transition);
-}
-
-.photoTestimonialCard:hover {
-	transform: translateY(-5px);
-	box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-}
-
-.photoTestimonialQuote {
-	position: absolute;
-	top: 1.5rem;
-	left: 2rem;
-	font-size: 3rem;
-	color: var(--photo-primary);
-	opacity: 0.2;
-	font-family: Georgia, serif;
-	line-height: 1;
-}
-
-.photoTestimonialText {
-	font-size: 1rem;
-	color: var(--photo-text);
-	margin-bottom: 1.5rem;
-	line-height: 1.8;
-}
-
-.photoTestimonialAuthor {
-	display: flex;
-	align-items: center;
-	gap: 1rem;
-}
-
-.photoTestimonialAvatar {
-	width: 50px;
-	height: 50px;
-	border-radius: 50%;
-	overflow: hidden;
-}
-
-.photoTestimonialAvatar img {
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-}
-
-.photoTestimonialInfo h4 {
-	font-size: 1.1rem;
-	margin: 0 0 0.2rem;
-	color: var(--photo-dark);
-}
-
-.photoTestimonialInfo p {
-	font-size: 0.9rem;
-	margin: 0;
+.photoNavList a:hover {
 	color: var(--photo-text-light);
 }
 
-/* Contact Section Styles */
-.photoContact {
-	padding: 6rem 0;
-	background-color: var(--photo-light);
+.photoNavList a:hover::after {
+	width: 100%;
 }
 
-.photoContactWrapper {
-	display: grid;
-	grid-template-columns: 1fr 1.5fr;
-	gap: 3rem;
-	background-color: var(--photo-white);
-	border-radius: var(--photo-radius);
+/* Enhanced Hero Section - add this to your PhotographyProject.module.css file */
+
+/* Hero Section - Enhanced */
+.photoHero {
+	height: 100vh;
+	position: relative;
+	margin-top: calc(var(--header-height, 80px) - 80px);
 	overflow: hidden;
-	box-shadow: var(--photo-shadow);
 }
 
-.photoContactInfo {
-	padding: 3rem;
+/* Dynamic Background with multiple images */
+.photoHeroImage {
+	position: absolute;
+	inset: 0;
+	background: none;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+/* Create a background collage effect */
+.photoHeroImage::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+		url("https://images.unsplash.com/photo-1515549832467-8783363e19b6?q=80&w=1000")
+			left center/50% no-repeat,
+		url("https://images.unsplash.com/photo-1545239351-cefa43af60f3?q=80&w=1000")
+			right center/50% no-repeat;
+	background-blend-mode: normal, multiply;
+	animation: heroZoom 20s infinite alternate ease-in-out;
+	z-index: 0;
+}
+
+/* Colorful gradient overlay */
+.photoHeroImage::after {
+	content: "";
+	position: absolute;
+	inset: 0;
 	background: linear-gradient(
 		135deg,
-		var(--photo-primary),
-		var(--photo-primary-dark)
+		rgba(142, 58, 180, 0.2),
+		rgba(29, 162, 253, 0.2),
+		rgba(245, 92, 103, 0.2),
+		rgba(252, 176, 69, 0.2)
 	);
+	opacity: 0.8;
+	mix-blend-mode: soft-light;
+	z-index: 1;
+}
+
+/* Floating particles effect */
+.photoHeroParticles {
+	position: absolute;
+	inset: 0;
+	z-index: 2;
+	overflow: hidden;
+}
+
+.photoHeroParticles span {
+	position: absolute;
+	display: block;
+	width: 5px;
+	height: 5px;
+	background: rgba(255, 255, 255, 0.5);
+	border-radius: 50%;
+	animation: particleFloat 15s infinite linear;
+}
+
+.photoHeroParticles span:nth-child(1) {
+	top: 20%;
+	left: 20%;
+	width: 8px;
+	height: 8px;
+	animation-delay: 0s;
+	animation-duration: 20s;
+}
+
+.photoHeroParticles span:nth-child(2) {
+	top: 60%;
+	left: 80%;
+	width: 6px;
+	height: 6px;
+	animation-delay: 2s;
+	animation-duration: 18s;
+}
+
+.photoHeroParticles span:nth-child(3) {
+	top: 40%;
+	left: 40%;
+	width: 10px;
+	height: 10px;
+	animation-delay: 5s;
+	animation-duration: 25s;
+}
+
+.photoHeroParticles span:nth-child(4) {
+	top: 80%;
+	left: 60%;
+	width: 7px;
+	height: 7px;
+	animation-delay: 8s;
+	animation-duration: 22s;
+}
+
+.photoHeroParticles span:nth-child(5) {
+	top: 30%;
+	left: 70%;
+	width: 9px;
+	height: 9px;
+	animation-delay: 12s;
+	animation-duration: 30s;
+}
+
+.photoHeroContent {
+	position: relative;
+	z-index: 3;
+	max-width: 800px;
+	padding: 0 2rem;
+	text-align: center;
 	color: var(--photo-white);
 }
 
-.photoContactInfo .photoSectionHeader {
-	text-align: left;
+/* Enhance typography with layered text */
+.photoHeroTitle {
+	font-family: var(--photo-font-secondary);
+	font-size: 3.5rem;
+	font-weight: 300;
+	line-height: 1.2;
+	margin-bottom: 2rem;
+	text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+	opacity: 0;
+	transform: translateY(30px);
+	animation: fadeUp 1s forwards 0.3s;
+	position: relative;
 }
 
-.photoContactInfo .photoSectionTitle {
+/* Decorative element */
+.photoHeroTitle::before {
+	content: "";
+	position: absolute;
+	top: -30px;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 80px;
+	height: 2px;
+	background: linear-gradient(
+		to right,
+		rgba(255, 255, 255, 0),
+		rgba(255, 255, 255, 0.8),
+		rgba(255, 255, 255, 0)
+	);
+}
+
+/* Subtitle with fade in animation */
+.photoHeroTitle + p {
+	font-weight: 300;
+	margin-bottom: 2.5rem;
+	letter-spacing: 0.05em;
+	text-transform: uppercase;
+	opacity: 0;
+	animation: fadeIn 1s forwards 0.8s;
+}
+
+/* Enhanced button styling */
+.photoHeroButton {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.75rem;
+	padding: 1rem 2rem;
+	border: none;
+	background-color: rgba(255, 255, 255, 0.1);
+	backdrop-filter: blur(10px);
+	border: 1px solid rgba(255, 255, 255, 0.2);
 	color: var(--photo-white);
+	text-decoration: none;
+	font-size: 0.95rem;
+	letter-spacing: 0.05em;
+	text-transform: uppercase;
+	border-radius: 30px;
+	transition: all 0.4s cubic-bezier(0.17, 0.67, 0.83, 0.67);
+	opacity: 0;
+	animation: fadeIn 1s forwards 1.2s;
+	overflow: hidden;
+	position: relative;
+	z-index: 1;
 }
 
-.photoContactInfo .photoSectionDivider {
-	margin: 0.5rem 0 1rem;
-	background: rgba(255, 255, 255, 0.2);
+.photoHeroButton::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(
+		to right,
+		rgba(142, 58, 180, 0.8),
+		rgba(29, 162, 253, 0.8)
+	);
+	z-index: -1;
+	transform: translateX(-100%);
+	transition: transform 0.4s cubic-bezier(0.17, 0.67, 0.83, 0.67);
 }
 
-.photoContactInfo .photoSectionSubtitle {
-	color: rgba(255, 255, 255, 0.8);
-	margin: 0;
+.photoHeroButton:hover {
+	background-color: transparent;
+	transform: translateY(-3px);
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+	border-color: transparent;
 }
 
-.photoContactDetails {
-	margin-top: 2.5rem;
+.photoHeroButton:hover::before {
+	transform: translateX(0);
 }
 
-.photoContactItem {
+.photoArrow {
+	display: inline-block;
+	width: 20px;
+	height: 1px;
+	background-color: currentColor;
+	position: relative;
+	transition: width 0.3s ease, transform 0.3s ease;
+}
+
+.photoArrow::after {
+	content: "";
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 6px;
+	height: 6px;
+	border-right: 1px solid currentColor;
+	border-bottom: 1px solid currentColor;
+	transform: rotate(-45deg) translate(0, -2px);
+}
+
+.photoHeroButton:hover .photoArrow {
+	width: 25px;
+	transform: translateX(3px);
+}
+
+/* Scroll indicator with animation */
+.photoScrollIndicator {
+	position: absolute;
+	bottom: 40px;
+	left: 50%;
+	transform: translateX(-50%);
 	display: flex;
-	align-items: flex-start;
-	gap: 1rem;
-	margin-bottom: 1.5rem;
+	flex-direction: column;
+	align-items: center;
+	gap: 10px;
+	color: var(--photo-white);
+	z-index: 10;
+	opacity: 0;
+	animation: fadeIn 1s forwards 1.5s;
 }
 
-.photoContactIcon {
-	font-size: 1.5rem;
-	margin-top: 0.3rem;
+.photoScrollCircle {
+	width: 32px;
+	height: 52px;
+	border: 2px solid rgba(255, 255, 255, 0.3);
+	border-radius: 16px;
+	position: relative;
 }
 
-.photoContactText h4 {
-	font-size: 1.1rem;
-	margin: 0 0 0.5rem;
+.photoScrollDot {
+	position: absolute;
+	top: 8px;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 6px;
+	height: 6px;
+	background-color: white;
+	border-radius: 50%;
+	animation: scrollDot 2s infinite;
 }
 
-.photoContactText p {
-	margin: 0;
+.photoScrollText {
+	font-size: 12px;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
 	opacity: 0.8;
 }
 
-.photoContactSocial {
-	margin-top: 2.5rem;
+/* Animations */
+@keyframes heroZoom {
+	0% {
+		transform: scale(1);
+	}
+	100% {
+		transform: scale(1.1);
+	}
 }
 
-.photoContactSocial h4 {
-	font-size: 1.1rem;
-	margin-bottom: 1rem;
+@keyframes particleFloat {
+	0% {
+		transform: translateY(0) rotate(0deg);
+		opacity: 1;
+	}
+	100% {
+		transform: translateY(-1000px) rotate(720deg);
+		opacity: 0;
+	}
 }
 
-.photoContactSocialLinks {
-	display: flex;
-	gap: 1rem;
+@keyframes fadeUp {
+	0% {
+		opacity: 0;
+		transform: translateY(30px);
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
 }
 
-.photoContactSocialLink {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 40px;
-	height: 40px;
-	border-radius: 50%;
-	background-color: rgba(255, 255, 255, 0.1);
-	color: var(--photo-white);
-	text-decoration: none;
-	transition: var(--photo-transition);
-	font-size: 1.2rem;
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
 }
 
-.photoContactSocialLink:hover {
-	background-color: var(--photo-white);
-	color: var(--photo-primary);
-	transform: translateY(-3px);
+@keyframes scrollDot {
+	0% {
+		opacity: 1;
+		transform: translateX(-50%) translateY(0);
+	}
+	50% {
+		opacity: 0.5;
+		transform: translateX(-50%) translateY(20px);
+	}
+	100% {
+		opacity: 0;
+		transform: translateX(-50%) translateY(30px);
+	}
+}
+.photoArrow {
+	display: inline-block;
+	width: 20px;
+	height: 1px;
+	background-color: currentColor;
+	position: relative;
+	transition: width var(--photo-transition);
 }
 
-.photoContactForm {
-	padding: 3rem;
+.photoArrow::after {
+	content: "";
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 6px;
+	height: 6px;
+	border-right: 1px solid currentColor;
+	border-bottom: 1px solid currentColor;
+	transform: rotate(-45deg) translate(0, -2px);
 }
 
-.photoForm {
-	display: grid;
-	grid-template-columns: repeat(2, 1fr);
-	gap: 1.5rem;
+.photoHeroButton:hover .photoArrow {
+	width: 25px;
 }
 
-.photoFormGroup {
-	margin-bottom: 1rem;
+/* Gallery */
+.photoGallery {
+	padding: var(--photo-space-xl) 2rem;
 }
 
-.photoFormGroup:nth-child(3),
-.photoFormGroup:nth-child(4),
-.photoFormGroup:nth-child(5) {
-	grid-column: span 2;
-}
-
-.photoFormLabel {
-	display: block;
-	margin-bottom: 0.5rem;
-	font-weight: 500;
-	color: var(--photo-dark);
-}
-
-.photoFormControl {
-	width: 100%;
-	padding: 0.8rem 1rem;
-	border: 1px solid var(--photo-light-gray);
-	border-radius: var(--photo-radius);
-	font-family: inherit;
-	font-size: 1rem;
-	color: var(--photo-text);
-	transition: var(--photo-transition);
-}
-
-.photoFormControl:focus {
-	outline: none;
-	border-color: var(--photo-primary-light);
-	box-shadow: 0 0 0 3px rgba(58, 123, 213, 0.1);
-}
-
-.photoContactForm .photoButton {
-	margin-top: 1rem;
-}
-
-/* Footer Styles */
-.photoFooter {
-	padding: 4rem 0 2rem;
-	background-color: var(--photo-dark);
-	color: var(--photo-white);
-}
-
-.photoFooterContent {
+.photoSectionHeader {
+	margin-bottom: 3rem;
 	text-align: center;
 }
 
-.photoFooterLogo {
-	display: inline-flex;
-	flex-direction: column;
-	line-height: 1;
-	margin-bottom: 1.5rem;
-}
-
-.photoFooterLogo h2 {
-	font-size: 2rem;
-	font-weight: 700;
-	color: var(--photo-white);
-	margin: 0;
-}
-
-.photoFooterLogo span {
-	font-size: 1rem;
-	color: rgba(255, 255, 255, 0.7);
+.photoSectionHeader h2 {
+	font-family: var(--photo-font-secondary);
+	font-size: 2.5rem;
 	font-weight: 400;
+	margin: 0 0 1.5rem;
 }
 
-.photoFooterText {
-	max-width: 600px;
-	margin: 0 auto 2rem;
-	color: rgba(255, 255, 255, 0.7);
-}
-
-.photoFooterNav {
+.photoCategories {
 	display: flex;
+	flex-wrap: wrap;
 	justify-content: center;
-	gap: 1.5rem;
-	margin-bottom: 2.5rem;
-}
-
-.photoFooterLink {
-	color: rgba(255, 255, 255, 0.7);
-	text-decoration: none;
-	font-weight: 500;
-	transition: var(--photo-transition);
-}
-
-.photoFooterLink:hover {
-	color: var(--photo-white);
-}
-
-.photoFooterBottom {
-	padding-top: 2rem;
-	border-top: 1px solid rgba(255, 255, 255, 0.1);
-	display: flex;
-	flex-direction: column;
 	gap: 1rem;
+	margin-top: 1.5rem;
 }
 
-.photoFooterBottom p {
-	margin: 0;
-	color: rgba(255, 255, 255, 0.5);
+.photoCategory {
+	background: none;
+	border: none;
+	padding: 0.5rem 1rem;
 	font-size: 0.9rem;
-}
-
-.photoFooterLinks {
-	display: flex;
-	justify-content: center;
-}
-
-.photoFooterPortfolioLink {
-	color: var(--photo-primary-light);
-	text-decoration: none;
-	font-weight: 500;
-	transition: var(--photo-transition);
-}
-
-.photoFooterPortfolioLink:hover {
-	color: var(--photo-white);
-}
-
-/* Lightbox Styles */
-.photoLightbox {
-	position: fixed;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	background-color: rgba(0, 0, 0, 0.9);
-	z-index: 1000;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}
-
-.photoLightboxContent {
+	color: var(--photo-text-light);
+	cursor: pointer;
+	transition: color var(--photo-transition);
 	position: relative;
-	max-width: 900px;
-	max-height: 80vh;
-	width: 90%;
 }
 
-.photoLightboxImage {
-	width: 100%;
-	height: auto;
-	border-radius: var(--photo-radius);
+.photoCategory::after {
+	content: "";
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	width: 0;
+	height: 1px;
+	background-color: var(--photo-black);
+	transition: width var(--photo-transition), left var(--photo-transition);
+}
+
+.photoCategory:hover {
+	color: var(--photo-text);
+}
+
+.photoCategory.photoActive {
+	color: var(--photo-black);
+}
+
+.photoCategory.photoActive::after {
+	width: 20px;
+	left: calc(50% - 10px);
+}
+
+.photoGrid {
+	display: grid;
+	grid-template-columns: repeat(6, 1fr);
+	grid-auto-rows: 200px;
+	gap: 1rem;
+	max-width: 1800px;
+	margin: 0 auto;
+}
+
+.photoItem {
+	position: relative;
+	cursor: pointer;
 	overflow: hidden;
 }
 
-.photoLightboxImage img {
-	width: 100%;
-	height: auto;
-	display: block;
+.photosmall {
+	grid-column: span 2;
+	grid-row: span 1;
 }
 
-.photoLightboxCaption {
+.photomedium {
+	grid-column: span 2;
+	grid-row: span 2;
+}
+
+.photolarge {
+	grid-column: span 4;
+	grid-row: span 2;
+}
+
+.photoItemInner {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+
+.photoItemInner img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	transition: transform var(--photo-transition-slow);
+}
+
+.photoItem:hover .photoItemInner img {
+	transform: scale(1.05);
+}
+
+.photoItemDetails {
 	position: absolute;
 	bottom: 0;
 	left: 0;
 	right: 0;
 	padding: 1.5rem;
-	background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+	background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
 	color: var(--photo-white);
-	border-bottom-left-radius: var(--photo-radius);
-	border-bottom-right-radius: var(--photo-radius);
+	transform: translateY(100%);
+	transition: transform var(--photo-transition);
 }
 
-.photoLightboxCaption h3 {
-	font-size: 1.3rem;
-	margin: 0 0 0.5rem;
+.photoItem:hover .photoItemDetails {
+	transform: translateY(0);
 }
 
-.photoLightboxCaption p {
-	margin: 0;
+.photoItemDetails h3 {
+	font-size: 1.2rem;
+	font-weight: 400;
+	margin: 0 0 0.25rem;
+}
+
+.photoItemDetails p {
+	font-size: 0.875rem;
 	opacity: 0.8;
+	margin: 0;
 }
 
-.photoLightboxClose {
+/* About Section */
+.photoAbout {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	padding: var(--photo-space-xl) 0;
+}
+
+.photoAboutLeft {
+	position: relative;
+}
+
+.photoAboutLeft img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.photoAboutRight {
+	padding: 4rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.photoAboutContent {
+	max-width: 600px;
+}
+
+.photoLead {
+	font-size: 1.5rem;
+	font-weight: 300;
+	color: var(--photo-text);
+	margin-bottom: 1.5rem;
+	line-height: 1.4;
+}
+
+.photoAboutContent p {
+	color: var(--photo-text-light);
+	margin-bottom: 1.5rem;
+	line-height: 1.7;
+}
+
+.photoStats {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 2rem;
+	margin-top: 3rem;
+}
+
+.photoStat {
+	display: flex;
+	flex-direction: column;
+}
+
+.photoStatNumber {
+	font-size: 3rem;
+	font-weight: 200;
+	line-height: 1;
+	color: var(--photo-text);
+}
+
+.photoStatLabel {
+	font-size: 0.875rem;
+	color: var(--photo-text-lighter);
+	margin-top: 0.5rem;
+}
+
+/* Exhibitions Section */
+.photoExhibitions {
+	padding: var(--photo-space-xl) 2rem;
+	background-color: #f9f9f9;
+}
+
+.photoTimeline {
+	max-width: 800px;
+	margin: 0 auto;
+}
+
+.photoTimelineItem {
+	display: grid;
+	grid-template-columns: 100px 1fr;
+	gap: 2rem;
+	margin-bottom: 3rem;
+	position: relative;
+}
+
+.photoTimelineItem::after {
+	content: "";
 	position: absolute;
-	top: -40px;
-	right: 0;
+	top: 0;
+	left: 100px;
+	width: 1px;
+	height: 100%;
+	background-color: var(--photo-border);
+	transform: translateX(-50%);
+	z-index: -1;
+}
+
+.photoTimelineItem:last-child::after {
+	display: none;
+}
+
+.photoTimelineDate {
+	font-size: 1.5rem;
+	font-weight: 300;
+	color: var(--photo-text);
+}
+
+.photoTimelineContent {
+	padding-bottom: 3rem;
+}
+
+.photoTimelineContent h3 {
+	font-size: 1.25rem;
+	font-weight: 500;
+	margin: 0 0 0.5rem;
+	color: var(--photo-text);
+}
+
+.photoTimelineContent p {
+	margin: 0;
+	color: var(--photo-text-light);
+}
+
+.photoTimelineDesc {
+	margin-top: 1rem !important;
+	font-size: 0.9rem;
+}
+
+/* Contact Section */
+.photoContact {
+	padding: var(--photo-space-xl) 2rem;
+}
+
+.photoContactContent {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 4rem;
+	max-width: 1200px;
+	margin: 0 auto;
+}
+
+.photoContactLeft {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.photoContactInfo {
+	margin-top: 3rem;
+}
+
+.photoContactItem {
+	margin-bottom: 2rem;
+}
+
+.photoContactItem h4 {
+	font-size: 0.8rem;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	margin: 0 0 0.5rem;
+	color: var(--photo-text-lighter);
+}
+
+.photoContactItem p {
+	font-size: 1.1rem;
+	font-weight: 300;
+	margin: 0;
+	color: var(--photo-text);
+	line-height: 1.6;
+}
+
+.photoSocial {
+	display: flex;
+	gap: 1.5rem;
+}
+
+.photoSocial a {
+	color: var(--photo-text);
+	text-decoration: none;
+	font-weight: 300;
+	font-size: 1.1rem;
+	position: relative;
+}
+
+.photoSocial a::after {
+	content: "";
+	position: absolute;
+	bottom: -2px;
+	left: 0;
+	width: 0;
+	height: 1px;
+	background-color: var(--photo-text);
+	transition: width var(--photo-transition);
+}
+
+.photoSocial a:hover::after {
+	width: 100%;
+}
+
+.photoForm {
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+}
+
+.photoFormGroup {
+	display: flex;
+	flex-direction: column;
+}
+
+.photoFormGroup label {
+	font-size: 0.8rem;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	margin-bottom: 0.5rem;
+	color: var(--photo-text-lighter);
+}
+
+.photoFormGroup input,
+.photoFormGroup textarea {
+	font-family: var(--photo-font-primary);
+	font-size: 1rem;
+	border: none;
+	border-bottom: 1px solid var(--photo-border);
+	padding: 0.5rem 0;
+	background-color: transparent;
+	color: var(--photo-text);
+	resize: vertical;
+	transition: border-color var(--photo-transition);
+}
+
+.photoFormGroup input:focus,
+.photoFormGroup textarea:focus {
+	outline: none;
+	border-color: var(--photo-text);
+}
+
+.photoSubmit {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.75rem;
 	background: none;
 	border: none;
-	color: var(--photo-white);
-	font-size: 2rem;
+	padding: 0;
+	font-size: 1rem;
+	color: var(--photo-text);
+	font-weight: 500;
 	cursor: pointer;
-	z-index: 10;
+	margin-top: 1rem;
+	align-self: flex-start;
 }
 
-.photoLightboxNav {
-	position: absolute;
-	top: 50%;
-	transform: translateY(-50%);
-	background: rgba(0, 0, 0, 0.5);
-	color: var(--photo-white);
-	width: 50px;
-	height: 50px;
-	border: none;
-	border-radius: 50%;
+.photoSubmit .photoArrow {
+	transition: width var(--photo-transition);
+}
+
+.photoSubmit:hover .photoArrow {
+	width: 30px;
+}
+
+/* Footer */
+.photoFooter {
+	padding: 3rem 2rem;
+	border-top: 1px solid var(--photo-border);
+}
+
+.photoFooterInner {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	max-width: 1200px;
+	margin: 0 auto;
+}
+
+.photoFooterLogo {
+	font-size: 1rem;
+	font-weight: 500;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	color: var(--photo-text);
+	text-decoration: none;
+	margin-bottom: 2rem;
+}
+
+.photoFooterLinks {
+	display: flex;
+	gap: 2rem;
+	margin-bottom: 2rem;
+}
+
+.photoFooterLinks a {
+	color: var(--photo-text-light);
+	text-decoration: none;
+	font-size: 0.9rem;
+	transition: color var(--photo-transition);
+}
+
+.photoFooterLinks a:hover {
+	color: var(--photo-text);
+}
+
+.photoCopyright {
+	font-size: 0.8rem;
+	color: var(--photo-text-lighter);
+}
+
+/* Image Viewer */
+.photoViewer {
+	position: fixed;
+	inset: 0;
+	background-color: rgba(0, 0, 0, 0.95);
+	z-index: 1000;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	font-size: 1.5rem;
+	animation: fadeIn 0.3s ease forwards;
+}
+
+.photoViewerContent {
+	position: relative;
+	max-width: 90%;
+	max-height: 90vh;
+	animation: zoomIn 0.3s ease forwards;
+}
+
+.photoViewerImage {
+	max-height: 80vh;
+}
+
+.photoViewerImage img {
+	max-width: 100%;
+	max-height: 80vh;
+	object-fit: contain;
+}
+
+.photoViewerDetails {
+	color: var(--photo-white);
+	text-align: center;
+	padding: 1rem 0;
+}
+
+.photoViewerDetails h3 {
+	font-size: 1.2rem;
+	font-weight: 400;
+	margin: 0 0 0.5rem;
+}
+
+.photoViewerDetails p {
+	font-size: 0.9rem;
+	opacity: 0.8;
+	margin: 0;
+}
+
+.photoViewerClose {
+	position: absolute;
+	top: -40px;
+	right: 0;
+	width: 30px;
+	height: 30px;
+	background: none;
+	border: none;
 	cursor: pointer;
-	transition: var(--photo-transition);
 }
 
-.photoLightboxNav:hover {
-	background: rgba(0, 0, 0, 0.8);
+.photoViewerClose span {
+	position: absolute;
+	width: 100%;
+	height: 1px;
+	background-color: var(--photo-white);
+	left: 0;
+	top: 50%;
 }
 
-.photoLightboxNav:disabled {
-	opacity: 0.3;
-	cursor: not-allowed;
+.photoViewerClose span:first-child {
+	transform: rotate(45deg);
 }
 
-.photoLightboxNavPrev {
-	left: -70px;
+.photoViewerClose span:last-child {
+	transform: rotate(-45deg);
 }
 
-.photoLightboxNavNext {
-	right: -70px;
+/* Animations */
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes zoomIn {
+	from {
+		opacity: 0;
+		transform: scale(0.95);
+	}
+	to {
+		opacity: 1;
+		transform: scale(1);
+	}
 }
 
 /* Responsive Styles */
 @media screen and (max-width: 1200px) {
-	.photoServicesGrid {
-		grid-template-columns: repeat(2, 1fr);
-		gap: 1.5rem;
+	.photoGrid {
+		grid-template-columns: repeat(4, 1fr);
 	}
 
-	.photoGalleryGrid {
-		grid-template-columns: repeat(3, 1fr);
+	.photolarge {
+		grid-column: span 2;
 	}
 }
 
 @media screen and (max-width: 992px) {
-	.photoHeroTitle {
-		font-size: 3rem;
-	}
+	.photoContainer {
+		--photo-text-5xl: 4rem;
+		--photo-text-4xl: 3rem;
+		--photo-text-3xl: 2.5rem;
+		--photo-text-2xl: 2rem;
+		--photo-text-xl: 1.25rem;
 
-	/* Adjust spacing for smaller screens */
-	.photoProject {
+		/* Adjust spacing for smaller screens */
 		padding-top: var(--header-height, 70px);
 	}
 
-	.photoHeader {
+	.photoNav {
 		top: var(--header-height, 70px);
 	}
 
 	.photoHero {
-		margin-top: calc(var(--header-height, 70px) + 10px);
+		margin-top: calc(var(--header-height, 70px) - 80px);
 	}
 
-	.photoAboutContent {
-		grid-template-columns: 1fr;
-		gap: 3rem;
-	}
-
-	.photoAboutImage {
-		max-width: 500px;
-		margin: 0 auto;
-	}
-
-	.photoContactWrapper {
+	.photoAbout {
 		grid-template-columns: 1fr;
 	}
 
-	.photoTestimonialsGrid {
+	.photoAboutLeft {
+		height: 400px;
+	}
+
+	.photoAboutRight {
+		padding: 3rem 2rem;
+	}
+
+	.photoGrid {
 		grid-template-columns: repeat(2, 1fr);
 	}
 
-	.photoMobileMenuBtn {
-		display: block;
+	.photosmall,
+	.photomedium,
+	.photolarge {
+		grid-column: span 1;
+		grid-row: span 1;
 	}
 
-	.photoNav {
-		position: fixed;
-		top: 0;
-		right: -300px;
-		width: 300px;
-		height: 100vh;
-		background-color: var(--photo-white);
-		z-index: 150;
-		box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-		transition: var(--photo-transition);
-		padding: 5rem 2rem 2rem;
-	}
-
-	.photoNavOpen {
-		right: 0;
-	}
-
-	.photoNavList {
-		flex-direction: column;
-		width: 100%;
-	}
-
-	.photoNavList li {
-		margin: 0.8rem 0;
-		width: 100%;
-	}
-
-	.photoNavLink {
-		padding: 0.8rem 0;
-		display: block;
-		width: 100%;
+	.photoContactContent {
+		grid-template-columns: 1fr;
+		gap: 3rem;
 	}
 }
 
 @media screen and (max-width: 768px) {
-	/* Adjust spacing for even smaller screens */
-	.photoProject {
+	.photoContainer {
+		--photo-text-5xl: 3rem;
+		--photo-text-4xl: 2.5rem;
+		--photo-text-3xl: 2rem;
+		--photo-text-2xl: 1.75rem;
+		--photo-text-xl: 1.25rem;
+		--photo-space-xl: 4rem;
+		--photo-space-lg: 3rem;
+
+		/* Adjust spacing for even smaller screens */
 		padding-top: var(--header-height, 60px);
 	}
 
@@ -1015,73 +1197,59 @@
 	}
 
 	.photoHero {
-		margin-top: calc(var(--header-height, 60px) + 10px);
-	}
-
-	.photoSectionTitle {
-		font-size: 2.2rem;
+		margin-top: calc(var(--header-height, 60px) - 80px);
 	}
 
 	.photoHeroTitle {
-		font-size: 2.5rem;
+		font-size: 2rem;
 	}
 
-	.photoHeroSubtitle {
-		font-size: 1.3rem;
+	.photoSectionHeader h2 {
+		font-size: 2rem;
 	}
 
-	.photoAboutHeading {
-		font-size: 1.8rem;
+	.photoTimelineItem {
+		grid-template-columns: 1fr;
+		gap: 0.5rem;
 	}
 
-	.photoAboutStats {
+	.photoTimelineItem::after {
+		display: none;
+	}
+
+	.photoStats {
 		grid-template-columns: repeat(2, 1fr);
 	}
 
-	.photoGalleryGrid {
-		grid-template-columns: repeat(2, 1fr);
-	}
-
-	.photoServicesGrid,
-	.photoTestimonialsGrid {
-		grid-template-columns: 1fr;
-	}
-
-	.photoForm {
-		grid-template-columns: 1fr;
-	}
-
-	.photoFormGroup:nth-child(1),
-	.photoFormGroup:nth-child(2) {
-		grid-column: span 1;
-	}
-
-	.photoFooterNav {
+	.photoFooterLinks {
 		flex-wrap: wrap;
-	}
-
-	.photoLightboxNavPrev {
-		left: 10px;
-	}
-
-	.photoLightboxNavNext {
-		right: 10px;
+		justify-content: center;
 	}
 }
 
 @media screen and (max-width: 576px) {
-	.photoGalleryGrid {
+	.photoContainer {
+		--photo-text-5xl: 2.5rem;
+		--photo-text-4xl: 2.2rem;
+		--photo-text-3xl: 1.8rem;
+		--photo-text-2xl: 1.5rem;
+		--photo-space-xl: 3rem;
+		--photo-space-lg: 2rem;
+	}
+
+	.photoHeroTitle {
+		font-size: 1.5rem;
+	}
+
+	.photoCategories {
+		flex-wrap: wrap;
+	}
+
+	.photoStats {
 		grid-template-columns: 1fr;
 	}
 
-	.photoHeroButtons {
-		flex-direction: column;
-		gap: 1rem;
-	}
-
-	.photoButton,
-	.photoButtonOutline {
-		width: 100%;
-		text-align: center;
+	.photoGrid {
+		grid-template-columns: 1fr;
 	}
 }

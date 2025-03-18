@@ -1,4 +1,3 @@
-// src/components/sections/Portfolio/Portfolio.jsx (updated)
 import React, { useState, useEffect } from "react";
 import ProjectCard from "./ProjectCard";
 import ProjectModal from "./ProjectModal";
@@ -18,14 +17,12 @@ const Portfolio = () => {
 	const [visibleProjects, setVisibleProjects] = useState([]);
 	const [isModalOpen, setIsModalOpen] = useState(false);
 
-	// ⚠️ Important: Define projects array BEFORE accessing it
-	// Updated projects with multilingual descriptions and internal routes
 	const projects = [
 		{
 			id: 1,
 			title: "Photography Portfolio",
 			category: "web",
-			image: "/image1.png", // Set a default image directly
+			image: "/photography.png",
 			technologies: ["HTML", "CSS", "JavaScript"],
 			descriptions: {
 				en: "A beautiful photography portfolio showcasing nature photography with a responsive design and smooth animations.",

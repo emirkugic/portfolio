@@ -1,572 +1,503 @@
 // src/pages/projects/Photography/PhotographyProject.jsx
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styles from "./PhotographyProject.module.css";
 
 const PhotographyProject = () => {
-	// State for mobile menu
+	// State for nav menu
 	const [menuOpen, setMenuOpen] = useState(false);
 
-	// State for image lightbox
-	const [lightboxOpen, setLightboxOpen] = useState(false);
-	const [currentImage, setCurrentImage] = useState(0);
+	// State for selected image
+	const [activeImage, setActiveImage] = useState(null);
 
-	// State for header visibility
-	const [isHeaderVisible, setIsHeaderVisible] = useState(true);
-	const [lastScrollY, setLastScrollY] = useState(0);
+	// State for scroll position
+	const [scrolled, setScrolled] = useState(false);
 
-	// Handle scroll to hide/show header
-	React.useEffect(() => {
-		const handleScroll = () => {
-			const currentScrollY = window.scrollY;
+	// Categories
+	const categories = ["All", "Nature", "Portrait", "Urban", "Abstract"];
+	const [activeCategory, setActiveCategory] = useState("All");
 
-			// Show header when scrolling up, hide when scrolling down
-			// Only after scrolling past 200px from the top to avoid quick changes at the top
-			if (currentScrollY > 200) {
-				setIsHeaderVisible(currentScrollY < lastScrollY);
-			} else {
-				setIsHeaderVisible(true);
-			}
-
-			setLastScrollY(currentScrollY);
-		};
-
-		window.addEventListener("scroll", handleScroll, { passive: true });
-		return () => window.removeEventListener("scroll", handleScroll);
-	}, [lastScrollY]);
-
-	// Gallery images
-	const galleryImages = [
-		{ id: 1, title: "Nature Landscape", category: "Landscape" },
-		{ id: 2, title: "Wildlife Portrait", category: "Wildlife" },
-		{ id: 3, title: "Mountain Sunrise", category: "Landscape" },
-		{ id: 4, title: "Ocean Waves", category: "Seascape" },
-		{ id: 5, title: "Forest Wildlife", category: "Wildlife" },
-		{ id: 6, title: "Desert Sunset", category: "Landscape" },
-		{ id: 7, title: "Macro Flora", category: "Macro" },
-		{ id: 8, title: "Bird in Flight", category: "Wildlife" },
-	];
-
-	// Photography services
-	const services = [
-		{
-			title: "Nature Photography",
-			description:
-				"Capturing the beauty of natural landscapes, wildlife, and plant life in their native environments.",
-			icon: "🌲",
-		},
-		{
-			title: "Wildlife Photography",
-			description:
-				"Specialized photography of animals in their natural habitat with a focus on natural behavior.",
-			icon: "🦊",
-		},
-		{
-			title: "Landscape Photography",
-			description:
-				"Capturing the vast beauty of natural scenery, from mountains to oceans and everything in between.",
-			icon: "🏞️",
-		},
-		{
-			title: "Macro Photography",
-			description:
-				"Extreme close-up photography, usually of small subjects, in which the size of the subject appears greater than life size.",
-			icon: "🌱",
-		},
-	];
-
-	// Testimonials
-	const testimonials = [
+	// Gallery data
+	const gallery = [
 		{
 			id: 1,
-			name: "Sarah Johnson",
-			role: "Magazine Editor",
-			text: "The photographs provided for our nature magazine were absolutely stunning. The attention to detail and ability to capture the perfect moment sets this work apart.",
+			category: "Nature",
+			title: "Mountain Lake",
+			description: "Serene mountain lake at dawn",
+			image:
+				"https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=2000",
+			size: "large",
 		},
 		{
 			id: 2,
-			name: "Michael Chen",
-			role: "Conservation Director",
-			text: "These powerful images have helped us raise awareness for our conservation efforts. The quality and emotion captured in each shot tells a story that words alone cannot.",
+			category: "Portrait",
+			title: "Woman in Shadow",
+			description: "Portrait with dramatic shadow play",
+			image:
+				"https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1000",
+			size: "medium",
 		},
 		{
 			id: 3,
-			name: "Emma Rodriguez",
-			role: "Art Curator",
-			text: "I've featured these nature photographs in multiple exhibitions. The artistic vision and technical excellence consistently impress our gallery visitors.",
+			category: "Urban",
+			title: "City Lights",
+			description: "Urban nightscape with vibrant lights",
+			image:
+				"https://images.unsplash.com/photo-1519501025264-65ba15a82390?q=80&w=1000",
+			size: "medium",
+		},
+		{
+			id: 4,
+			category: "Abstract",
+			title: "Light Forms",
+			description: "Abstract composition of light and color",
+			image:
+				"https://images.unsplash.com/photo-1541701494587-cb58502866ab?q=80&w=1000",
+			size: "small",
+		},
+		{
+			id: 5,
+			category: "Nature",
+			title: "Desert Sands",
+			description: "Undulating dunes in golden light",
+			image:
+				"https://images.unsplash.com/photo-1509316785289-025f5b846b35?q=80&w=1000",
+			size: "small",
+		},
+		{
+			id: 6,
+			category: "Portrait",
+			title: "Profile Study",
+			description: "Minimalist profile portrait in studio",
+			image:
+				"https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=80&w=1000",
+			size: "medium",
+		},
+		{
+			id: 7,
+			category: "Urban",
+			title: "Concrete Forms",
+			description: "Geometric urban architecture",
+			image:
+				"https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1000",
+			size: "large",
+		},
+		{
+			id: 8,
+			category: "Abstract",
+			title: "Color Study",
+			description: "Experimental color composition",
+			image:
+				"https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1000",
+			size: "medium",
+		},
+		{
+			id: 9,
+			category: "Nature",
+			title: "Forest Light",
+			description: "Sunbeams filtering through ancient forest",
+			image:
+				"https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=1000",
+			size: "small",
 		},
 	];
 
-	// Toggle mobile menu
-	const toggleMenu = () => {
-		setMenuOpen(!menuOpen);
-	};
+	// Filter gallery by category
+	const filteredGallery =
+		activeCategory === "All"
+			? gallery
+			: gallery.filter((item) => item.category === activeCategory);
 
-	// Open lightbox
-	const openLightbox = (index) => {
-		setCurrentImage(index);
-		setLightboxOpen(true);
-		document.body.style.overflow = "hidden";
-	};
+	// Handle scroll events
+	useEffect(() => {
+		const handleScroll = () => {
+			if (window.scrollY > 50) {
+				setScrolled(true);
+			} else {
+				setScrolled(false);
+			}
+		};
 
-	// Close lightbox
-	const closeLightbox = () => {
-		setLightboxOpen(false);
-		document.body.style.overflow = "auto";
-	};
+		window.addEventListener("scroll", handleScroll);
+		return () => window.removeEventListener("scroll", handleScroll);
+	}, []);
 
-	// Navigate through lightbox
-	const navigateLightbox = (direction) => {
-		const newIndex = currentImage + direction;
-		if (newIndex >= 0 && newIndex < galleryImages.length) {
-			setCurrentImage(newIndex);
+	// Lock body scroll when menu is open
+	useEffect(() => {
+		if (menuOpen) {
+			document.body.style.overflow = "hidden";
+		} else {
+			document.body.style.overflow = "";
 		}
-	};
+
+		return () => {
+			document.body.style.overflow = "";
+		};
+	}, [menuOpen]);
+
+	// Lock body scroll when image is active
+	useEffect(() => {
+		if (activeImage) {
+			document.body.style.overflow = "hidden";
+		} else {
+			document.body.style.overflow = "";
+		}
+
+		return () => {
+			document.body.style.overflow = "";
+		};
+	}, [activeImage]);
 
 	return (
-		<div className={styles.photoProject}>
-			{/* Project Header */}
+		<div className={styles.photoContainer}>
+			{/* Navigation */}
 			<header
 				className={`${styles.photoHeader} ${
-					!isHeaderVisible ? styles.photoHeaderHidden : ""
+					scrolled ? styles.photoHeaderScrolled : ""
 				}`}
 			>
-				<div className={styles.photoContainer}>
-					<div className={styles.photoHeaderContent}>
-						<div className={styles.photoLogo}>
-							<h2>Natura</h2>
-							<span>Photography</span>
-						</div>
+				<div className={styles.photoHeaderInner}>
+					<Link to="/" className={styles.photoLogo}>
+						JANE DOE
+					</Link>
 
-						<button
-							className={`${styles.photoMobileMenuBtn} ${
-								menuOpen ? styles.photoActive : ""
-							}`}
-							onClick={toggleMenu}
-							aria-label="Toggle menu"
-						>
-							<span></span>
-							<span></span>
-							<span></span>
-						</button>
+					<button
+						className={`${styles.photoMenuToggle} ${
+							menuOpen ? styles.photoMenuActive : ""
+						}`}
+						onClick={() => setMenuOpen(!menuOpen)}
+						aria-label="Toggle menu"
+					>
+						<span></span>
+						<span></span>
+					</button>
 
-						<nav
-							className={`${styles.photoNav} ${
-								menuOpen ? styles.photoNavOpen : ""
-							}`}
-						>
-							<ul className={styles.photoNavList}>
-								<li>
-									<a href="#photoHome" className={styles.photoNavLink}>
-										Home
-									</a>
-								</li>
-								<li>
-									<a href="#photoAbout" className={styles.photoNavLink}>
-										About
-									</a>
-								</li>
-								<li>
-									<a href="#photoGallery" className={styles.photoNavLink}>
-										Gallery
-									</a>
-								</li>
-								<li>
-									<a href="#photoServices" className={styles.photoNavLink}>
-										Services
-									</a>
-								</li>
-								<li>
-									<a href="#photoTestimonials" className={styles.photoNavLink}>
-										Testimonials
-									</a>
-								</li>
-								<li>
-									<a href="#photoContact" className={styles.photoNavLink}>
-										Contact
-									</a>
-								</li>
-							</ul>
-						</nav>
-					</div>
+					<nav
+						className={`${styles.photoNav} ${
+							menuOpen ? styles.photoNavOpen : ""
+						}`}
+					>
+						<div
+							className={styles.photoNavClose}
+							onClick={() => setMenuOpen(false)}
+						></div>
+						<ul className={styles.photoNavList}>
+							<li>
+								<a href="#gallery" onClick={() => setMenuOpen(false)}>
+									Portfolio
+								</a>
+							</li>
+							<li>
+								<a href="#about" onClick={() => setMenuOpen(false)}>
+									About
+								</a>
+							</li>
+							<li>
+								<a href="#exhibitions" onClick={() => setMenuOpen(false)}>
+									Exhibitions
+								</a>
+							</li>
+							<li>
+								<a href="#contact" onClick={() => setMenuOpen(false)}>
+									Contact
+								</a>
+							</li>
+							<li>
+								<Link to="/" onClick={() => setMenuOpen(false)}>
+									Main Portfolio
+								</Link>
+							</li>
+						</ul>
+					</nav>
 				</div>
 			</header>
-
 			{/* Hero Section */}
-			<section id="photoHome" className={styles.photoHero}>
-				<div className={styles.photoHeroOverlay}>
-					<div className={styles.photoContainer}>
-						<div className={styles.photoHeroContent}>
-							<h1 className={styles.photoHeroTitle}>
-								Capturing Nature's Moments
-							</h1>
-							<p className={styles.photoHeroSubtitle}>
-								Discover the beauty of our natural world through the lens
-							</p>
-							<div className={styles.photoHeroButtons}>
-								<a href="#photoGallery" className={styles.photoButton}>
-									View Gallery
-								</a>
-								<a href="#photoContact" className={styles.photoButtonOutline}>
-									Get in Touch
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
-
-			{/* About Section */}
-			<section id="photoAbout" className={styles.photoAbout}>
-				<div className={styles.photoContainer}>
-					<div className={styles.photoSectionHeader}>
-						<h2 className={styles.photoSectionTitle}>About Me</h2>
-						<div className={styles.photoSectionDivider}></div>
+			<section className={styles.photoHero}>
+				<div className={styles.photoHeroImage}>
+					{/* Floating particles for visual interest */}
+					<div className={styles.photoHeroParticles}>
+						<span></span>
+						<span></span>
+						<span></span>
+						<span></span>
+						<span></span>
 					</div>
 
-					<div className={styles.photoAboutContent}>
-						<div className={styles.photoAboutImage}>
-							<img src="/image1.png" alt="Nature Photographer" />
-							<div className={styles.photoAboutImageBox}>
-								<span>10+ Years Experience</span>
-							</div>
-						</div>
-
-						<div className={styles.photoAboutText}>
-							<h3 className={styles.photoAboutHeading}>
-								A Passion for Nature Photography
-							</h3>
-							<p>
-								Welcome to my world of nature photography. For over a decade,
-								I've been capturing the beauty of our natural world, from vast
-								landscapes to intimate wildlife moments.
-							</p>
-							<p>
-								My journey began with a simple love for the outdoors and a
-								camera passed down from my grandfather. That combination ignited
-								a passion that has taken me across continents in search of
-								unique perspectives on nature's wonders.
-							</p>
-							<p>
-								I believe that photography has the power to connect people with
-								nature, fostering appreciation and conservation. Each image I
-								create aims to tell a story about our natural world that
-								inspires and educates.
-							</p>
-							<div className={styles.photoAboutStats}>
-								<div className={styles.photoAboutStat}>
-									<h4>200+</h4>
-									<p>Projects Completed</p>
-								</div>
-								<div className={styles.photoAboutStat}>
-									<h4>15</h4>
-									<p>Awards Won</p>
-								</div>
-								<div className={styles.photoAboutStat}>
-									<h4>50+</h4>
-									<p>Happy Clients</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
-
-			{/* Gallery Section */}
-			<section id="photoGallery" className={styles.photoGallery}>
-				<div className={styles.photoContainer}>
-					<div className={styles.photoSectionHeader}>
-						<h2 className={styles.photoSectionTitle}>Gallery</h2>
-						<div className={styles.photoSectionDivider}></div>
-						<p className={styles.photoSectionSubtitle}>
-							A selection of my finest nature photography work from around the
-							world
-						</p>
-					</div>
-
-					<div className={styles.photoGalleryGrid}>
-						{galleryImages.map((image, index) => (
-							<div
-								key={image.id}
-								className={styles.photoGalleryItem}
-								onClick={() => openLightbox(index)}
-							>
-								<img src="/image1.png" alt={image.title} />
-								<div className={styles.photoGalleryItemOverlay}>
-									<h3>{image.title}</h3>
-									<p>{image.category}</p>
-								</div>
-							</div>
-						))}
-					</div>
-
-					<div className={styles.photoGalleryButton}>
-						<a href="#photoContact" className={styles.photoButton}>
-							Request Custom Photoshoot
+					<div className={styles.photoHeroContent}>
+						<h1 className={styles.photoHeroTitle}>
+							Photography is the art of capturing moments that last forever
+						</h1>
+						<p>Fine art photography & visual storytelling</p>
+						<a href="#gallery" className={styles.photoHeroButton}>
+							Explore Gallery
+							<span className={styles.photoArrow}></span>
 						</a>
 					</div>
+
+					{/* Animated scroll indicator */}
+					<div className={styles.photoScrollIndicator}>
+						<div className={styles.photoScrollCircle}>
+							<div className={styles.photoScrollDot}></div>
+						</div>
+						<span className={styles.photoScrollText}>Scroll down</span>
+					</div>
 				</div>
 			</section>
-
-			{/* Services Section */}
-			<section id="photoServices" className={styles.photoServices}>
-				<div className={styles.photoContainer}>
-					<div className={styles.photoSectionHeader}>
-						<h2 className={styles.photoSectionTitle}>Services</h2>
-						<div className={styles.photoSectionDivider}></div>
-						<p className={styles.photoSectionSubtitle}>
-							Professional photography services tailored to your specific needs
-						</p>
-					</div>
-
-					<div className={styles.photoServicesGrid}>
-						{services.map((service, index) => (
-							<div key={index} className={styles.photoServicesCard}>
-								<div className={styles.photoServicesIcon}>{service.icon}</div>
-								<h3 className={styles.photoServicesTitle}>{service.title}</h3>
-								<p className={styles.photoServicesDescription}>
-									{service.description}
-								</p>
-								<a href="#photoContact" className={styles.photoServicesLink}>
-									Learn More
-								</a>
-							</div>
+			{/* Gallery Section */}
+			<section id="gallery" className={styles.photoGallery}>
+				<header className={styles.photoSectionHeader}>
+					<h2>Portfolio</h2>
+					<div className={styles.photoCategories}>
+						{categories.map((category) => (
+							<button
+								key={category}
+								className={`${styles.photoCategory} ${
+									activeCategory === category ? styles.photoActive : ""
+								}`}
+								onClick={() => setActiveCategory(category)}
+							>
+								{category}
+							</button>
 						))}
 					</div>
-				</div>
-			</section>
+				</header>
 
-			{/* Testimonials Section */}
-			<section id="photoTestimonials" className={styles.photoTestimonials}>
-				<div className={styles.photoContainer}>
-					<div className={styles.photoSectionHeader}>
-						<h2 className={styles.photoSectionTitle}>Testimonials</h2>
-						<div className={styles.photoSectionDivider}></div>
-						<p className={styles.photoSectionSubtitle}>
-							What my clients say about my photography work
-						</p>
-					</div>
-
-					<div className={styles.photoTestimonialsGrid}>
-						{testimonials.map((testimonial) => (
-							<div key={testimonial.id} className={styles.photoTestimonialCard}>
-								<div className={styles.photoTestimonialQuote}>"</div>
-								<p className={styles.photoTestimonialText}>
-									{testimonial.text}
-								</p>
-								<div className={styles.photoTestimonialAuthor}>
-									<div className={styles.photoTestimonialAvatar}>
-										<img src="/image1.png" alt={testimonial.name} />
-									</div>
-									<div className={styles.photoTestimonialInfo}>
-										<h4>{testimonial.name}</h4>
-										<p>{testimonial.role}</p>
-									</div>
+				<div className={styles.photoGrid}>
+					{filteredGallery.map((item) => (
+						<div
+							key={item.id}
+							className={`${styles.photoItem} ${styles[`photo${item.size}`]}`}
+							onClick={() => setActiveImage(item)}
+						>
+							<div className={styles.photoItemInner}>
+								<img src={item.image} alt={item.title} />
+								<div className={styles.photoItemDetails}>
+									<h3>{item.title}</h3>
+									<p>{item.category}</p>
 								</div>
 							</div>
-						))}
+						</div>
+					))}
+				</div>
+			</section>
+			{/* About Section */}
+			<section id="about" className={styles.photoAbout}>
+				<div className={styles.photoAboutLeft}>
+					<img
+						src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+						alt="JANE DOE"
+					/>
+				</div>
+				<div className={styles.photoAboutRight}>
+					<header className={styles.photoSectionHeader}>
+						<h2>About Me</h2>
+					</header>
+					<div className={styles.photoAboutContent}>
+						<p className={styles.photoLead}>
+							I capture moments that might otherwise go unnoticed, finding
+							beauty in the ordinary and the extraordinary.
+						</p>
+						<p>
+							With over 15 years of experience in fine art photography, my work
+							has been featured in galleries across Europe and North America. I
+							specialize in creating compelling visual narratives that challenge
+							perceptions and evoke emotion.
+						</p>
+						<p>
+							My approach combines technical precision with intuitive
+							composition, allowing each image to tell its own unique story.
+							Whether I'm documenting urban landscapes, intimate portraits, or
+							abstract forms, I seek to reveal the hidden connections between
+							subject and viewer.
+						</p>
+						<div className={styles.photoStats}>
+							<div className={styles.photoStat}>
+								<span className={styles.photoStatNumber}>15+</span>
+								<span className={styles.photoStatLabel}>Years Experience</span>
+							</div>
+							<div className={styles.photoStat}>
+								<span className={styles.photoStatNumber}>26</span>
+								<span className={styles.photoStatLabel}>Exhibitions</span>
+							</div>
+							<div className={styles.photoStat}>
+								<span className={styles.photoStatNumber}>9</span>
+								<span className={styles.photoStatLabel}>Publications</span>
+							</div>
+						</div>
 					</div>
 				</div>
 			</section>
+			{/* Exhibitions Section */}
+			<section id="exhibitions" className={styles.photoExhibitions}>
+				<header className={styles.photoSectionHeader}>
+					<h2>Exhibitions & Awards</h2>
+				</header>
 
+				<div className={styles.photoTimeline}>
+					<div className={styles.photoTimelineItem}>
+						<div className={styles.photoTimelineDate}>2024</div>
+						<div className={styles.photoTimelineContent}>
+							<h3>"Perspectives" Solo Exhibition</h3>
+							<p>Museum of Modern Photography, New York</p>
+							<p className={styles.photoTimelineDesc}>
+								A comprehensive showcase of urban landscape photography
+								exploring the relationship between architecture and human
+								experience.
+							</p>
+						</div>
+					</div>
+
+					<div className={styles.photoTimelineItem}>
+						<div className={styles.photoTimelineDate}>2023</div>
+						<div className={styles.photoTimelineContent}>
+							<h3>International Photography Award</h3>
+							<p>Fine Art Category Winner</p>
+							<p className={styles.photoTimelineDesc}>
+								Recognized for the "Light Studies" series examining the
+								interaction of natural light with architectural spaces.
+							</p>
+						</div>
+					</div>
+
+					<div className={styles.photoTimelineItem}>
+						<div className={styles.photoTimelineDate}>2022</div>
+						<div className={styles.photoTimelineContent}>
+							<h3>"Elements" Group Exhibition</h3>
+							<p>Berlin Gallery of Contemporary Art</p>
+							<p className={styles.photoTimelineDesc}>
+								Featured work exploring natural elements as metaphors for human
+								emotion and experience.
+							</p>
+						</div>
+					</div>
+
+					<div className={styles.photoTimelineItem}>
+						<div className={styles.photoTimelineDate}>2021</div>
+						<div className={styles.photoTimelineContent}>
+							<h3>Photography Book Publication</h3>
+							<p>"Invisible Geometries"</p>
+							<p className={styles.photoTimelineDesc}>
+								A monograph featuring 120 photographs exploring hidden patterns
+								and structures in both natural and built environments.
+							</p>
+						</div>
+					</div>
+				</div>
+			</section>
 			{/* Contact Section */}
-			<section id="photoContact" className={styles.photoContact}>
-				<div className={styles.photoContainer}>
-					<div className={styles.photoContactWrapper}>
+			<section id="contact" className={styles.photoContact}>
+				<header className={styles.photoSectionHeader}>
+					<h2>Get in Touch</h2>
+				</header>
+
+				<div className={styles.photoContactContent}>
+					<div className={styles.photoContactLeft}>
+						<p className={styles.photoLead}>
+							Interested in working together or purchasing prints? Send me a
+							message and I'll get back to you soon.
+						</p>
 						<div className={styles.photoContactInfo}>
-							<div className={styles.photoSectionHeader}>
-								<h2 className={styles.photoSectionTitle}>Get In Touch</h2>
-								<div className={styles.photoSectionDivider}></div>
-								<p className={styles.photoSectionSubtitle}>
-									Interested in working together? Let's discuss your project.
+							<div className={styles.photoContactItem}>
+								<h4>Email</h4>
+								<p>hello@janedoe.com</p>
+							</div>
+							<div className={styles.photoContactItem}>
+								<h4>Studio</h4>
+								<p>
+									Sarajevo 123
+									<br />
+									Sarajevo, BiH 71000
 								</p>
 							</div>
-
-							<div className={styles.photoContactDetails}>
-								<div className={styles.photoContactItem}>
-									<div className={styles.photoContactIcon}>📍</div>
-									<div className={styles.photoContactText}>
-										<h4>Location</h4>
-										<p>123 Nature Street, Woodland, CA 95695</p>
-									</div>
-								</div>
-
-								<div className={styles.photoContactItem}>
-									<div className={styles.photoContactIcon}>✉️</div>
-									<div className={styles.photoContactText}>
-										<h4>Email</h4>
-										<p>contact@naturaphotography.com</p>
-									</div>
-								</div>
-
-								<div className={styles.photoContactItem}>
-									<div className={styles.photoContactIcon}>📱</div>
-									<div className={styles.photoContactText}>
-										<h4>Phone</h4>
-										<p>+1 (555) 123-4567</p>
-									</div>
-								</div>
-							</div>
-
-							<div className={styles.photoContactSocial}>
-								<h4>Follow Me</h4>
-								<div className={styles.photoContactSocialLinks}>
-									<a href="#" className={styles.photoContactSocialLink}>
-										📘
+							<div className={styles.photoContactItem}>
+								<h4>Follow</h4>
+								<div className={styles.photoSocial}>
+									<a href="#" aria-label="Instagram">
+										Instagram
 									</a>
-									<a href="#" className={styles.photoContactSocialLink}>
-										📸
+									<a href="#" aria-label="Twitter">
+										Twitter
 									</a>
-									<a href="#" className={styles.photoContactSocialLink}>
-										🐦
-									</a>
-									<a href="#" className={styles.photoContactSocialLink}>
-										👨‍💼
+									<a href="#" aria-label="Behance">
+										Behance
 									</a>
 								</div>
 							</div>
 						</div>
+					</div>
 
-						<div className={styles.photoContactForm}>
-							<form className={styles.photoForm}>
-								<div className={styles.photoFormGroup}>
-									<label htmlFor="name" className={styles.photoFormLabel}>
-										Your Name
-									</label>
-									<input
-										type="text"
-										id="name"
-										className={styles.photoFormControl}
-										placeholder="John Doe"
-									/>
-								</div>
+					<div className={styles.photoContactRight}>
+						<form className={styles.photoForm}>
+							<div className={styles.photoFormGroup}>
+								<label htmlFor="name">Name</label>
+								<input type="text" id="name" />
+							</div>
 
-								<div className={styles.photoFormGroup}>
-									<label htmlFor="email" className={styles.photoFormLabel}>
-										Your Email
-									</label>
-									<input
-										type="email"
-										id="email"
-										className={styles.photoFormControl}
-										placeholder="john@example.com"
-									/>
-								</div>
+							<div className={styles.photoFormGroup}>
+								<label htmlFor="email">Email</label>
+								<input type="email" id="email" />
+							</div>
 
-								<div className={styles.photoFormGroup}>
-									<label htmlFor="subject" className={styles.photoFormLabel}>
-										Subject
-									</label>
-									<input
-										type="text"
-										id="subject"
-										className={styles.photoFormControl}
-										placeholder="Photography Inquiry"
-									/>
-								</div>
+							<div className={styles.photoFormGroup}>
+								<label htmlFor="message">Message</label>
+								<textarea id="message" rows="5"></textarea>
+							</div>
 
-								<div className={styles.photoFormGroup}>
-									<label htmlFor="message" className={styles.photoFormLabel}>
-										Message
-									</label>
-									<textarea
-										id="message"
-										className={styles.photoFormControl}
-										rows="5"
-										placeholder="Tell me about your project..."
-									></textarea>
-								</div>
-
-								<button type="submit" className={styles.photoButton}>
-									Send Message
-								</button>
-							</form>
-						</div>
+							<button type="submit" className={styles.photoSubmit}>
+								Send Message
+								<span className={styles.photoArrow}></span>
+							</button>
+						</form>
 					</div>
 				</div>
 			</section>
-
 			{/* Footer */}
 			<footer className={styles.photoFooter}>
-				<div className={styles.photoContainer}>
-					<div className={styles.photoFooterContent}>
-						<div className={styles.photoFooterLogo}>
-							<h2>Natura</h2>
-							<span>Photography</span>
-						</div>
+				<div className={styles.photoFooterInner}>
+					<Link to="/" className={styles.photoFooterLogo}>
+						JANE DOE
+					</Link>
 
-						<p className={styles.photoFooterText}>
-							Capturing the beauty of nature, one frame at a time.
-						</p>
-
-						<div className={styles.photoFooterNav}>
-							<a href="#photoHome" className={styles.photoFooterLink}>
-								Home
-							</a>
-							<a href="#photoAbout" className={styles.photoFooterLink}>
-								About
-							</a>
-							<a href="#photoGallery" className={styles.photoFooterLink}>
-								Gallery
-							</a>
-							<a href="#photoServices" className={styles.photoFooterLink}>
-								Services
-							</a>
-							<a href="#photoContact" className={styles.photoFooterLink}>
-								Contact
-							</a>
-						</div>
-
-						<div className={styles.photoFooterBottom}>
-							<p>&copy; 2025 Natura Photography. All Rights Reserved.</p>
-							<div className={styles.photoFooterLinks}>
-								<Link to="/" className={styles.photoFooterPortfolioLink}>
-									← Back to Main Portfolio
-								</Link>
-							</div>
-						</div>
+					<div className={styles.photoFooterLinks}>
+						<a href="#gallery">Portfolio</a>
+						<a href="#about">About</a>
+						<a href="#exhibitions">Exhibitions</a>
+						<a href="#contact">Contact</a>
+						<Link to="/">Main Portfolio</Link>
 					</div>
+
+					<p className={styles.photoCopyright}>
+						&copy; {new Date().getFullYear()} Jane Doe. All rights reserved.
+					</p>
 				</div>
 			</footer>
-
-			{/* Lightbox */}
-			{lightboxOpen && (
-				<div className={styles.photoLightbox} onClick={closeLightbox}>
+			{/* Image Viewer */}
+			{activeImage && (
+				<div
+					className={styles.photoViewer}
+					onClick={() => setActiveImage(null)}
+				>
 					<div
-						className={styles.photoLightboxContent}
+						className={styles.photoViewerContent}
 						onClick={(e) => e.stopPropagation()}
 					>
 						<button
-							className={styles.photoLightboxClose}
-							onClick={closeLightbox}
+							className={styles.photoViewerClose}
+							onClick={() => setActiveImage(null)}
+							aria-label="Close"
 						>
-							×
+							<span></span>
+							<span></span>
 						</button>
 
-						<div className={styles.photoLightboxImage}>
-							<img src="/image1.png" alt={galleryImages[currentImage].title} />
+						<div className={styles.photoViewerImage}>
+							<img src={activeImage.image} alt={activeImage.title} />
 						</div>
 
-						<div className={styles.photoLightboxCaption}>
-							<h3>{galleryImages[currentImage].title}</h3>
-							<p>{galleryImages[currentImage].category}</p>
+						<div className={styles.photoViewerDetails}>
+							<h3>{activeImage.title}</h3>
+							<p>{activeImage.description}</p>
 						</div>
-
-						<button
-							className={`${styles.photoLightboxNav} ${styles.photoLightboxNavPrev}`}
-							onClick={() => navigateLightbox(-1)}
-							disabled={currentImage === 0}
-						>
-							←
-						</button>
-
-						<button
-							className={`${styles.photoLightboxNav} ${styles.photoLightboxNavNext}`}
-							onClick={() => navigateLightbox(1)}
-							disabled={currentImage === galleryImages.length - 1}
-						>
-							→
-						</button>
 					</div>
 				</div>
 			)}
