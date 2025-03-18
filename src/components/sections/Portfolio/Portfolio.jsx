@@ -20,6 +20,19 @@ const Portfolio = () => {
 	const projects = [
 		{
 			id: 1,
+			title: "mojDnevnik",
+			category: "web",
+			image: "/mojDnevnik.png",
+			technologies: ["React", ".NET", "MongoDB", "cPanel"],
+			descriptions: {
+				en: "A fully functional School Management System with many roles, permissions, and features for teachers, students, and parents.",
+				bs: "Potpuno funkcionalni sistem za upravljanje školom s mnogo uloga, dozvola i značajki za nastavnike, učenike i roditelje.",
+			},
+			link: "https://mojdnevnik.com.alamelschools.ba/",
+			github: "https://github.com/emirkugic/al-amel-ednevnik",
+		},
+		{
+			id: 2,
 			title: "Photography Portfolio",
 			category: "web",
 			image: "/photography.png",
@@ -29,19 +42,6 @@ const Portfolio = () => {
 				bs: "Prekrasan fotografski portfolio koji prikazuje fotografije prirode s responzivnim dizajnom i glatkim animacijama.",
 			},
 			link: "/projects/photography",
-			github: "#",
-		},
-		{
-			id: 2,
-			title: "E-commerce Website",
-			category: "web",
-			image: "/image1.png",
-			technologies: ["React", "Node.js", "MongoDB", "Express"],
-			descriptions: {
-				en: "A fully functional e-commerce platform with payment integration, user authentication, and admin dashboard.",
-				bs: "Potpuno funkcionalna e-commerce platforma sa integracijom plaćanja, autentikacijom korisnika i administratorskom kontrolnom pločom.",
-			},
-			link: "#",
 			github: "#",
 		},
 		{
