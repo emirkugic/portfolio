@@ -1,3 +1,4 @@
+// src/components/sections/Portfolio/Portfolio.jsx (updated)
 import React, { useState, useEffect } from "react";
 import ProjectCard from "./ProjectCard";
 import ProjectModal from "./ProjectModal";
@@ -17,10 +18,24 @@ const Portfolio = () => {
 	const [visibleProjects, setVisibleProjects] = useState([]);
 	const [isModalOpen, setIsModalOpen] = useState(false);
 
-	// Updated projects with multilingual descriptions
+	// ⚠️ Important: Define projects array BEFORE accessing it
+	// Updated projects with multilingual descriptions and internal routes
 	const projects = [
 		{
 			id: 1,
+			title: "Photography Portfolio",
+			category: "web",
+			image: "/image1.png", // Set a default image directly
+			technologies: ["HTML", "CSS", "JavaScript"],
+			descriptions: {
+				en: "A beautiful photography portfolio showcasing nature photography with a responsive design and smooth animations.",
+				bs: "Prekrasan fotografski portfolio koji prikazuje fotografije prirode s responzivnim dizajnom i glatkim animacijama.",
+			},
+			link: "/projects/photography",
+			github: "#",
+		},
+		{
+			id: 2,
 			title: "E-commerce Website",
 			category: "web",
 			image: "/image1.png",
@@ -33,7 +48,7 @@ const Portfolio = () => {
 			github: "#",
 		},
 		{
-			id: 2,
+			id: 3,
 			title: "Mobile Banking App",
 			category: "mobile",
 			image: "/image1.png",
@@ -46,7 +61,7 @@ const Portfolio = () => {
 			github: "#",
 		},
 		{
-			id: 3,
+			id: 4,
 			title: "Portfolio Website",
 			category: "web",
 			image: "/image1.png",
@@ -59,7 +74,7 @@ const Portfolio = () => {
 			github: "#",
 		},
 		{
-			id: 4,
+			id: 5,
 			title: "Task Management System",
 			category: "web",
 			image: "/image1.png",
@@ -72,7 +87,7 @@ const Portfolio = () => {
 			github: "#",
 		},
 		{
-			id: 5,
+			id: 6,
 			title: "Fitness Tracking App",
 			category: "mobile",
 			image: "/image1.png",
@@ -80,19 +95,6 @@ const Portfolio = () => {
 			descriptions: {
 				en: "A fitness tracking mobile application that helps users monitor their workouts, nutrition, and progress over time.",
 				bs: "Mobilna aplikacija za praćenje fitnessa koja pomaže korisnicima da prate svoje vježbe, prehranu i napredak tokom vremena.",
-			},
-			link: "#",
-			github: "#",
-		},
-		{
-			id: 6,
-			title: "Restaurant Booking System",
-			category: "ui",
-			image: "/image1.png",
-			technologies: ["Figma", "Adobe XD", "Illustrator"],
-			descriptions: {
-				en: "A UI/UX design project for a restaurant booking system with an intuitive user interface and seamless booking experience.",
-				bs: "UI/UX dizajn projekat za sistem rezervacija u restoranima s intuitivnim korisničkim sučeljem i besprijekornim iskustvom rezervacije.",
 			},
 			link: "#",
 			github: "#",
@@ -177,7 +179,7 @@ const Portfolio = () => {
 					))}
 				</div>
 
-				{selectedProject && (
+				{selectedProject && !selectedProject.internalRoute && (
 					<ProjectModal
 						project={selectedProject}
 						isOpen={isModalOpen}

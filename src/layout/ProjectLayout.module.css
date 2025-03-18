@@ -1,0 +1,11 @@
+/* src/components/layout/ProjectLayout.module.css */
+.projectMain {
+	/* This ensures content starts below the fixed header */
+	padding-top: var(--header-height, 80px);
+	/* Ensure content doesn't overflow horizontally */
+	width: 100%;
+	overflow-x: hidden;
+	/* Prevent content from going under the header */
+	position: relative;
+	z-index: 1;
+}

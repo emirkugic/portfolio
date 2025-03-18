@@ -3,9 +3,12 @@
 	top: 0;
 	left: 0;
 	right: 0;
-	z-index: var(--z-header);
+	z-index: 1000;
 	padding: 1.5rem 0;
 	transition: all var(--transition-normal);
+	height: var(--header-height, 80px);
+	display: flex;
+	align-items: center;
 }
 
 .headerContainer {

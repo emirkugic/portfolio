@@ -1,16 +1,23 @@
+// First, install react-router-dom:
+// npm install react-router-dom
+
+// src/App.js (updated with routing)
 import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "./context/ThemeContext";
 import { LanguageProvider } from "./context/LanguageContext";
 import MainLayout from "./components/layout/MainLayout";
+import ProjectLayout from "./layout/ProjectLayout";
 import Home from "./pages/Home";
+import PhotographyProject from "./pages/projects/Photography/PhotographyProject";
 import "./styles/global.css";
 import "./styles/animations.css";
+import "./styles/projects.css";
 
 function App() {
 	const [isLoading, setIsLoading] = useState(true);
 
 	useEffect(() => {
-		// Simulate initial loading
 		const timer = setTimeout(() => {
 			setIsLoading(false);
 		}, 1500);
@@ -19,20 +26,37 @@ function App() {
 	}, []);
 
 	return (
-		<LanguageProvider>
-			<ThemeProvider>
-				{isLoading ? (
-					<div className="loading-screen">
-						<div className="spinner"></div>
-						<div className="loading-text">Loading amazing things...</div>
-					</div>
-				) : (
-					<MainLayout>
-						<Home />
-					</MainLayout>
-				)}
-			</ThemeProvider>
-		</LanguageProvider>
+		<Router>
+			<LanguageProvider>
+				<ThemeProvider>
+					{isLoading ? (
+						<div className="loading-screen">
+							<div className="spinner"></div>
+							<div className="loading-text">Loading amazing things...</div>
+						</div>
+					) : (
+						<Routes>
+							<Route
+								path="/"
+								element={
+									<MainLayout>
+										<Home />
+									</MainLayout>
+								}
+							/>
+							<Route
+								path="/projects/photography"
+								element={
+									<ProjectLayout>
+										<PhotographyProject />
+									</ProjectLayout>
+								}
+							/>
+						</Routes>
+					)}
+				</ThemeProvider>
+			</LanguageProvider>
+		</Router>
 	);
 }
 

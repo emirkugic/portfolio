@@ -1,0 +1,30 @@
+/* src/styles/projects.css */
+/* This file contains styles specific to project pages */
+
+/* Define header height for different screen sizes */
+:root {
+	--header-height: 80px; /* Default header height */
+}
+
+@media screen and (max-width: 992px) {
+	:root {
+		--header-height: 70px;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	:root {
+		--header-height: 60px;
+	}
+}
+
+/* Make sure the main header has sufficient z-index */
+.header {
+	z-index: 1000 !important; /* Ensure header stays above all content */
+}
+
+/* Ensure project pages don't overflow */
+.projectMain {
+	width: 100%;
+	overflow-x: hidden;
+}
