@@ -4,7 +4,7 @@ import { useLanguage } from "../../../context/LanguageContext";
 import styles from "./Portfolio.module.css";
 
 const ProjectCard = ({ project, onClick, isVisible, delay = 0 }) => {
-	const { strings } = useLanguage();
+	const { strings, language } = useLanguage();
 	const cardRef = useRef(null);
 
 	useEffect(() => {
@@ -14,6 +14,9 @@ const ProjectCard = ({ project, onClick, isVisible, delay = 0 }) => {
 			}, delay * 1000);
 		}
 	}, [isVisible, delay]);
+
+	const description =
+		project.descriptions?.[language] || project.descriptions?.en || "";
 
 	return (
 		<div className={`${styles.projectCardWrapper} reveal`} ref={cardRef}>

@@ -6,7 +6,7 @@ import useIntersectionObserver from "../../../hooks/useIntersectionObserver";
 import styles from "./Portfolio.module.css";
 
 const Portfolio = () => {
-	const { strings } = useLanguage();
+	const { strings, language } = useLanguage();
 	const [ref, isVisible] = useIntersectionObserver({
 		threshold: 0.1,
 		triggerOnce: true,
@@ -17,26 +17,31 @@ const Portfolio = () => {
 	const [visibleProjects, setVisibleProjects] = useState([]);
 	const [isModalOpen, setIsModalOpen] = useState(false);
 
+	// Updated projects with multilingual descriptions
 	const projects = [
 		{
 			id: 1,
-			title: "mojDnevnik",
+			title: "E-commerce Website",
 			category: "web",
-			image: "/mojDnevnik.png",
-			technologies: ["React", ".NET", "MongoDB"],
-			description:
-				"A fullstack School Management System with features like attendance tracking, grade management, and parent-teacher communication.",
-			link: "https://mojdnevnik.com.alamelschools.ba/",
-			github: "https://github.com/emirkugic/al-amel-ednevnik",
+			image: "/image1.png",
+			technologies: ["React", "Node.js", "MongoDB", "Express"],
+			descriptions: {
+				en: "A fully functional e-commerce platform with payment integration, user authentication, and admin dashboard.",
+				bs: "Potpuno funkcionalna e-commerce platforma sa integracijom plaćanja, autentikacijom korisnika i administratorskom kontrolnom pločom.",
+			},
+			link: "#",
+			github: "#",
 		},
 		{
 			id: 2,
 			title: "Mobile Banking App",
-			category: "web",
+			category: "mobile",
 			image: "/image1.png",
 			technologies: ["React Native", "Firebase", "Redux"],
-			description:
-				"A mobile banking application with secure transaction features, account management, and real-time notifications.",
+			descriptions: {
+				en: "A mobile banking application with secure transaction features, account management, and real-time notifications.",
+				bs: "Mobilna bankarska aplikacija sa sigurnim funkcijama transakcija, upravljanjem računima i obavještenjima u stvarnom vremenu.",
+			},
 			link: "#",
 			github: "#",
 		},
@@ -46,8 +51,10 @@ const Portfolio = () => {
 			category: "web",
 			image: "/image1.png",
 			technologies: ["HTML5", "CSS3", "JavaScript", "GSAP"],
-			description:
-				"A creative portfolio website with smooth animations and responsive design for a photography client.",
+			descriptions: {
+				en: "A creative portfolio website with smooth animations and responsive design for a photography client.",
+				bs: "Kreativna portfolio web stranica s glatkim animacijama i responzivnim dizajnom za klijenta koji se bavi fotografijom.",
+			},
 			link: "#",
 			github: "#",
 		},
@@ -57,8 +64,10 @@ const Portfolio = () => {
 			category: "web",
 			image: "/image1.png",
 			technologies: ["Vue.js", "Vuex", "Node.js", "PostgreSQL"],
-			description:
-				"A comprehensive task management system with team collaboration features, deadline tracking, and performance analytics.",
+			descriptions: {
+				en: "A comprehensive task management system with team collaboration features, deadline tracking, and performance analytics.",
+				bs: "Sveobuhvatni sistem za upravljanje zadacima s značajkama za timsku saradnju, praćenje rokova i analitiku performansi.",
+			},
 			link: "#",
 			github: "#",
 		},
@@ -68,8 +77,10 @@ const Portfolio = () => {
 			category: "mobile",
 			image: "/image1.png",
 			technologies: ["Flutter", "Firebase", "Google Fit API"],
-			description:
-				"A fitness tracking mobile application that helps users monitor their workouts, nutrition, and progress over time.",
+			descriptions: {
+				en: "A fitness tracking mobile application that helps users monitor their workouts, nutrition, and progress over time.",
+				bs: "Mobilna aplikacija za praćenje fitnessa koja pomaže korisnicima da prate svoje vježbe, prehranu i napredak tokom vremena.",
+			},
 			link: "#",
 			github: "#",
 		},
@@ -79,8 +90,10 @@ const Portfolio = () => {
 			category: "ui",
 			image: "/image1.png",
 			technologies: ["Figma", "Adobe XD", "Illustrator"],
-			description:
-				"A UI/UX design project for a restaurant booking system with an intuitive user interface and seamless booking experience.",
+			descriptions: {
+				en: "A UI/UX design project for a restaurant booking system with an intuitive user interface and seamless booking experience.",
+				bs: "UI/UX dizajn projekat za sistem rezervacija u restoranima s intuitivnim korisničkim sučeljem i besprijekornim iskustvom rezervacije.",
+			},
 			link: "#",
 			github: "#",
 		},
@@ -159,6 +172,7 @@ const Portfolio = () => {
 							onClick={() => openProjectModal(project)}
 							isVisible={isVisible}
 							delay={index * 0.1}
+							language={language}
 						/>
 					))}
 				</div>
@@ -168,6 +182,7 @@ const Portfolio = () => {
 						project={selectedProject}
 						isOpen={isModalOpen}
 						onClose={closeProjectModal}
+						language={language}
 					/>
 				)}
 			</div>

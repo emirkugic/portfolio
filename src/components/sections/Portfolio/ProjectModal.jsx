@@ -5,9 +5,12 @@ import { useLanguage } from "../../../context/LanguageContext";
 import styles from "./Portfolio.module.css";
 
 const ProjectModal = ({ project, isOpen, onClose }) => {
-	const { strings } = useLanguage();
+	const { strings, language } = useLanguage();
 
 	if (!project) return null;
+
+	const description =
+		project.descriptions?.[language] || project.descriptions?.en || "";
 
 	return (
 		<Modal isOpen={isOpen} onClose={onClose} title={project.title} size="large">
@@ -21,9 +24,7 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
 						<h4 className={styles.projectModalSectionTitle}>
 							{strings.portfolio.projectDetails.description}
 						</h4>
-						<p className={styles.projectModalDescription}>
-							{project.description}
-						</p>
+						<p className={styles.projectModalDescription}>{description}</p>
 					</div>
 
 					<div className={styles.projectModalSection}>
