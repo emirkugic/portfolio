@@ -1,5 +1,5 @@
 /* src/pages/projects/Photography/PhotographyProject.module.css */
-/* Minimal Modern Photography CSS */
+/* Complete CSS for Photography Project */
 
 /* Base Styles & Variables */
 .photoContainer {
@@ -43,17 +43,33 @@
 	color: var(--photo-text);
 	background-color: var(--photo-bg);
 	line-height: 1.5;
-	padding-top: var(--header-height, 80px);
+	padding: 0; /* Remove ALL padding */
+	margin: 0; /* Remove ALL margin */
 	overflow-x: hidden;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	letter-spacing: -0.01em;
+	position: relative; /* Add position relative */
+	min-height: 100vh; /* Ensure it fills the viewport */
+}
+
+/* Global resets */
+html,
+body {
+	margin: 0;
+	padding: 0;
+	overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+/* Make sure scrolling works properly */
+body {
+	overflow-y: auto;
 }
 
 /* Header */
 .photoHeader {
 	position: fixed;
-	top: var(--header-height, 80px);
+	top: 0;
 	left: 0;
 	right: 0;
 	padding: 1.5rem 2rem;
@@ -210,21 +226,30 @@
 	width: 100%;
 }
 
-/* Enhanced Hero Section - add this to your PhotographyProject.module.css file */
+/* Special styling for "Return to Main Portfolio" in nav menu */
+.photoPortfolioLink {
+	color: #6d4aff !important;
+	font-weight: 500 !important;
+}
+
+.photoPortfolioLink::after {
+	background-color: #6d4aff !important;
+}
 
 /* Hero Section - Enhanced */
 .photoHero {
-	height: 100vh;
+	height: 100vh; /* Full viewport height */
 	position: relative;
-	margin-top: calc(var(--header-height, 80px) - 80px);
+	margin: 0; /* Remove margin */
+	padding: 0; /* Remove padding */
 	overflow: hidden;
 }
 
 /* Dynamic Background with multiple images */
 .photoHeroImage {
 	position: absolute;
-	inset: 0;
-	background: none;
+	inset: 0; /* Cover the entire hero section */
+	background: none; /* Background is set in the ::before pseudo-element */
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -332,6 +357,7 @@
 	padding: 0 2rem;
 	text-align: center;
 	color: var(--photo-white);
+	margin-top: 0; /* Remove any margin */
 }
 
 /* Enhance typography with layered text */
@@ -494,86 +520,6 @@
 	text-transform: uppercase;
 	letter-spacing: 0.1em;
 	opacity: 0.8;
-}
-
-/* Animations */
-@keyframes heroZoom {
-	0% {
-		transform: scale(1);
-	}
-	100% {
-		transform: scale(1.1);
-	}
-}
-
-@keyframes particleFloat {
-	0% {
-		transform: translateY(0) rotate(0deg);
-		opacity: 1;
-	}
-	100% {
-		transform: translateY(-1000px) rotate(720deg);
-		opacity: 0;
-	}
-}
-
-@keyframes fadeUp {
-	0% {
-		opacity: 0;
-		transform: translateY(30px);
-	}
-	100% {
-		opacity: 1;
-		transform: translateY(0);
-	}
-}
-
-@keyframes fadeIn {
-	0% {
-		opacity: 0;
-	}
-	100% {
-		opacity: 1;
-	}
-}
-
-@keyframes scrollDot {
-	0% {
-		opacity: 1;
-		transform: translateX(-50%) translateY(0);
-	}
-	50% {
-		opacity: 0.5;
-		transform: translateX(-50%) translateY(20px);
-	}
-	100% {
-		opacity: 0;
-		transform: translateX(-50%) translateY(30px);
-	}
-}
-.photoArrow {
-	display: inline-block;
-	width: 20px;
-	height: 1px;
-	background-color: currentColor;
-	position: relative;
-	transition: width var(--photo-transition);
-}
-
-.photoArrow::after {
-	content: "";
-	position: absolute;
-	right: 0;
-	top: 0;
-	width: 6px;
-	height: 6px;
-	border-right: 1px solid currentColor;
-	border-bottom: 1px solid currentColor;
-	transform: rotate(-45deg) translate(0, -2px);
-}
-
-.photoHeroButton:hover .photoArrow {
-	width: 25px;
 }
 
 /* Gallery */
@@ -1022,6 +968,31 @@
 	color: var(--photo-text-lighter);
 }
 
+/* Special styling for "Back to Main Portfolio" in footer */
+.photoBackToMainLink {
+	position: relative;
+	color: #6d4aff !important;
+	font-weight: 500;
+}
+
+.photoBackToMainLink::after {
+	content: "";
+	position: absolute;
+	bottom: -2px;
+	left: 0;
+	right: 0;
+	height: 1px;
+	background-color: #6d4aff;
+	transform: scaleX(0);
+	transition: transform 0.3s ease;
+	transform-origin: right;
+}
+
+.photoBackToMainLink:hover::after {
+	transform: scaleX(1);
+	transform-origin: left;
+}
+
 /* Image Viewer */
 .photoViewer {
 	position: fixed;
@@ -1099,23 +1070,76 @@
 
 /* Animations */
 @keyframes fadeIn {
-	from {
+	0% {
 		opacity: 0;
 	}
-	to {
+	100% {
 		opacity: 1;
 	}
 }
 
+@keyframes fadeUp {
+	0% {
+		opacity: 0;
+		transform: translateY(30px);
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
 @keyframes zoomIn {
-	from {
+	0% {
 		opacity: 0;
 		transform: scale(0.95);
 	}
-	to {
+	100% {
 		opacity: 1;
 		transform: scale(1);
 	}
+}
+
+@keyframes heroZoom {
+	0% {
+		transform: scale(1);
+	}
+	100% {
+		transform: scale(1.1);
+	}
+}
+
+@keyframes particleFloat {
+	0% {
+		transform: translateY(0) rotate(0deg);
+		opacity: 1;
+	}
+	100% {
+		transform: translateY(-1000px) rotate(720deg);
+		opacity: 0;
+	}
+}
+
+@keyframes scrollDot {
+	0% {
+		opacity: 1;
+		transform: translateX(-50%) translateY(0);
+	}
+	50% {
+		opacity: 0.5;
+		transform: translateX(-50%) translateY(20px);
+	}
+	100% {
+		opacity: 0;
+		transform: translateX(-50%) translateY(30px);
+	}
+}
+
+/* Make header adapt to scroll */
+.photoHeaderScrolled ~ .photoBackButton {
+	background-color: #f5f5f5;
+	color: var(--photo-text);
+	border-color: #e0e0e0;
 }
 
 /* Responsive Styles */
@@ -1136,17 +1160,10 @@
 		--photo-text-3xl: 2.5rem;
 		--photo-text-2xl: 2rem;
 		--photo-text-xl: 1.25rem;
-
-		/* Adjust spacing for smaller screens */
-		padding-top: var(--header-height, 70px);
 	}
 
-	.photoNav {
-		top: var(--header-height, 70px);
-	}
-
-	.photoHero {
-		margin-top: calc(var(--header-height, 70px) - 80px);
+	.photoHeader {
+		padding: 1rem 1.5rem; /* Slightly reduce padding on mobile */
 	}
 
 	.photoAbout {
@@ -1187,17 +1204,22 @@
 		--photo-text-xl: 1.25rem;
 		--photo-space-xl: 4rem;
 		--photo-space-lg: 3rem;
-
-		/* Adjust spacing for even smaller screens */
-		padding-top: var(--header-height, 60px);
 	}
 
-	.photoHeader {
-		top: var(--header-height, 60px);
+	.photoBackButton {
+		top: 20px;
+		left: 20px;
+		padding: 8px 12px;
+		font-size: 0;
 	}
 
-	.photoHero {
-		margin-top: calc(var(--header-height, 60px) - 80px);
+	.photoBackButton span {
+		display: none;
+	}
+
+	.photoBackButton svg {
+		width: 16px;
+		height: 16px;
 	}
 
 	.photoHeroTitle {

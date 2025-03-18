@@ -7,7 +7,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "./context/ThemeContext";
 import { LanguageProvider } from "./context/LanguageContext";
 import MainLayout from "./components/layout/MainLayout";
-import ProjectLayout from "./layout/ProjectLayout";
 import Home from "./pages/Home";
 import PhotographyProject from "./pages/projects/Photography/PhotographyProject";
 import "./styles/global.css";
@@ -18,6 +17,7 @@ function App() {
 	const [isLoading, setIsLoading] = useState(true);
 
 	useEffect(() => {
+		// Simulate initial loading
 		const timer = setTimeout(() => {
 			setIsLoading(false);
 		}, 1500);
@@ -46,12 +46,9 @@ function App() {
 							/>
 							<Route
 								path="/projects/photography"
-								element={
-									<ProjectLayout>
-										<PhotographyProject />
-									</ProjectLayout>
-								}
+								element={<PhotographyProject />}
 							/>
+							{/* Add more project routes as needed */}
 						</Routes>
 					)}
 				</ThemeProvider>

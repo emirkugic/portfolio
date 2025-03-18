@@ -1,0 +1,59 @@
+.backButton {
+	position: fixed;
+	bottom: 30px; /* Positioned at the bottom instead of top */
+	left: 30px;
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	padding: 10px 15px;
+	background-color: rgba(0, 0, 0, 0.7);
+	backdrop-filter: blur(10px);
+	border: 1px solid rgba(255, 255, 255, 0.2);
+	border-radius: 30px;
+	color: white;
+	font-size: 0.85rem;
+	font-weight: 500;
+	text-decoration: none;
+	transition: all 0.3s ease;
+	z-index: 100;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.backButton svg {
+	transition: transform 0.3s ease;
+}
+
+.backButton:hover {
+	background-color: rgba(0, 0, 0, 0.9);
+	transform: translateY(-2px);
+	box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}
+
+.backButton:hover svg {
+	transform: translateX(-3px);
+}
+
+/* Media queries for responsive design */
+@media screen and (max-width: 768px) {
+	.backButton {
+		bottom: 20px;
+		left: 20px;
+		padding: 8px 12px;
+	}
+}
+
+/* For very small screens, make it more compact */
+@media screen and (max-width: 480px) {
+	.backButton span {
+		display: none; /* Hide text on very small screens */
+	}
+
+	.backButton {
+		padding: 8px;
+	}
+
+	.backButton svg {
+		width: 16px;
+		height: 16px;
+	}
+}

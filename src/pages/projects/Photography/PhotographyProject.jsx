@@ -1,6 +1,7 @@
 // src/pages/projects/Photography/PhotographyProject.jsx
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import BackButton from "../../../components/common/BackButton/BackButton";
 import styles from "./PhotographyProject.module.css";
 
 const PhotographyProject = () => {
@@ -14,88 +15,88 @@ const PhotographyProject = () => {
 	const [scrolled, setScrolled] = useState(false);
 
 	// Categories
-	const categories = ["All", "Nature", "Portrait", "Urban", "Abstract"];
+	const categories = ["All", "Priroda", "Portret", "Urbano", "Apstraktno"];
 	const [activeCategory, setActiveCategory] = useState("All");
 
 	// Gallery data
 	const gallery = [
 		{
 			id: 1,
-			category: "Nature",
-			title: "Mountain Lake",
-			description: "Serene mountain lake at dawn",
+			category: "Priroda",
+			title: "Planinsko jezero",
+			description: "Mirno planinsko jezero u zoru",
 			image:
 				"https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=2000",
 			size: "large",
 		},
 		{
 			id: 2,
-			category: "Portrait",
-			title: "Woman in Shadow",
-			description: "Portrait with dramatic shadow play",
+			category: "Portret",
+			title: "Žena u sjeni",
+			description: "Portret sa dramatičnom igrom sjenki",
 			image:
 				"https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1000",
 			size: "medium",
 		},
 		{
 			id: 3,
-			category: "Urban",
-			title: "City Lights",
-			description: "Urban nightscape with vibrant lights",
+			category: "Urbano",
+			title: "Gradska svjetla",
+			description: "Urbani noćni pejzaž sa živopisnim svjetlima",
 			image:
 				"https://images.unsplash.com/photo-1519501025264-65ba15a82390?q=80&w=1000",
 			size: "medium",
 		},
 		{
 			id: 4,
-			category: "Abstract",
-			title: "Light Forms",
-			description: "Abstract composition of light and color",
+			category: "Apstraktno",
+			title: "Forme svjetlosti",
+			description: "Apstraktna kompozicija svjetla i boje",
 			image:
 				"https://images.unsplash.com/photo-1541701494587-cb58502866ab?q=80&w=1000",
 			size: "small",
 		},
 		{
 			id: 5,
-			category: "Nature",
-			title: "Desert Sands",
-			description: "Undulating dunes in golden light",
+			category: "Priroda",
+			title: "Pustinjski pijesak",
+			description: "Valovite dine u zlatnom svjetlu",
 			image:
 				"https://images.unsplash.com/photo-1509316785289-025f5b846b35?q=80&w=1000",
 			size: "small",
 		},
 		{
 			id: 6,
-			category: "Portrait",
-			title: "Profile Study",
-			description: "Minimalist profile portrait in studio",
+			category: "Portret",
+			title: "Profilna studija",
+			description: "Minimalistički portret profila u studiju",
 			image:
 				"https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=80&w=1000",
 			size: "medium",
 		},
 		{
 			id: 7,
-			category: "Urban",
-			title: "Concrete Forms",
-			description: "Geometric urban architecture",
+			category: "Urbano",
+			title: "Betonske forme",
+			description: "Geometrijska urbana arhitektura",
 			image:
 				"https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1000",
 			size: "large",
 		},
 		{
 			id: 8,
-			category: "Abstract",
-			title: "Color Study",
-			description: "Experimental color composition",
+			category: "Apstraktno",
+			title: "Studija boja",
+			description: "Eksperimentalna kompozicija boja",
 			image:
 				"https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1000",
 			size: "medium",
 		},
 		{
 			id: 9,
-			category: "Nature",
-			title: "Forest Light",
-			description: "Sunbeams filtering through ancient forest",
+			category: "Priroda",
+			title: "Šumsko svjetlo",
+			description: "Sunčevi zraci koji filtriraju kroz drevnu šumu",
 			image:
 				"https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=1000",
 			size: "small",
@@ -150,16 +151,19 @@ const PhotographyProject = () => {
 
 	return (
 		<div className={styles.photoContainer}>
-			{/* Navigation */}
+			{/* Reusable Back to Portfolio Button Component */}
+			<BackButton />
+
+			{/* Photography Site Header (standalone) */}
 			<header
 				className={`${styles.photoHeader} ${
 					scrolled ? styles.photoHeaderScrolled : ""
 				}`}
 			>
 				<div className={styles.photoHeaderInner}>
-					<Link to="/" className={styles.photoLogo}>
-						JANE DOE
-					</Link>
+					<a href="#top" className={styles.photoLogo}>
+						Amra Hotić
+					</a>
 
 					<button
 						className={`${styles.photoMenuToggle} ${
@@ -189,30 +193,35 @@ const PhotographyProject = () => {
 							</li>
 							<li>
 								<a href="#about" onClick={() => setMenuOpen(false)}>
-									About
+									O meni
 								</a>
 							</li>
 							<li>
 								<a href="#exhibitions" onClick={() => setMenuOpen(false)}>
-									Exhibitions
+									Izložbe
 								</a>
 							</li>
 							<li>
 								<a href="#contact" onClick={() => setMenuOpen(false)}>
-									Contact
+									Kontakt
 								</a>
 							</li>
 							<li>
-								<Link to="/" onClick={() => setMenuOpen(false)}>
-									Main Portfolio
+								<Link
+									to="/"
+									onClick={() => setMenuOpen(false)}
+									className={styles.photoPortfolioLink}
+								>
+									Povratak na glavni portfolio
 								</Link>
 							</li>
 						</ul>
 					</nav>
 				</div>
 			</header>
+
 			{/* Hero Section */}
-			<section className={styles.photoHero}>
+			<section id="top" className={styles.photoHero}>
 				<div className={styles.photoHeroImage}>
 					{/* Floating particles for visual interest */}
 					<div className={styles.photoHeroParticles}>
@@ -225,24 +234,17 @@ const PhotographyProject = () => {
 
 					<div className={styles.photoHeroContent}>
 						<h1 className={styles.photoHeroTitle}>
-							Photography is the art of capturing moments that last forever
+							Fotografija je umjetnost bilježenja trenutaka koji traju zauvijek
 						</h1>
-						<p>Fine art photography & visual storytelling</p>
+						<p>Umjetnička fotografija & vizualno pripovijedanje</p>
 						<a href="#gallery" className={styles.photoHeroButton}>
-							Explore Gallery
+							Istražite galeriju
 							<span className={styles.photoArrow}></span>
 						</a>
 					</div>
-
-					{/* Animated scroll indicator */}
-					<div className={styles.photoScrollIndicator}>
-						<div className={styles.photoScrollCircle}>
-							<div className={styles.photoScrollDot}></div>
-						</div>
-						<span className={styles.photoScrollText}>Scroll down</span>
-					</div>
 				</div>
 			</section>
+
 			{/* Gallery Section */}
 			<section id="gallery" className={styles.photoGallery}>
 				<header className={styles.photoSectionHeader}>
@@ -280,69 +282,70 @@ const PhotographyProject = () => {
 					))}
 				</div>
 			</section>
+
 			{/* About Section */}
 			<section id="about" className={styles.photoAbout}>
 				<div className={styles.photoAboutLeft}>
 					<img
 						src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-						alt="JANE DOE"
+						alt="Amra Hotić"
 					/>
 				</div>
 				<div className={styles.photoAboutRight}>
 					<header className={styles.photoSectionHeader}>
-						<h2>About Me</h2>
+						<h2>O meni</h2>
 					</header>
 					<div className={styles.photoAboutContent}>
 						<p className={styles.photoLead}>
-							I capture moments that might otherwise go unnoticed, finding
-							beauty in the ordinary and the extraordinary.
+							Bilježim trenutke koji bi inače mogli proći nezapaženo,
+							pronalazeći ljepotu u običnom i izvanrednom.
 						</p>
 						<p>
-							With over 15 years of experience in fine art photography, my work
-							has been featured in galleries across Europe and North America. I
-							specialize in creating compelling visual narratives that challenge
-							perceptions and evoke emotion.
+							S više od 15 godina iskustva u umjetničkoj fotografiji, moj rad je
+							bio izložen u galerijama širom Bosne i Hercegovine i Europe.
+							Specijalizirana sam za stvaranje upečatljivih vizualnih priča koje
+							izazivaju percepcije i pobuđuju emocije.
 						</p>
 						<p>
-							My approach combines technical precision with intuitive
-							composition, allowing each image to tell its own unique story.
-							Whether I'm documenting urban landscapes, intimate portraits, or
-							abstract forms, I seek to reveal the hidden connections between
-							subject and viewer.
+							Moj pristup kombinira tehničku preciznost s intuitivnom
+							kompozicijom, omogućavajući svakoj slici da ispriča svoju
+							jedinstvenu priču. Bilo da dokumentiram urbane pejzaže, intimne
+							portrete ili apstraktne forme, nastojim otkriti skrivene veze
+							između subjekta i promatrača.
 						</p>
 						<div className={styles.photoStats}>
 							<div className={styles.photoStat}>
 								<span className={styles.photoStatNumber}>15+</span>
-								<span className={styles.photoStatLabel}>Years Experience</span>
+								<span className={styles.photoStatLabel}>Godina iskustva</span>
 							</div>
 							<div className={styles.photoStat}>
 								<span className={styles.photoStatNumber}>26</span>
-								<span className={styles.photoStatLabel}>Exhibitions</span>
+								<span className={styles.photoStatLabel}>Izložbi</span>
 							</div>
 							<div className={styles.photoStat}>
 								<span className={styles.photoStatNumber}>9</span>
-								<span className={styles.photoStatLabel}>Publications</span>
+								<span className={styles.photoStatLabel}>Publikacija</span>
 							</div>
 						</div>
 					</div>
 				</div>
 			</section>
+
 			{/* Exhibitions Section */}
 			<section id="exhibitions" className={styles.photoExhibitions}>
 				<header className={styles.photoSectionHeader}>
-					<h2>Exhibitions & Awards</h2>
+					<h2>Izložbe i nagrade</h2>
 				</header>
 
 				<div className={styles.photoTimeline}>
 					<div className={styles.photoTimelineItem}>
 						<div className={styles.photoTimelineDate}>2024</div>
 						<div className={styles.photoTimelineContent}>
-							<h3>"Perspectives" Solo Exhibition</h3>
-							<p>Museum of Modern Photography, New York</p>
+							<h3>"Perspektive" Samostalna izložba</h3>
+							<p>Muzej savremene umjetnosti, Sarajevo</p>
 							<p className={styles.photoTimelineDesc}>
-								A comprehensive showcase of urban landscape photography
-								exploring the relationship between architecture and human
-								experience.
+								Sveobuhvatni prikaz fotografije urbanog pejzaža koja istražuje
+								odnos između arhitekture i ljudskog iskustva.
 							</p>
 						</div>
 					</div>
@@ -350,11 +353,11 @@ const PhotographyProject = () => {
 					<div className={styles.photoTimelineItem}>
 						<div className={styles.photoTimelineDate}>2023</div>
 						<div className={styles.photoTimelineContent}>
-							<h3>International Photography Award</h3>
-							<p>Fine Art Category Winner</p>
+							<h3>Međunarodna fotografska nagrada</h3>
+							<p>Pobjednik u kategoriji likovne umjetnosti</p>
 							<p className={styles.photoTimelineDesc}>
-								Recognized for the "Light Studies" series examining the
-								interaction of natural light with architectural spaces.
+								Priznanje za seriju "Studije svjetla" koja istražuje interakciju
+								prirodnog svjetla s arhitektonskim prostorima.
 							</p>
 						</div>
 					</div>
@@ -362,11 +365,11 @@ const PhotographyProject = () => {
 					<div className={styles.photoTimelineItem}>
 						<div className={styles.photoTimelineDate}>2022</div>
 						<div className={styles.photoTimelineContent}>
-							<h3>"Elements" Group Exhibition</h3>
-							<p>Berlin Gallery of Contemporary Art</p>
+							<h3>"Elementi" Grupna izložba</h3>
+							<p>Galerija suvremene umjetnosti, Mostar</p>
 							<p className={styles.photoTimelineDesc}>
-								Featured work exploring natural elements as metaphors for human
-								emotion and experience.
+								Istaknuti rad koji istražuje prirodne elemente kao metafore za
+								ljudske emocije i iskustva.
 							</p>
 						</div>
 					</div>
@@ -374,43 +377,44 @@ const PhotographyProject = () => {
 					<div className={styles.photoTimelineItem}>
 						<div className={styles.photoTimelineDate}>2021</div>
 						<div className={styles.photoTimelineContent}>
-							<h3>Photography Book Publication</h3>
-							<p>"Invisible Geometries"</p>
+							<h3>Publikacija fotografske knjige</h3>
+							<p>"Nevidljive geometrije"</p>
 							<p className={styles.photoTimelineDesc}>
-								A monograph featuring 120 photographs exploring hidden patterns
-								and structures in both natural and built environments.
+								Monografija koja sadrži 120 fotografija koje istražuju skrivene
+								obrasce i strukture u prirodnim i izgrađenim okruženjima.
 							</p>
 						</div>
 					</div>
 				</div>
 			</section>
+
 			{/* Contact Section */}
 			<section id="contact" className={styles.photoContact}>
 				<header className={styles.photoSectionHeader}>
-					<h2>Get in Touch</h2>
+					<h2>Kontaktirajte me</h2>
 				</header>
 
 				<div className={styles.photoContactContent}>
 					<div className={styles.photoContactLeft}>
 						<p className={styles.photoLead}>
-							Interested in working together or purchasing prints? Send me a
-							message and I'll get back to you soon.
+							Zainteresirani ste za suradnju ili kupnju printova? Pošaljite mi
+							poruku i uskoro ću vam odgovoriti.
 						</p>
 						<div className={styles.photoContactInfo}>
 							<div className={styles.photoContactItem}>
 								<h4>Email</h4>
-								<p>hello@janedoe.com</p>
+								<p>hello@ajlahodzic.ba</p>
 							</div>
 							<div className={styles.photoContactItem}>
 								<h4>Studio</h4>
 								<p>
-									Sarajevo 123
+									Galerija Bijeli Prostor 23
 									<br />
-									Sarajevo, BiH 71000
+									Sarajevo, 71000
 								</p>
 							</div>
 							<div className={styles.photoContactItem}>
-								<h4>Follow</h4>
+								<h4>Pratite me</h4>
 								<div className={styles.photoSocial}>
 									<a href="#" aria-label="Instagram">
 										Instagram
@@ -429,7 +433,7 @@ const PhotographyProject = () => {
 					<div className={styles.photoContactRight}>
 						<form className={styles.photoForm}>
 							<div className={styles.photoFormGroup}>
-								<label htmlFor="name">Name</label>
+								<label htmlFor="name">Ime</label>
 								<input type="text" id="name" />
 							</div>
 
@@ -439,38 +443,42 @@ const PhotographyProject = () => {
 							</div>
 
 							<div className={styles.photoFormGroup}>
-								<label htmlFor="message">Message</label>
+								<label htmlFor="message">Poruka</label>
 								<textarea id="message" rows="5"></textarea>
 							</div>
 
 							<button type="submit" className={styles.photoSubmit}>
-								Send Message
+								Pošalji poruku
 								<span className={styles.photoArrow}></span>
 							</button>
 						</form>
 					</div>
 				</div>
 			</section>
+
 			{/* Footer */}
 			<footer className={styles.photoFooter}>
 				<div className={styles.photoFooterInner}>
-					<Link to="/" className={styles.photoFooterLogo}>
-						JANE DOE
-					</Link>
+					<a href="#top" className={styles.photoFooterLogo}>
+						Amra Hotić
+					</a>
 
 					<div className={styles.photoFooterLinks}>
 						<a href="#gallery">Portfolio</a>
-						<a href="#about">About</a>
-						<a href="#exhibitions">Exhibitions</a>
-						<a href="#contact">Contact</a>
-						<Link to="/">Main Portfolio</Link>
+						<a href="#about">O meni</a>
+						<a href="#exhibitions">Izložbe</a>
+						<a href="#contact">Kontakt</a>
+						<Link to="/" className={styles.photoBackToMainLink}>
+							Povratak na glavni portfolio
+						</Link>
 					</div>
 
 					<p className={styles.photoCopyright}>
-						&copy; {new Date().getFullYear()} Jane Doe. All rights reserved.
+						&copy; {new Date().getFullYear()} Amra Hotić. Sva prava pridržana.
 					</p>
 				</div>
 			</footer>
+
 			{/* Image Viewer */}
 			{activeImage && (
 				<div
