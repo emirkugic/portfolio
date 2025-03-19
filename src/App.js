@@ -9,6 +9,7 @@ import { LanguageProvider } from "./context/LanguageContext";
 import MainLayout from "./components/layout/MainLayout";
 import Home from "./pages/Home";
 import PhotographyProject from "./pages/projects/Photography/PhotographyProject";
+import NewsPage from "./pages/projects/NewsPage/NewsPage";
 import "./styles/global.css";
 import "./styles/animations.css";
 import "./styles/projects.css";
@@ -48,7 +49,7 @@ function App() {
 								path="/projects/photography"
 								element={<PhotographyProject />}
 							/>
-							{/* Add more project routes as needed */}
+							<Route path="/projects/news" element={<NewsPage />} />
 						</Routes>
 					)}
 				</ThemeProvider>
