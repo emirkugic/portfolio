@@ -287,7 +287,7 @@ const NewsPage = () => {
 				"Turistička zajednica BiH objavila je da je zemlju u 2024. godini posjetio rekordan broj turista, što je značajno doprinijelo ekonomskom rastu.",
 			category: "business",
 			image:
-				"https://images.unsplash.com/photo-1590073242678-70ee3fc28f8e?q=80&w=2121",
+				"https://www.tourismbih.com/wp-content/uploads/2019/02/Mostar-1-3.jpg",
 			author: "Selma Begić",
 			date: "3. mart 2025.",
 			readTime: "4 min",
