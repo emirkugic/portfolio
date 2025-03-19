@@ -10,6 +10,9 @@ import MainLayout from "./components/layout/MainLayout";
 import Home from "./pages/Home";
 import PhotographyProject from "./pages/projects/Photography/PhotographyProject";
 import NewsPage from "./pages/projects/NewsPage/NewsPage";
+// BusinessPage
+import CNCBusinessPage from "./pages/projects/CNCBusinessPage/CNCBusinessPage";
+
 import "./styles/global.css";
 import "./styles/animations.css";
 import "./styles/projects.css";
@@ -50,6 +53,7 @@ function App() {
 								element={<PhotographyProject />}
 							/>
 							<Route path="/projects/news" element={<NewsPage />} />
+							<Route path="/projects/metalprec" element={<CNCBusinessPage />} />
 						</Routes>
 					)}
 				</ThemeProvider>
