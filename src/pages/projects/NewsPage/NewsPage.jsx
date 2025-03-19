@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import BackButton from "../../../components/common/BackButton/BackButton";
 import styles from "./NewsPage.module.css";
+import data from "./data.json";
 
 const NewsPage = () => {
 	const [activeCategory, setActiveCategory] = useState("front");
@@ -20,6 +21,10 @@ const NewsPage = () => {
 	const headerRef = useRef(null);
 	const heroRef = useRef(null);
 	const scrollRef = useRef(null);
+
+	// Current time display
+	const [currentTime, setCurrentTime] = useState(getCurrentTime());
+	const [coverStoryIndex, setCoverStoryIndex] = useState(0);
 
 	// Format current date in Bosnian
 	useEffect(() => {
@@ -68,7 +73,7 @@ const NewsPage = () => {
 		if (!showBreakingNews) return;
 
 		const interval = setInterval(() => {
-			setActiveStoryIndex((prev) => (prev + 1) % breakingNews.length);
+			setActiveStoryIndex((prev) => (prev + 1) % data.breakingNews.length);
 		}, 7000);
 
 		return () => clearInterval(interval);
@@ -77,15 +82,11 @@ const NewsPage = () => {
 	// Automated headline carousel
 	useEffect(() => {
 		const interval = setInterval(() => {
-			setCoverStoryIndex((prev) => (prev + 1) % coverStories.length);
+			setCoverStoryIndex((prev) => (prev + 1) % data.coverStories.length);
 		}, 10000);
 
 		return () => clearInterval(interval);
 	}, []);
-
-	// Current time display
-	const [currentTime, setCurrentTime] = useState(getCurrentTime());
-	const [coverStoryIndex, setCoverStoryIndex] = useState(0);
 
 	function getCurrentTime() {
 		const now = new Date();
@@ -103,283 +104,10 @@ const NewsPage = () => {
 		return () => clearInterval(interval);
 	}, []);
 
-	// Weather data
-	const weatherData = {
-		temp: "19°C",
-		condition: "Sunčano",
-		city: "Sarajevo",
-		forecast: [
-			{ day: "PON", temp: "21°C", icon: "sunny" },
-			{ day: "UTO", temp: "19°C", icon: "partly_cloudy" },
-			{ day: "SRI", temp: "18°C", icon: "rainy" },
-			{ day: "ČET", temp: "20°C", icon: "partly_cloudy" },
-			{ day: "PET", temp: "22°C", icon: "sunny" },
-		],
-	};
-
-	// News sections/categories
-	const categories = [
-		{ id: "front", name: "Naslovnica", icon: "home" },
-		{ id: "politics", name: "Politika", icon: "politics" },
-		{ id: "business", name: "Biznis", icon: "business" },
-		{ id: "world", name: "Svijet", icon: "world" },
-		{ id: "sports", name: "Sport", icon: "sports" },
-		{ id: "culture", name: "Kultura", icon: "culture" },
-		{ id: "tech", name: "Tehnologija", icon: "tech" },
-		{ id: "lifestyle", name: "Lifestyle", icon: "lifestyle" },
-	];
-
-	// Breaking news
-	const breakingNews = [
-		{
-			id: 1,
-			title:
-				"HITNO: Uspješno završeni pregovori o novom ekonomskom sporazumu sa EU",
-			category: "politics",
-			timestamp: "prije 35 minuta",
-		},
-		{
-			id: 2,
-			title:
-				"Zemljotres jačine 4.5 stepeni pogodio centralnu Bosnu, nema izvještaja o povrijeđenima",
-			category: "local",
-			timestamp: "prije 53 minute",
-		},
-		{
-			id: 3,
-			title:
-				"Reprezentacija BiH plasirala se u četvrtfinale Evropskog prvenstva",
-			category: "sports",
-			timestamp: "prije 1 sat",
-		},
-	];
-
-	// Cover stories for main carousel
-	const coverStories = [
-		{
-			id: 1,
-			title:
-				"Nova ekonomska era: BiH potpisala historijski sporazum sa Evropskom unijom",
-			excerpt:
-				"Bosna i Hercegovina danas je potpisala dugo očekivani ekonomski sporazum s Evropskom unijom koji će otvoriti vrata za značajne investicije i ubrzati proces evropskih integracija.",
-			category: "politics",
-			image:
-				"https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?q=80&w=2070",
-			author: "Amina Hodžić",
-			date: "4. mart 2025.",
-			readTime: "5 min",
-			premium: true,
-			featured: true,
-		},
-		{
-			id: 2,
-			title:
-				"Inovativna bosanska tehnološka kompanija privukla investiciju od 50 miliona eura",
-			excerpt:
-				"Sarajevska tehnološka firma, koja razvija AI rješenja za zdravstveni sektor, osigurala je rekordnu investiciju od međunarodnih investitora, što predstavlja najveće ulaganje u BH tech sektor do sada.",
-			category: "business",
-			image:
-				"https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?q=80&w=2006",
-			author: "Tarik Mehić",
-			date: "3. mart 2025.",
-			readTime: "4 min",
-			premium: false,
-			featured: true,
-		},
-		{
-			id: 3,
-			title:
-				"Revolucija u javnom prevozu: Sarajevo uvodi potpuno električnu flotu autobusa",
-			excerpt:
-				"Glavni grad BiH započeo je ambiciozni projekat zamjene svih vozila javnog prevoza električnim, što će značajno smanjiti zagađenje i postaviti Sarajevo kao lidera u zelenoj tranziciji na Balkanu.",
-			category: "local",
-			image:
-				"https://images.unsplash.com/photo-1570125909232-eb263c188f7e?q=80&w=2071",
-			author: "Amra Imamović",
-			date: "2. mart 2025.",
-			readTime: "6 min",
-			premium: false,
-			featured: true,
-		},
-	];
-
-	// Featured articles
-	const featuredNews = [
-		{
-			id: 4,
-			title:
-				"Bosanska dijaspora investira rekordnih 2 milijarde KM u domaću ekonomiju",
-			excerpt:
-				"Veliki povratak kapitala: kako bosanska dijaspora postaje ključni faktor ekonomskog razvoja matične zemlje kroz direktne investicije, transfer znanja i otvaranje novih radnih mjesta.",
-			category: "business",
-			image:
-				"https://images.unsplash.com/photo-1580048915913-4f8f5cb481c4?q=80&w=2069",
-			author: "Emir Kozlić",
-			date: "3. mart 2025.",
-			readTime: "4 min",
-			premium: true,
-		},
-		{
-			id: 5,
-			title:
-				"BiH postaje regionalni lider u IT sektoru sa više od 500 novih kompanija",
-			excerpt:
-				"Zahvaljujući kvalitetnim stručnjacima i povoljnom poslovnom okruženju, Bosna i Hercegovina bilježi eksplozivan rast IT industrije koja postaje glavni izvozni sektor zemlje.",
-			category: "tech",
-			image:
-				"https://images.unsplash.com/photo-1573164713712-03790a178651?q=80&w=2069",
-			author: "Damir Kovačević",
-			date: "2. mart 2025.",
-			readTime: "3 min",
-		},
-	];
-
-	// Editor's picks
-	const editorsPicks = [
-		{
-			id: 6,
-			title: "Pogled u budućnost: Kako će izgledati bh. gradovi 2050. godine",
-			category: "lifestyle",
-			image:
-				"https://images.unsplash.com/photo-1449824913935-59a10b8d2000?q=80&w=2070",
-			date: "1. mart 2025.",
-			trending: true,
-		},
-		{
-			id: 7,
-			title:
-				"Nova era bh. filma: Domaći reditelj osvaja nagradu na festivalu u Kanu",
-			category: "culture",
-			image:
-				"https://images.unsplash.com/photo-1594908900066-3f47337549d8?q=80&w=2070",
-			date: "28. februar 2025.",
-		},
-		{
-			id: 8,
-			title: "Gastro revolucija: Bosanska kuhinja osvaja svjetsku scenu",
-			category: "lifestyle",
-			image:
-				"https://images.unsplash.com/photo-1563379926898-05f4575a45d8?q=80&w=2070",
-			date: "27. februar 2025.",
-			trending: true,
-		},
-	];
-
-	// Latest news articles
-	const latestNews = [
-		{
-			id: 9,
-			title: "Novi zakon o digitalnom poslovanju donosi revoluciju u e-upravi",
-			excerpt:
-				"Parlamentarna skupština BiH usvojila je dugo očekivani Zakon o digitalnom poslovanju koji će omogućiti građanima pristup svim javnim uslugama online.",
-			category: "politics",
-			image:
-				"https://images.unsplash.com/photo-1590856029826-c7a73142bbf1?q=80&w=2073",
-			author: "Jasmin Halilović",
-			date: "4. mart 2025.",
-			readTime: "3 min",
-		},
-		{
-			id: 10,
-			title:
-				"Rekordna turistička sezona: BiH posjetilo više od 2 miliona turista",
-			excerpt:
-				"Turistička zajednica BiH objavila je da je zemlju u 2024. godini posjetio rekordan broj turista, što je značajno doprinijelo ekonomskom rastu.",
-			category: "business",
-			image:
-				"https://www.tourismbih.com/wp-content/uploads/2019/02/Mostar-1-3.jpg",
-			author: "Selma Begić",
-			date: "3. mart 2025.",
-			readTime: "4 min",
-		},
-		{
-			id: 11,
-			title:
-				"Bosanski sportisti osvojili rekordnih 5 medalja na zimskim Olimpijskim igrama",
-			excerpt:
-				"Historijski uspjeh bosanskohercegovačkih sportista na Zimskim olimpijskim igrama 2026. gdje su osvojili ukupno pet medalja.",
-			category: "sports",
-			image:
-				"https://images.unsplash.com/photo-1551698618-1dfe5d97d256?q=80&w=2070",
-			author: "Adnan Mehić",
-			date: "2. mart 2025.",
-			readTime: "5 min",
-		},
-		{
-			id: 12,
-			title: "Revolucija u zdravstvu: BiH uvodi inovativni sistem telemedicine",
-			excerpt:
-				"Ministarstvo zdravstva predstavilo je novi sistem telemedicine koji će omogućiti pacijentima iz ruralnih područja pristup specijalistima iz cijele zemlje.",
-			category: "health",
-			image:
-				"https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=2070",
-			author: "Mirela Hodžić",
-			date: "1. mart 2025.",
-			readTime: "4 min",
-		},
-		{
-			id: 13,
-			title:
-				"Nova era obnovljive energije: BiH gradi najveći solarni park na Balkanu",
-			excerpt:
-				"Započela izgradnja najvećeg solarnog parka na Balkanu koji će značajno povećati udio obnovljivih izvora energije u energetskom miksu zemlje.",
-			category: "tech",
-			image:
-				"https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=2072",
-			author: "Nedim Hajrić",
-			date: "28. februar 2025.",
-			readTime: "4 min",
-		},
-		{
-			id: 14,
-			title: "Sarajevski univerzitet među top 500 svjetskih univerziteta",
-			excerpt:
-				"Po prvi put u historiji, Univerzitet u Sarajevu uvršten je među 500 najboljih svjetskih univerziteta prema prestižnoj Shanghai listi.",
-			category: "education",
-			image:
-				"https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=2071",
-			author: "Haris Mujić",
-			date: "27. februar 2025.",
-			readTime: "3 min",
-		},
-	];
-
-	// Trending news with social stats
-	const trendingNews = [
-		{
-			id: 15,
-			title: "Revolucionarno otkriće bosanskih naučnika u liječenju raka",
-			category: "health",
-			shares: 2453,
-			comments: 187,
-		},
-		{
-			id: 16,
-			title: "Bosanski sportista oborio svjetski rekord u atletici",
-			category: "sports",
-			shares: 1845,
-			comments: 321,
-		},
-		{
-			id: 17,
-			title: "Nova studija: BiH među top 20 zemalja za život i rad",
-			category: "lifestyle",
-			shares: 1622,
-			comments: 245,
-		},
-		{
-			id: 18,
-			title: "Sarajevo dobija novi futuristički most preko Miljacke",
-			category: "local",
-			shares: 1247,
-			comments: 193,
-		},
-	];
-
 	// Filter news based on active category
 	const getFilteredNews = () => {
-		if (activeCategory === "front") return latestNews;
-		return latestNews.filter(
+		if (activeCategory === "front") return data.latestNews;
+		return data.latestNews.filter(
 			(news) => news.category.toLowerCase() === activeCategory.toLowerCase()
 		);
 	};
@@ -952,7 +680,7 @@ const NewsPage = () => {
 							NAJNOVIJE
 						</span>
 						<div className={styles.breakingTextWrapper}>
-							{breakingNews.map((news, index) => (
+							{data.breakingNews.map((news, index) => (
 								<div
 									key={news.id}
 									className={`${styles.breakingText} ${
@@ -976,7 +704,7 @@ const NewsPage = () => {
 								className={styles.breakingProgressBar}
 								style={{
 									width: `${
-										((activeStoryIndex + 1) / breakingNews.length) * 100
+										((activeStoryIndex + 1) / data.breakingNews.length) * 100
 									}%`,
 								}}
 							></div>
@@ -1016,15 +744,19 @@ const NewsPage = () => {
 							</div>
 							<div className={styles.weather}>
 								<span className={styles.weatherIcon}>{getIcon("sunny")}</span>
-								<span className={styles.weatherTemp}>{weatherData.temp}</span>
-								<span className={styles.weatherCity}>{weatherData.city}</span>
+								<span className={styles.weatherTemp}>
+									{data.weatherData.temp}
+								</span>
+								<span className={styles.weatherCity}>
+									{data.weatherData.city}
+								</span>
 								<div className={styles.weatherForecastWrapper}>
 									<div className={styles.weatherForecast}>
 										<div className={styles.forecastHeader}>
 											<span>5-dnevna prognoza</span>
 										</div>
 										<div className={styles.forecastContent}>
-											{weatherData.forecast.map((day) => (
+											{data.weatherData.forecast.map((day) => (
 												<div key={day.day} className={styles.forecastDay}>
 													<span className={styles.forecastIcon}>
 														{getIcon(day.icon)}
@@ -1118,7 +850,7 @@ const NewsPage = () => {
 							isMobileMenuOpen ? styles.mobileMenuOpen : ""
 						}`}
 					>
-						{categories.map((category, index) => (
+						{data.categories.map((category, index) => (
 							<li key={category.id}>
 								<button
 									className={`${styles.categoryButton} ${
@@ -1163,7 +895,7 @@ const NewsPage = () => {
 						className={styles.coverStoriesTrack}
 						style={{ transform: `translateX(-${coverStoryIndex * 100}%)` }}
 					>
-						{coverStories.map((story, index) => (
+						{data.coverStories.map((story, index) => (
 							<article
 								key={story.id}
 								className={`${styles.coverStory} ${
@@ -1291,7 +1023,7 @@ const NewsPage = () => {
 
 					<div className={styles.coverStoryControls}>
 						<div className={styles.coverStoryDots}>
-							{coverStories.map((_, index) => (
+							{data.coverStories.map((_, index) => (
 								<button
 									key={index}
 									className={`${styles.coverStoryDot} ${
@@ -1317,7 +1049,7 @@ const NewsPage = () => {
 						</div>
 
 						<div className={styles.featuredNewsGrid}>
-							{featuredNews.map((article) => (
+							{data.featuredNews.map((article) => (
 								<article key={article.id} className={styles.featuredArticle}>
 									<div className={styles.featuredImageWrapper}>
 										<img
@@ -1425,8 +1157,8 @@ const NewsPage = () => {
 								<span className={styles.titleText}>
 									{activeCategory === "front"
 										? "Najnovije vijesti"
-										: categories.find((c) => c.id === activeCategory)?.name ||
-										  "Najnovije"}
+										: data.categories.find((c) => c.id === activeCategory)
+												?.name || "Najnovije"}
 								</span>
 								<span className={styles.titleLine}></span>
 							</h2>
@@ -1549,7 +1281,7 @@ const NewsPage = () => {
 							</div>
 
 							<div className={styles.editorsPicks}>
-								{editorsPicks.map((article) => (
+								{data.editorsPicks.map((article) => (
 									<article key={article.id} className={styles.editorsPickItem}>
 										<div className={styles.editorsPickImageWrapper}>
 											<img
@@ -1599,7 +1331,7 @@ const NewsPage = () => {
 							</div>
 
 							<div className={styles.trendingList}>
-								{trendingNews.map((article, index) => (
+								{data.trendingNews.map((article, index) => (
 									<article key={article.id} className={styles.trendingItem}>
 										<span className={styles.trendingNumber}>{index + 1}</span>
 										<div className={styles.trendingContent}>
@@ -1675,7 +1407,7 @@ const NewsPage = () => {
 						<div className={styles.footerNavColumn}>
 							<h3 className={styles.footerNavTitle}>Sekcije</h3>
 							<ul className={styles.footerNavList}>
-								{categories.map((category) => (
+								{data.categories.map((category) => (
 									<li key={category.id}>
 										<a href={`#${category.id}`}>
 											<span className={styles.footerNavIcon}>
@@ -1879,7 +1611,7 @@ const NewsPage = () => {
 				<div className={styles.readingListContent}>
 					{readLaterList.length > 0 ? (
 						<div className={styles.readingListArticles}>
-							{[...coverStories, ...featuredNews, ...latestNews]
+							{[...data.coverStories, ...data.featuredNews, ...data.latestNews]
 								.filter((article) => readLaterList.includes(article.id))
 								.map((article) => (
 									<article key={article.id} className={styles.readingListItem}>
