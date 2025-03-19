@@ -12,7 +12,6 @@ const CNCBusinessPage = () => {
 	const headerRef = useRef(null);
 	const statsCountersRef = useRef([]);
 	const serviceRefs = useRef([]);
-	const videoRef = useRef(null);
 
 	useEffect(() => {
 		// Handle page load animation
@@ -275,19 +274,11 @@ const CNCBusinessPage = () => {
 				{/* Hero Section */}
 				<section className={styles.heroSection}>
 					<div className={styles.heroBackgroundVideo}>
-						<video
-							ref={videoRef}
-							autoPlay
-							muted
-							loop
-							playsInline
+						<img
+							src="/cnc.gif"
+							alt="CNC machining animation"
 							className={styles.videoBackground}
-						>
-							<source
-								src="https://videos.pexels.com/video-files/19791092/19791092-uhd_2560_1440_60fps.mp4"
-								type="video/mp4"
-							/>
-						</video>
+						/>
 						<div className={styles.heroOverlay}></div>
 					</div>
 
