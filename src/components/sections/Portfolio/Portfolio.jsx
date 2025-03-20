@@ -87,13 +87,13 @@ const Portfolio = () => {
 			id: 6,
 			title: "Barber Reservation System",
 			category: "web",
-			image: "/news.png",
-			technologies: ["Flutter", "Firebase", "Google Fit API"],
+			image: "/barber.png",
+			technologies: ["React JS"],
 			descriptions: {
-				en: "A fitness tracking mobile application that helps users monitor their workouts, nutrition, and progress over time.",
-				bs: "Mobilna aplikacija za praćenje fitnessa koja pomaže korisnicima da prate svoje vježbe, prehranu i napredak tokom vremena.",
+				en: "A barber reservation system with a booking calendar, user profiles, and notifications for appointments and cancellations.",
+				bs: "Sistem za rezervaciju frizera s kalendarom rezervacija, korisničkim profilima i obavijestima za termine i otkazivanja.",
 			},
-			link: "#",
+			link: "/projects/barber",
 			github: "#",
 		},
 	];
