@@ -55,9 +55,9 @@ const NewsPage = () => {
 			setScrollPosition(scrollY);
 
 			if (scrollY > 50) {
-				headerRef.current.classList.add(styles.scrolled);
+				headerRef.current.classList.add(styles.np_scrolled);
 			} else {
-				headerRef.current.classList.remove(styles.scrolled);
+				headerRef.current.classList.remove(styles.np_scrolled);
 			}
 		};
 
@@ -150,19 +150,19 @@ const NewsPage = () => {
 	// Get category color for badges
 	const getCategoryColor = (category) => {
 		const categoryMap = {
-			politics: styles.categoryPolitics,
-			business: styles.categoryBusiness,
-			world: styles.categoryWorld,
-			sports: styles.categorySports,
-			culture: styles.categoryCulture,
-			tech: styles.categoryTech,
-			lifestyle: styles.categoryLifestyle,
-			health: styles.categoryHealth,
-			education: styles.categoryEducation,
-			local: styles.categoryLocal,
+			politics: styles.np_categoryPolitics,
+			business: styles.np_categoryBusiness,
+			world: styles.np_categoryWorld,
+			sports: styles.np_categorySports,
+			culture: styles.np_categoryCulture,
+			tech: styles.np_categoryTech,
+			lifestyle: styles.np_categoryLifestyle,
+			health: styles.np_categoryHealth,
+			education: styles.np_categoryEducation,
+			local: styles.np_categoryLocal,
 		};
 
-		return categoryMap[category] || styles.categoryDefault;
+		return categoryMap[category] || styles.np_categoryDefault;
 	};
 
 	// Get iconography for UI elements
@@ -664,44 +664,48 @@ const NewsPage = () => {
 
 	return (
 		<div
-			className={`${styles.newsContainer} ${pageLoaded ? styles.loaded : ""}`}
+			className={`${styles.np_newsContainer} ${
+				pageLoaded ? styles.np_loaded : ""
+			}`}
 		>
 			{/* Back button to portfolio */}
-			<div className={styles.backButtonWrapper}>
+			<div className={styles.np_backButtonWrapper}>
 				<BackButton />
 			</div>
 
 			{/* Breaking news ticker */}
 			{showBreakingNews && (
-				<div className={styles.breakingNewsContainer}>
-					<div className={styles.breakingNewsContent}>
-						<span className={styles.breakingLabel}>
-							<div className={styles.pulsingDot}></div>
+				<div className={styles.np_breakingNewsContainer}>
+					<div className={styles.np_breakingNewsContent}>
+						<span className={styles.np_breakingLabel}>
+							<div className={styles.np_pulsingDot}></div>
 							NAJNOVIJE
 						</span>
-						<div className={styles.breakingTextWrapper}>
+						<div className={styles.np_breakingTextWrapper}>
 							{data.breakingNews.map((news, index) => (
 								<div
 									key={news.id}
-									className={`${styles.breakingText} ${
-										index === activeStoryIndex ? styles.activeBreakingNews : ""
+									className={`${styles.np_breakingText} ${
+										index === activeStoryIndex
+											? styles.np_activeBreakingNews
+											: ""
 									}`}
 								>
 									<a href={`#${news.id}`}>
-										<span className={styles.breakingCategory}>
+										<span className={styles.np_breakingCategory}>
 											{news.category}
 										</span>
 										{news.title}
-										<span className={styles.breakingTime}>
+										<span className={styles.np_breakingTime}>
 											{news.timestamp}
 										</span>
 									</a>
 								</div>
 							))}
 						</div>
-						<div className={styles.breakingProgress}>
+						<div className={styles.np_breakingProgress}>
 							<div
-								className={styles.breakingProgressBar}
+								className={styles.np_breakingProgressBar}
 								style={{
 									width: `${
 										((activeStoryIndex + 1) / data.breakingNews.length) * 100
@@ -710,7 +714,7 @@ const NewsPage = () => {
 							></div>
 						</div>
 						<button
-							className={styles.closeBreaking}
+							className={styles.np_closeBreaking}
 							onClick={() => setShowBreakingNews(false)}
 							aria-label="Zatvori"
 						>
@@ -722,49 +726,53 @@ const NewsPage = () => {
 
 			{/* Header */}
 			<header
-				className={styles.newsHeader}
+				className={styles.np_newsHeader}
 				ref={headerRef}
 				style={{
 					top: showBreakingNews ? "44px" : "0",
 				}}
 			>
-				<div className={styles.headerMain}>
-					<div className={styles.logoContainer}>
-						<h1 className={styles.newsLogo}>
-							<span className={styles.logoText}>Glasnik</span>
-							<span className={styles.logoDot}></span>
+				<div className={styles.np_headerMain}>
+					<div className={styles.np_logoContainer}>
+						<h1 className={styles.np_newsLogo}>
+							<span className={styles.np_logoText}>Glasnik</span>
+							<span className={styles.np_logoDot}></span>
 						</h1>
 					</div>
 
-					<div className={styles.headerControls}>
-						<div className={styles.dateWeather}>
-							<div className={styles.date}>
-								<span className={styles.dateIcon}>{getIcon("date")}</span>
+					<div className={styles.np_headerControls}>
+						<div className={styles.np_dateWeather}>
+							<div className={styles.np_date}>
+								<span className={styles.np_dateIcon}>{getIcon("date")}</span>
 								{currentDate}
 							</div>
-							<div className={styles.weather}>
-								<span className={styles.weatherIcon}>{getIcon("sunny")}</span>
-								<span className={styles.weatherTemp}>
+							<div className={styles.np_weather}>
+								<span className={styles.np_weatherIcon}>
+									{getIcon("sunny")}
+								</span>
+								<span className={styles.np_weatherTemp}>
 									{data.weatherData.temp}
 								</span>
-								<span className={styles.weatherCity}>
+								<span className={styles.np_weatherCity}>
 									{data.weatherData.city}
 								</span>
-								<div className={styles.weatherForecastWrapper}>
-									<div className={styles.weatherForecast}>
-										<div className={styles.forecastHeader}>
+								<div className={styles.np_weatherForecastWrapper}>
+									<div className={styles.np_weatherForecast}>
+										<div className={styles.np_forecastHeader}>
 											<span>5-dnevna prognoza</span>
 										</div>
-										<div className={styles.forecastContent}>
+										<div className={styles.np_forecastContent}>
 											{data.weatherData.forecast.map((day) => (
-												<div key={day.day} className={styles.forecastDay}>
-													<span className={styles.forecastIcon}>
+												<div key={day.day} className={styles.np_forecastDay}>
+													<span className={styles.np_forecastIcon}>
 														{getIcon(day.icon)}
 													</span>
-													<span className={styles.forecastTemp}>
+													<span className={styles.np_forecastTemp}>
 														{day.temp}
 													</span>
-													<span className={styles.forecastName}>{day.day}</span>
+													<span className={styles.np_forecastName}>
+														{day.day}
+													</span>
 												</div>
 											))}
 										</div>
@@ -773,41 +781,43 @@ const NewsPage = () => {
 							</div>
 						</div>
 
-						<div className={styles.headerActions}>
-							<div className={styles.searchContainer}>
-								<span className={styles.searchIcon}>{getIcon("search")}</span>
+						<div className={styles.np_headerActions}>
+							<div className={styles.np_searchContainer}>
+								<span className={styles.np_searchIcon}>
+									{getIcon("search")}
+								</span>
 								<input
 									type="text"
 									placeholder="Pretraži vijesti..."
 									value={searchTerm}
 									onChange={handleSearchChange}
-									className={styles.searchInput}
+									className={styles.np_searchInput}
 								/>
 							</div>
 
 							<button
-								className={styles.readingListButton}
+								className={styles.np_readingListButton}
 								onClick={() => setShowReadingList(!showReadingList)}
 								aria-label="Lista za čitanje"
 							>
-								<span className={styles.readingListIcon}>
+								<span className={styles.np_readingListIcon}>
 									{getIcon("bookmark")}
 									{readLaterList.length > 0 && (
-										<span className={styles.notificationBadge}>
+										<span className={styles.np_notificationBadge}>
 											{readLaterList.length}
 										</span>
 									)}
 								</span>
 							</button>
 
-							<div className={styles.userMenu}>
-								<button className={styles.userMenuButton}>
-									<span className={styles.notificationsIcon}>
+							<div className={styles.np_userMenu}>
+								<button className={styles.np_userMenuButton}>
+									<span className={styles.np_notificationsIcon}>
 										{getIcon("notifications")}
-										<span className={styles.notificationBadge}>3</span>
+										<span className={styles.np_notificationBadge}>3</span>
 									</span>
 								</button>
-								<div className={styles.userAvatar}>
+								<div className={styles.np_userAvatar}>
 									<img
 										src="https://i.pravatar.cc/150?img=32"
 										alt="Korisnički profil"
@@ -819,9 +829,9 @@ const NewsPage = () => {
 				</div>
 
 				{/* Categories navigation */}
-				<nav className={styles.categoriesNav}>
+				<nav className={styles.np_categoriesNav}>
 					<button
-						className={styles.mobileMenuButton}
+						className={styles.np_mobileMenuButton}
 						onClick={() => setIsMobileMenuOpen((prev) => !prev)}
 						aria-label="Kategorije"
 					>
@@ -846,20 +856,22 @@ const NewsPage = () => {
 					</button>
 
 					<ul
-						className={`${styles.categoriesList} ${
-							isMobileMenuOpen ? styles.mobileMenuOpen : ""
+						className={`${styles.np_categoriesList} ${
+							isMobileMenuOpen ? styles.np_mobileMenuOpen : ""
 						}`}
 					>
 						{data.categories.map((category, index) => (
 							<li key={category.id}>
 								<button
-									className={`${styles.categoryButton} ${
-										activeCategory === category.id ? styles.activeCategory : ""
+									className={`${styles.np_categoryButton} ${
+										activeCategory === category.id
+											? styles.np_activeCategory
+											: ""
 									}`}
 									onClick={() => handleCategoryChange(category.id)}
 									style={{ animationDelay: `${index * 0.05}s` }}
 								>
-									<span className={styles.categoryIcon}>
+									<span className={styles.np_categoryIcon}>
 										{getIcon(category.icon)}
 									</span>
 									<span>{category.name}</span>
@@ -870,10 +882,10 @@ const NewsPage = () => {
 				</nav>
 
 				{/* Subscription banner */}
-				<div className={styles.premiumBanner}>
-					<div className={styles.premiumContent}>
-						<div className={styles.premiumIcon}>{getIcon("crown")}</div>
-						<div className={styles.premiumText}>
+				<div className={styles.np_premiumBanner}>
+					<div className={styles.np_premiumContent}>
+						<div className={styles.np_premiumIcon}>{getIcon("crown")}</div>
+						<div className={styles.np_premiumText}>
 							<h3>Glasnik Premium</h3>
 							<p>
 								Ekskluzivni sadržaj, analitika i pristup svim arhiviranim
@@ -881,46 +893,46 @@ const NewsPage = () => {
 							</p>
 						</div>
 					</div>
-					<button className={styles.premiumButton}>
+					<button className={styles.np_premiumButton}>
 						Aktiviraj 30 dana besplatno
 					</button>
 				</div>
 			</header>
 
 			{/* Main content */}
-			<main className={styles.newsContent}>
+			<main className={styles.np_newsContent}>
 				{/* Cover Story Hero Section */}
-				<section className={styles.coverStorySection}>
+				<section className={styles.np_coverStorySection}>
 					<div
-						className={styles.coverStoriesTrack}
+						className={styles.np_coverStoriesTrack}
 						style={{ transform: `translateX(-${coverStoryIndex * 100}%)` }}
 					>
 						{data.coverStories.map((story, index) => (
 							<article
 								key={story.id}
-								className={`${styles.coverStory} ${
-									index === coverStoryIndex ? styles.activeCoverStory : ""
+								className={`${styles.np_coverStory} ${
+									index === coverStoryIndex ? styles.np_activeCoverStory : ""
 								}`}
 							>
-								<div className={styles.coverImageWrapper}>
+								<div className={styles.np_coverImageWrapper}>
 									<img
 										src={story.image}
 										alt={story.title}
-										className={styles.coverImage}
+										className={styles.np_coverImage}
 									/>
-									<div className={styles.coverOverlay}>
-										<div className={styles.coverContent}>
-											<div className={styles.coverMeta}>
+									<div className={styles.np_coverOverlay}>
+										<div className={styles.np_coverContent}>
+											<div className={styles.np_coverMeta}>
 												<span
 													className={`${
-														styles.coverCategory
+														styles.np_coverCategory
 													} ${getCategoryColor(story.category)}`}
 												>
 													{story.category}
 												</span>
 												{story.premium && (
-													<span className={styles.premiumLabel}>
-														<span className={styles.premiumIcon}>
+													<span className={styles.np_premiumLabel}>
+														<span className={styles.np_premiumIcon}>
 															{getIcon("crown")}
 														</span>
 														Premium
@@ -928,12 +940,12 @@ const NewsPage = () => {
 												)}
 											</div>
 
-											<h2 className={styles.coverTitle}>{story.title}</h2>
-											<p className={styles.coverExcerpt}>{story.excerpt}</p>
+											<h2 className={styles.np_coverTitle}>{story.title}</h2>
+											<p className={styles.np_coverExcerpt}>{story.excerpt}</p>
 
-											<div className={styles.coverDetails}>
-												<div className={styles.coverAuthor}>
-													<div className={styles.authorInitials}>
+											<div className={styles.np_coverDetails}>
+												<div className={styles.np_coverAuthor}>
+													<div className={styles.np_authorInitials}>
 														{story.author
 															.split(" ")
 															.map((n) => n[0])
@@ -942,28 +954,26 @@ const NewsPage = () => {
 													<span>{story.author}</span>
 												</div>
 
-												<div className={styles.coverMisc}>
-													<span className={styles.coverDate}>
-														<span className={styles.dateIcon}>
+												<div className={styles.np_coverMisc}>
+													<span className={styles.np_coverDate}>
+														<span className={styles.np_dateIcon}>
 															{getIcon("date")}
 														</span>
 														{story.date}
 													</span>
-													<span className={styles.coverReadTime}>
-														<span className={styles.timeIcon}>
+													<span className={styles.np_coverReadTime}>
+														<span className={styles.np_timeIcon}>
 															{getIcon("time")}
 														</span>
 														{story.readTime}
 													</span>
 												</div>
 
-												<div className={styles.coverActions}>
+												<div className={styles.np_coverActions}>
 													<button
-														className={`${styles.actionButton} ${
-															styles.bookmarkButton
-														} ${
+														className={`${styles.np_actionButton} ${
 															readLaterList.includes(story.id)
-																? styles.active
+																? styles.np_active
 																: ""
 														}`}
 														onClick={(e) => toggleReadLater(story.id, e)}
@@ -978,11 +988,9 @@ const NewsPage = () => {
 															: getIcon("bookmark")}
 													</button>
 													<button
-														className={`${styles.actionButton} ${
-															styles.likeButton
-														} ${
+														className={`${styles.np_actionButton} ${
 															likedArticles.includes(story.id)
-																? styles.active
+																? styles.np_active
 																: ""
 														}`}
 														onClick={(e) => toggleLike(story.id, e)}
@@ -997,7 +1005,7 @@ const NewsPage = () => {
 															: getIcon("heart")}
 													</button>
 													<button
-														className={`${styles.actionButton} ${styles.shareButton}`}
+														className={`${styles.np_actionButton}`}
 														aria-label="Dijeli"
 													>
 														{getIcon("share")}
@@ -1007,10 +1015,10 @@ const NewsPage = () => {
 
 											<a
 												href={`/news/${story.id}`}
-												className={styles.coverReadMore}
+												className={styles.np_coverReadMore}
 											>
 												<span>Pročitaj više</span>
-												<span className={styles.coverReadMoreIcon}>
+												<span className={styles.np_coverReadMoreIcon}>
 													{getIcon("chevron-right")}
 												</span>
 											</a>
@@ -1021,13 +1029,13 @@ const NewsPage = () => {
 						))}
 					</div>
 
-					<div className={styles.coverStoryControls}>
-						<div className={styles.coverStoryDots}>
+					<div className={styles.np_coverStoryControls}>
+						<div className={styles.np_coverStoryDots}>
 							{data.coverStories.map((_, index) => (
 								<button
 									key={index}
-									className={`${styles.coverStoryDot} ${
-										index === coverStoryIndex ? styles.activeDot : ""
+									className={`${styles.np_coverStoryDot} ${
+										index === coverStoryIndex ? styles.np_activeDot : ""
 									}`}
 									onClick={() => setCoverStoryIndex(index)}
 									aria-label={`Prijeđi na vijest ${index + 1}`}
@@ -1038,36 +1046,36 @@ const NewsPage = () => {
 				</section>
 
 				{/* Main grid layout for news content */}
-				<div className={styles.newsGrid}>
+				<div className={styles.np_newsGrid}>
 					{/* Featured News Column */}
-					<section className={styles.featuredNews}>
-						<div className={styles.sectionHeader}>
-							<h2 className={styles.sectionTitle}>
-								<span className={styles.titleText}>Izdvojeno</span>
-								<span className={styles.titleLine}></span>
+					<section className={styles.np_featuredNews}>
+						<div className={styles.np_sectionHeader}>
+							<h2 className={styles.np_sectionTitle}>
+								<span className={styles.np_titleText}>Izdvojeno</span>
+								<span className={styles.np_titleLine}></span>
 							</h2>
 						</div>
 
-						<div className={styles.featuredNewsGrid}>
+						<div className={styles.np_featuredNewsGrid}>
 							{data.featuredNews.map((article) => (
-								<article key={article.id} className={styles.featuredArticle}>
-									<div className={styles.featuredImageWrapper}>
+								<article key={article.id} className={styles.np_featuredArticle}>
+									<div className={styles.np_featuredImageWrapper}>
 										<img
 											src={article.image}
 											alt={article.title}
-											className={styles.featuredImage}
+											className={styles.np_featuredImage}
 										/>
-										<div className={styles.featuredMeta}>
+										<div className={styles.np_featuredMeta}>
 											<span
 												className={`${
-													styles.featuredCategory
+													styles.np_featuredCategory
 												} ${getCategoryColor(article.category)}`}
 											>
 												{article.category}
 											</span>
 											{article.premium && (
-												<span className={styles.premiumLabel}>
-													<span className={styles.premiumIcon}>
+												<span className={styles.np_premiumLabel}>
+													<span className={styles.np_premiumIcon}>
 														{getIcon("crown")}
 													</span>
 													Premium
@@ -1076,32 +1084,32 @@ const NewsPage = () => {
 										</div>
 									</div>
 
-									<div className={styles.featuredContent}>
-										<h3 className={styles.featuredTitle}>{article.title}</h3>
-										<p className={styles.featuredExcerpt}>{article.excerpt}</p>
+									<div className={styles.np_featuredContent}>
+										<h3 className={styles.np_featuredTitle}>{article.title}</h3>
+										<p className={styles.np_featuredExcerpt}>
+											{article.excerpt}
+										</p>
 
-										<div className={styles.featuredDetails}>
-											<span className={styles.featuredAuthor}>
+										<div className={styles.np_featuredDetails}>
+											<span className={styles.np_featuredAuthor}>
 												{article.author}
 											</span>
-											<span className={styles.featuredDate}>
+											<span className={styles.np_featuredDate}>
 												{article.date}
 											</span>
-											<span className={styles.featuredReadTime}>
-												<span className={styles.timeIcon}>
+											<span className={styles.np_featuredReadTime}>
+												<span className={styles.np_timeIcon}>
 													{getIcon("time")}
 												</span>
 												{article.readTime}
 											</span>
 										</div>
 
-										<div className={styles.featuredActions}>
+										<div className={styles.np_featuredActions}>
 											<button
-												className={`${styles.actionButton} ${
-													styles.bookmarkButton
-												} ${
+												className={`${styles.np_actionButton} ${
 													readLaterList.includes(article.id)
-														? styles.active
+														? styles.np_active
 														: ""
 												}`}
 												onClick={(e) => toggleReadLater(article.id, e)}
@@ -1116,11 +1124,9 @@ const NewsPage = () => {
 													: getIcon("bookmark")}
 											</button>
 											<button
-												className={`${styles.actionButton} ${
-													styles.likeButton
-												} ${
+												className={`${styles.np_actionButton} ${
 													likedArticles.includes(article.id)
-														? styles.active
+														? styles.np_active
 														: ""
 												}`}
 												onClick={(e) => toggleLike(article.id, e)}
@@ -1136,10 +1142,10 @@ const NewsPage = () => {
 											</button>
 											<a
 												href={`/news/${article.id}`}
-												className={styles.featuredReadMore}
+												className={styles.np_featuredReadMore}
 											>
 												<span>Pročitaj više</span>
-												<span className={styles.coverReadMoreIcon}>
+												<span className={styles.np_coverReadMoreIcon}>
 													{getIcon("chevron-right")}
 												</span>
 											</a>
@@ -1151,59 +1157,63 @@ const NewsPage = () => {
 					</section>
 
 					{/* Main News Column */}
-					<section className={styles.mainNews}>
-						<div className={styles.sectionHeader}>
-							<h2 className={styles.sectionTitle}>
-								<span className={styles.titleText}>
+					<section className={styles.np_mainNews}>
+						<div className={styles.np_sectionHeader}>
+							<h2 className={styles.np_sectionTitle}>
+								<span className={styles.np_titleText}>
 									{activeCategory === "front"
 										? "Najnovije vijesti"
 										: data.categories.find((c) => c.id === activeCategory)
 												?.name || "Najnovije"}
 								</span>
-								<span className={styles.titleLine}></span>
+								<span className={styles.np_titleLine}></span>
 							</h2>
 
 							{searchTerm && (
-								<p className={styles.searchResults}>
+								<p className={styles.np_searchResults}>
 									Rezultati pretrage za: <span>"{searchTerm}"</span>
 								</p>
 							)}
 						</div>
 
-						<div className={styles.newsArticlesGrid}>
+						<div className={styles.np_newsArticlesGrid}>
 							{getFilteredNews().map((article) => (
 								<article
 									key={article.id}
-									className={styles.newsArticle}
+									className={styles.np_newsArticle}
 									onMouseEnter={() => setFocusedArticle(article.id)}
 									onMouseLeave={() => setFocusedArticle(null)}
 								>
-									<div className={styles.articleImageWrapper}>
+									<div className={styles.np_articleImageWrapper}>
 										<img
 											src={article.image}
 											alt={article.title}
-											className={styles.articleImage}
+											className={styles.np_articleImage}
 										/>
 										<span
-											className={`${styles.articleCategory} ${getCategoryColor(
-												article.category
-											)}`}
+											className={`${
+												styles.np_articleCategory
+											} ${getCategoryColor(article.category)}`}
 										>
 											{article.category}
 										</span>
 									</div>
 
-									<div className={styles.articleContent}>
-										<h3 className={styles.articleTitle}>{article.title}</h3>
-										<p className={styles.articleExcerpt}>{article.excerpt}</p>
+									<div className={styles.np_articleContent}>
+										<h3 className={styles.np_articleTitle}>{article.title}</h3>
+										<p className={styles.np_articleExcerpt}>
+											{article.excerpt}
+										</p>
 
-										<div className={styles.articleMeta}>
-											<span className={styles.articleAuthor}>
+										<div className={styles.np_articleMeta}>
+											<span className={styles.np_articleAuthor}>
 												{article.author}
 											</span>
-											<span className={styles.articleDate}>{article.date}</span>
-											<span className={styles.articleReadTime}>
-												<span className={styles.timeIcon}>
+											<span className={styles.np_articleDate}>
+												{article.date}
+											</span>
+											<span className={styles.np_articleReadTime}>
+												<span className={styles.np_timeIcon}>
 													{getIcon("time")}
 												</span>
 												{article.readTime}
@@ -1211,16 +1221,14 @@ const NewsPage = () => {
 										</div>
 
 										<div
-											className={`${styles.articleActions} ${
-												focusedArticle === article.id ? styles.visible : ""
+											className={`${styles.np_articleActions} ${
+												focusedArticle === article.id ? styles.np_visible : ""
 											}`}
 										>
 											<button
-												className={`${styles.actionButton} ${
-													styles.bookmarkButton
-												} ${
+												className={`${styles.np_actionButton} ${
 													readLaterList.includes(article.id)
-														? styles.active
+														? styles.np_active
 														: ""
 												}`}
 												onClick={(e) => toggleReadLater(article.id, e)}
@@ -1235,11 +1243,9 @@ const NewsPage = () => {
 													: getIcon("bookmark")}
 											</button>
 											<button
-												className={`${styles.actionButton} ${
-													styles.likeButton
-												} ${
+												className={`${styles.np_actionButton} ${
 													likedArticles.includes(article.id)
-														? styles.active
+														? styles.np_active
 														: ""
 												}`}
 												onClick={(e) => toggleLike(article.id, e)}
@@ -1255,10 +1261,10 @@ const NewsPage = () => {
 											</button>
 											<a
 												href={`/news/${article.id}`}
-												className={styles.articleReadMore}
+												className={styles.np_articleReadMore}
 											>
 												<span>Pročitaj više</span>
-												<span className={styles.coverReadMoreIcon}>
+												<span className={styles.np_coverReadMoreIcon}>
 													{getIcon("chevron-right")}
 												</span>
 											</a>
@@ -1270,45 +1276,48 @@ const NewsPage = () => {
 					</section>
 
 					{/* Sidebar News Column */}
-					<aside className={styles.sidebar}>
+					<aside className={styles.np_sidebar}>
 						{/* Editor's Picks */}
-						<section className={styles.editorsPicksSection}>
-							<div className={styles.sectionHeader}>
-								<h2 className={styles.sectionTitle}>
-									<span className={styles.titleText}>Izbor Urednika</span>
-									<span className={styles.titleLine}></span>
+						<section className={styles.np_editorsPicksSection}>
+							<div className={styles.np_sectionHeader}>
+								<h2 className={styles.np_sectionTitle}>
+									<span className={styles.np_titleText}>Izbor Urednika</span>
+									<span className={styles.np_titleLine}></span>
 								</h2>
 							</div>
 
-							<div className={styles.editorsPicks}>
+							<div className={styles.np_editorsPicks}>
 								{data.editorsPicks.map((article) => (
-									<article key={article.id} className={styles.editorsPickItem}>
-										<div className={styles.editorsPickImageWrapper}>
+									<article
+										key={article.id}
+										className={styles.np_editorsPickItem}
+									>
+										<div className={styles.np_editorsPickImageWrapper}>
 											<img
 												src={article.image}
 												alt={article.title}
-												className={styles.editorsPickImage}
+												className={styles.np_editorsPickImage}
 											/>
 										</div>
 
-										<div className={styles.editorsPickContent}>
-											<h3 className={styles.editorsPickTitle}>
+										<div className={styles.np_editorsPickContent}>
+											<h3 className={styles.np_editorsPickTitle}>
 												{article.title}
 											</h3>
-											<div className={styles.editorsPickMeta}>
+											<div className={styles.np_editorsPickMeta}>
 												<span
 													className={`${
-														styles.editorsPickCategory
+														styles.np_editorsPickCategory
 													} ${getCategoryColor(article.category)}`}
 												>
 													{article.category}
 												</span>
-												<span className={styles.editorsPickDate}>
+												<span className={styles.np_editorsPickDate}>
 													{article.date}
 												</span>
 												{article.trending && (
-													<span className={styles.trendingLabel}>
-														<span className={styles.trendingIcon}>
+													<span className={styles.np_trendingLabel}>
+														<span className={styles.np_trendingIcon}>
 															{getIcon("trending")}
 														</span>
 														Trending
@@ -1322,37 +1331,41 @@ const NewsPage = () => {
 						</section>
 
 						{/* Trending Now */}
-						<section className={styles.trendingSection}>
-							<div className={styles.sectionHeader}>
-								<h2 className={styles.sectionTitle}>
-									<span className={styles.titleText}>Trending</span>
-									<span className={styles.titleLine}></span>
+						<section className={styles.np_trendingSection}>
+							<div className={styles.np_sectionHeader}>
+								<h2 className={styles.np_sectionTitle}>
+									<span className={styles.np_titleText}>Trending</span>
+									<span className={styles.np_titleLine}></span>
 								</h2>
 							</div>
 
-							<div className={styles.trendingList}>
+							<div className={styles.np_trendingList}>
 								{data.trendingNews.map((article, index) => (
-									<article key={article.id} className={styles.trendingItem}>
-										<span className={styles.trendingNumber}>{index + 1}</span>
-										<div className={styles.trendingContent}>
-											<h3 className={styles.trendingTitle}>{article.title}</h3>
-											<div className={styles.trendingMeta}>
+									<article key={article.id} className={styles.np_trendingItem}>
+										<span className={styles.np_trendingNumber}>
+											{index + 1}
+										</span>
+										<div className={styles.np_trendingContent}>
+											<h3 className={styles.np_trendingTitle}>
+												{article.title}
+											</h3>
+											<div className={styles.np_trendingMeta}>
 												<span
 													className={`${
-														styles.trendingCategory
+														styles.np_trendingCategory
 													} ${getCategoryColor(article.category)}`}
 												>
 													{article.category}
 												</span>
-												<span className={styles.trendingEngagement}>
-													<span className={styles.trendingShares}>
-														<span className={styles.shareIcon}>
+												<span className={styles.np_trendingEngagement}>
+													<span className={styles.np_trendingShares}>
+														<span className={styles.np_shareIcon}>
 															{getIcon("share")}
 														</span>
 														{article.shares}
 													</span>
-													<span className={styles.trendingComments}>
-														<span className={styles.commentIcon}>
+													<span className={styles.np_trendingComments}>
+														<span className={styles.np_commentIcon}>
 															{getIcon("comment")}
 														</span>
 														{article.comments}
@@ -1366,25 +1379,27 @@ const NewsPage = () => {
 						</section>
 
 						{/* Newsletter Subscription */}
-						<section className={styles.newsletterSection}>
-							<div className={styles.newsletterContent}>
-								<h3 className={styles.newsletterTitle}>Ostanite Informisani</h3>
-								<p className={styles.newsletterText}>
+						<section className={styles.np_newsletterSection}>
+							<div className={styles.np_newsletterContent}>
+								<h3 className={styles.np_newsletterTitle}>
+									Ostanite Informisani
+								</h3>
+								<p className={styles.np_newsletterText}>
 									Pretplatite se na naš dnevni newsletter i budite prvi koji
 									saznaje najnovije vijesti
 								</p>
-								<form className={styles.newsletterForm}>
+								<form className={styles.np_newsletterForm}>
 									<input
 										type="email"
 										placeholder="Vaša email adresa"
-										className={styles.newsletterInput}
+										className={styles.np_newsletterInput}
 										required
 									/>
-									<button type="submit" className={styles.newsletterButton}>
+									<button type="submit" className={styles.np_newsletterButton}>
 										Pretplati se
 									</button>
 								</form>
-								<p className={styles.newsletterDisclaimer}>
+								<p className={styles.np_newsletterDisclaimer}>
 									Prijavom prihvatate naše uslove korištenja i politiku
 									privatnosti.
 								</p>
@@ -1395,22 +1410,22 @@ const NewsPage = () => {
 			</main>
 
 			{/* Footer */}
-			<footer className={styles.newsFooter}>
-				<div className={styles.footerTop}>
-					<div className={styles.footerLogo}>
-						<span className={styles.logoText}>Glasnik</span>
-						<span className={styles.logoDot}></span>
-						<p className={styles.footerTagline}>Vijesti iz budućnosti</p>
+			<footer className={styles.np_newsFooter}>
+				<div className={styles.np_footerTop}>
+					<div className={styles.np_footerLogo}>
+						<span className={styles.np_logoText}>Glasnik</span>
+						<span className={styles.np_logoDot}></span>
+						<p className={styles.np_footerTagline}>Vijesti iz budućnosti</p>
 					</div>
 
-					<div className={styles.footerNav}>
-						<div className={styles.footerNavColumn}>
-							<h3 className={styles.footerNavTitle}>Sekcije</h3>
-							<ul className={styles.footerNavList}>
+					<div className={styles.np_footerNav}>
+						<div className={styles.np_footerNavColumn}>
+							<h3 className={styles.np_footerNavTitle}>Sekcije</h3>
+							<ul className={styles.np_footerNavList}>
 								{data.categories.map((category) => (
 									<li key={category.id}>
 										<a href={`#${category.id}`}>
-											<span className={styles.footerNavIcon}>
+											<span className={styles.np_footerNavIcon}>
 												{getIcon(category.icon)}
 											</span>
 											{category.name}
@@ -1420,9 +1435,9 @@ const NewsPage = () => {
 							</ul>
 						</div>
 
-						<div className={styles.footerNavColumn}>
-							<h3 className={styles.footerNavTitle}>Glasnik</h3>
-							<ul className={styles.footerNavList}>
+						<div className={styles.np_footerNavColumn}>
+							<h3 className={styles.np_footerNavTitle}>Glasnik</h3>
+							<ul className={styles.np_footerNavList}>
 								<li>
 									<a href="#about">O nama</a>
 								</li>
@@ -1441,15 +1456,15 @@ const NewsPage = () => {
 							</ul>
 						</div>
 
-						<div className={styles.footerNavColumn}>
-							<h3 className={styles.footerNavTitle}>Pratite nas</h3>
-							<div className={styles.footerSocials}>
-								<a href="#facebook" className={styles.footerSocialLink}>
+						<div className={styles.np_footerNavColumn}>
+							<h3 className={styles.np_footerNavTitle}>Pratite nas</h3>
+							<div className={styles.np_footerSocials}>
+								<a href="#facebook" className={styles.np_footerSocialLink}>
 									<svg
 										viewBox="0 0 24 24"
 										width="24"
 										height="24"
-										className={styles.footerSocialIcon}
+										className={styles.np_footerSocialIcon}
 									>
 										<path
 											d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3V2z"
@@ -1461,12 +1476,12 @@ const NewsPage = () => {
 										/>
 									</svg>
 								</a>
-								<a href="#twitter" className={styles.footerSocialLink}>
+								<a href="#twitter" className={styles.np_footerSocialLink}>
 									<svg
 										viewBox="0 0 24 24"
 										width="24"
 										height="24"
-										className={styles.footerSocialIcon}
+										className={styles.np_footerSocialIcon}
 									>
 										<path
 											d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5 0-.28-.03-.56-.08-.83A7.72 7.72 0 0023 3z"
@@ -1478,12 +1493,12 @@ const NewsPage = () => {
 										/>
 									</svg>
 								</a>
-								<a href="#instagram" className={styles.footerSocialLink}>
+								<a href="#instagram" className={styles.np_footerSocialLink}>
 									<svg
 										viewBox="0 0 24 24"
 										width="24"
 										height="24"
-										className={styles.footerSocialIcon}
+										className={styles.np_footerSocialIcon}
 									>
 										<rect
 											width="20"
@@ -1516,12 +1531,12 @@ const NewsPage = () => {
 										/>
 									</svg>
 								</a>
-								<a href="#youtube" className={styles.footerSocialLink}>
+								<a href="#youtube" className={styles.np_footerSocialLink}>
 									<svg
 										viewBox="0 0 24 24"
 										width="24"
 										height="24"
-										className={styles.footerSocialIcon}
+										className={styles.np_footerSocialIcon}
 									>
 										<path
 											d="M22.54 6.42a2.78 2.78 0 00-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 00-1.94 2A29 29 0 001 11.75a29 29 0 00.46 5.33A2.78 2.78 0 003.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 001.94-2 29 29 0 00.46-5.25 29 29 0 00-.46-5.33z"
@@ -1543,14 +1558,14 @@ const NewsPage = () => {
 								</a>
 							</div>
 
-							<h3 className={styles.footerNavTitle}>Preuzmi aplikaciju</h3>
-							<div className={styles.appButtons}>
-								<a href="#appstore" className={styles.appButton}>
+							<h3 className={styles.np_footerNavTitle}>Preuzmi aplikaciju</h3>
+							<div className={styles.np_appButtons}>
+								<a href="#appstore" className={styles.np_appButton}>
 									<svg
 										viewBox="0 0 24 24"
 										width="20"
 										height="20"
-										className={styles.appButtonIcon}
+										className={styles.np_appButtonIcon}
 									>
 										<path
 											d="M12 2C6.477 2 2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.879V14.89h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.989C18.343 21.129 22 16.99 22 12c0-5.523-4.477-10-10-10z"
@@ -1559,12 +1574,12 @@ const NewsPage = () => {
 									</svg>
 									App Store
 								</a>
-								<a href="#playstore" className={styles.appButton}>
+								<a href="#playstore" className={styles.np_appButton}>
 									<svg
 										viewBox="0 0 24 24"
 										width="20"
 										height="20"
-										className={styles.appButtonIcon}
+										className={styles.np_appButtonIcon}
 									>
 										<path
 											d="M12 2C6.477 2 2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.879V14.89h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.989C18.343 21.129 22 16.99 22 12c0-5.523-4.477-10-10-10z"
@@ -1578,11 +1593,11 @@ const NewsPage = () => {
 					</div>
 				</div>
 
-				<div className={styles.footerBottom}>
-					<p className={styles.copyright}>
+				<div className={styles.np_footerBottom}>
+					<p className={styles.np_copyright}>
 						&copy; {new Date().getFullYear()} Glasnik. Sva prava pridržana.
 					</p>
-					<div className={styles.footerBottomLinks}>
+					<div className={styles.np_footerBottomLinks}>
 						<a href="#terms">Uslovi korištenja</a>
 						<a href="#privacy">Privatnost</a>
 						<a href="#cookies">Kolačići</a>
@@ -1594,52 +1609,55 @@ const NewsPage = () => {
 
 			{/* Reading List Sidebar */}
 			<div
-				className={`${styles.readingListSidebar} ${
-					showReadingList ? styles.showReadingList : ""
+				className={`${styles.np_readingListSidebar} ${
+					showReadingList ? styles.np_showReadingList : ""
 				}`}
 			>
-				<div className={styles.readingListHeader}>
+				<div className={styles.np_readingListHeader}>
 					<h3>Lista za čitanje</h3>
 					<button
-						className={styles.closeReadingList}
+						className={styles.np_closeReadingList}
 						onClick={() => setShowReadingList(false)}
 					>
 						{getIcon("close")}
 					</button>
 				</div>
 
-				<div className={styles.readingListContent}>
+				<div className={styles.np_readingListContent}>
 					{readLaterList.length > 0 ? (
-						<div className={styles.readingListArticles}>
+						<div className={styles.np_readingListArticles}>
 							{[...data.coverStories, ...data.featuredNews, ...data.latestNews]
 								.filter((article) => readLaterList.includes(article.id))
 								.map((article) => (
-									<article key={article.id} className={styles.readingListItem}>
-										<div className={styles.readingListImageWrapper}>
+									<article
+										key={article.id}
+										className={styles.np_readingListItem}
+									>
+										<div className={styles.np_readingListImageWrapper}>
 											<img
 												src={article.image}
 												alt={article.title}
-												className={styles.readingListImage}
+												className={styles.np_readingListImage}
 											/>
 										</div>
 
-										<div className={styles.readingListItemContent}>
+										<div className={styles.np_readingListItemContent}>
 											<span
 												className={`${
-													styles.readingListCategory
+													styles.np_readingListCategory
 												} ${getCategoryColor(article.category)}`}
 											>
 												{article.category}
 											</span>
-											<h4 className={styles.readingListTitle}>
+											<h4 className={styles.np_readingListTitle}>
 												{article.title}
 											</h4>
-											<div className={styles.readingListMeta}>
-												<span className={styles.readingListDate}>
+											<div className={styles.np_readingListMeta}>
+												<span className={styles.np_readingListDate}>
 													{article.date}
 												</span>
-												<span className={styles.readingListReadTime}>
-													<span className={styles.timeIcon}>
+												<span className={styles.np_readingListReadTime}>
+													<span className={styles.np_timeIcon}>
 														{getIcon("time")}
 													</span>
 													{article.readTime}
@@ -1648,7 +1666,7 @@ const NewsPage = () => {
 										</div>
 
 										<button
-											className={styles.removeFromReadingList}
+											className={styles.np_removeFromReadingList}
 											onClick={(e) => toggleReadLater(article.id, e)}
 											aria-label="Ukloni iz liste za čitanje"
 										>
@@ -1658,8 +1676,8 @@ const NewsPage = () => {
 								))}
 						</div>
 					) : (
-						<div className={styles.emptyReadingList}>
-							<div className={styles.emptyReadingListIcon}>
+						<div className={styles.np_emptyReadingList}>
+							<div className={styles.np_emptyReadingListIcon}>
 								{getIcon("bookmark")}
 							</div>
 							<h4>Vaša lista za čitanje je prazna</h4>
