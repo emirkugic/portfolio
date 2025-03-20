@@ -12,6 +12,7 @@ import PhotographyProject from "./pages/projects/Photography/PhotographyProject"
 import NewsPage from "./pages/projects/NewsPage/NewsPage";
 import CNCBusinessPage from "./pages/projects/CNCBusinessPage/CNCBusinessPage";
 import BarberReservation from "./pages/projects/BarberReservation/BarberReservation";
+import CoffeeBar from "./pages/projects/CoffeeBar/CoffeeBar";
 
 import "./styles/global.css";
 import "./styles/animations.css";
@@ -55,6 +56,7 @@ function App() {
 							<Route path="/projects/news" element={<NewsPage />} />
 							<Route path="/projects/metalprec" element={<CNCBusinessPage />} />
 							<Route path="/projects/barber" element={<BarberReservation />} />
+							<Route path="/projects/coffee" element={<CoffeeBar />} />
 						</Routes>
 					)}
 				</ThemeProvider>

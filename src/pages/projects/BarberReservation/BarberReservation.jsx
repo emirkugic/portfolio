@@ -629,14 +629,6 @@ const BarberReservation = () => {
 									<span className={styles.statLabel}>MASTER BRIJAČA</span>
 								</div>
 							</div>
-							<div className={styles.heroStat}>
-								<div className={styles.statInner}>
-									<span className={styles.statNumber}>15k+</span>
-									<span className={styles.statLabel}>
-										ZADOVOLJNIH KLIJENATA
-									</span>
-								</div>
-							</div>
 						</div>
 					</div>
 					<div className={styles.heroBgDecoration}>
