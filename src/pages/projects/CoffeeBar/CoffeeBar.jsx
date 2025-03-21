@@ -9,7 +9,6 @@ const CoffeeBar = () => {
 	const parallaxRef = useRef(null);
 	const steamRef = useRef(null);
 
-	// Handle scroll effects
 	useEffect(() => {
 		const handleScroll = () => {
 			// Calculate scroll progress for various effects
