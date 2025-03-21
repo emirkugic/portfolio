@@ -191,7 +191,7 @@ const CoffeeBar = () => {
 				</div>
 			</header>
 
-			{/* Hero Section with Parallax */}
+			{/* Hero Section */}
 			<section className={styles.hero} id="home">
 				<div className={styles.heroBackground} ref={parallaxRef}></div>
 				<div className={styles.heroCircle1}></div>
