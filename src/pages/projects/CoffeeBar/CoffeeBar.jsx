@@ -16,100 +16,71 @@ const CoffeeBar = () => {
 
 	return (
 		<div className={styles.container}>
-			{/* Animated Background Elements */}
-			<div className={styles.bgElements}>
-				<div className={styles.circle1}></div>
-				<div className={styles.circle2}></div>
-				<div className={styles.circle3}></div>
-			</div>
-
 			{/* Header */}
 			<header
 				className={`${styles.header} ${
-					scrollPosition > 50 ? styles.scrolled : ""
+					scrollPosition > 50 ? styles.scrolled : styles.headerTransparent
 				}`}
 			>
-				<div className={styles.logo}>
-					<div className={styles.logoIcon}>
-						<svg width="36" height="36" viewBox="0 0 36 36">
-							<path
-								d="M18,0 C8.05884,0 0,8.05884 0,18 C0,27.94116 8.05884,36 18,36 C27.94116,36 36,27.94116 36,18 C36,8.05884 27.94116,0 18,0 Z M18,7 C20.76142,7 23,9.23858 23,12 C23,13.1 22.7,14.1 22.1,14.9 C25.3,15.5 27.8,18.3 27.8,21.7 C27.8,25.6 24.6,28.8 20.7,28.8 L11.9,28.8 C8,28.8 4.8,25.6 4.8,21.7 C4.8,18.3 7.3,15.5 10.5,14.9 C9.9,14.1 9.6,13.1 9.6,12 C9.6,9.23858 11.83858,7 14.6,7 L18,7 Z"
-								fill="#FF8934"
-							/>
-						</svg>
+				<div className={styles.headerContainer}>
+					<div className={styles.logo}>
+						<div className={styles.logoIcon}>
+							<svg width="36" height="36" viewBox="0 0 36 36">
+								<path
+									d="M18,0 C8.05884,0 0,8.05884 0,18 C0,27.94116 8.05884,36 18,36 C27.94116,36 36,27.94116 36,18 C36,8.05884 27.94116,0 18,0 Z M18,7 C20.76142,7 23,9.23858 23,12 C23,13.1 22.7,14.1 22.1,14.9 C25.3,15.5 27.8,18.3 27.8,21.7 C27.8,25.6 24.6,28.8 20.7,28.8 L11.9,28.8 C8,28.8 4.8,25.6 4.8,21.7 C4.8,18.3 7.3,15.5 10.5,14.9 C9.9,14.1 9.6,13.1 9.6,12 C9.6,9.23858 11.83858,7 14.6,7 L18,7 Z"
+									fill="#FF8934"
+								/>
+							</svg>
+						</div>
+						<h1>
+							Brew<span>Haven</span>
+						</h1>
 					</div>
-					<h1>
-						Brew<span>Haven</span>
-					</h1>
-				</div>
 
-				<div
-					className={`${styles.navToggle} ${menuActive ? styles.active : ""}`}
-					onClick={() => setMenuActive(!menuActive)}
-				>
-					<span></span>
-					<span></span>
-					<span></span>
-				</div>
+					<div
+						className={`${styles.navToggle} ${menuActive ? styles.active : ""}`}
+						onClick={() => setMenuActive(!menuActive)}
+					>
+						<span></span>
+						<span></span>
+						<span></span>
+					</div>
 
-				<nav className={`${styles.nav} ${menuActive ? styles.active : ""}`}>
-					<ul>
-						<li>
-							<a href="#home" onClick={() => setMenuActive(false)}>
-								Home
-							</a>
-						</li>
-						<li>
-							<a href="#menu" onClick={() => setMenuActive(false)}>
-								Menu
-							</a>
-						</li>
-						<li>
-							<a href="#story" onClick={() => setMenuActive(false)}>
-								Our Story
-							</a>
-						</li>
-						<li>
-							<a href="#location" onClick={() => setMenuActive(false)}>
-								Visit Us
-							</a>
-						</li>
-						<li className={styles.orderBtn}>
-							<a href="#order" onClick={() => setMenuActive(false)}>
-								Order Now
-							</a>
-						</li>
-					</ul>
-				</nav>
+					<nav className={`${styles.nav} ${menuActive ? styles.active : ""}`}>
+						<ul>
+							<li>
+								<a href="#home" onClick={() => setMenuActive(false)}>
+									Home
+								</a>
+							</li>
+							<li>
+								<a href="#menu" onClick={() => setMenuActive(false)}>
+									Menu
+								</a>
+							</li>
+							<li>
+								<a href="#story" onClick={() => setMenuActive(false)}>
+									Our Story
+								</a>
+							</li>
+							<li>
+								<a href="#location" onClick={() => setMenuActive(false)}>
+									Visit Us
+								</a>
+							</li>
+							<li className={styles.orderBtn}>
+								<a href="#order" onClick={() => setMenuActive(false)}>
+									Order Now
+								</a>
+							</li>
+						</ul>
+					</nav>
+				</div>
 			</header>
 
 			{/* Hero Section */}
 			<section className={styles.hero} id="home">
-				<div className={styles.heroSplitBackground}>
-					<div className={styles.heroBgLeft}></div>
-					<div className={styles.heroBgRight}></div>
-				</div>
-
-				<div className={styles.heroShapes}>
-					<div className={styles.heroShape1}></div>
-					<div className={styles.heroShape2}></div>
-					<div className={styles.heroShape3}></div>
-				</div>
-
-				<div className={styles.heroCoffeeAnimation}>
-					<div className={styles.coffeeCup}>
-						<div className={styles.coffeeSteam}>
-							<span></span>
-							<span></span>
-							<span></span>
-							<span></span>
-						</div>
-						<div className={styles.coffeeLiquid}></div>
-						<div className={styles.coffeeHandle}></div>
-					</div>
-					<div className={styles.coffeeSaucer}></div>
-					<div className={styles.coffeeCircle}></div>
-				</div>
+				<div className={styles.heroBackground}></div>
 
 				<div className={styles.heroOverlayGrid}>
 					<div className={styles.heroGridItem}>
