@@ -19,7 +19,7 @@ const CoffeeBar = () => {
 			{/* Header */}
 			<header
 				className={`${styles.header} ${
-					scrollPosition > 50 ? styles.scrolled : styles.headerTransparent
+					scrollPosition > 50 ? styles.scrolled : styles.headerInitial
 				}`}
 			>
 				<div className={styles.headerContainer}>
