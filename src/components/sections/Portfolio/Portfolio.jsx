@@ -31,19 +31,7 @@ const Portfolio = () => {
 			link: "https://mojdnevnik.com.alamelschools.ba/",
 			github: "https://github.com/emirkugic/al-amel-ednevnik",
 		},
-		{
-			id: 2,
-			title: "Photography Portfolio",
-			category: "web",
-			image: "/photography.png",
-			technologies: ["HTML", "CSS", "JavaScript"],
-			descriptions: {
-				en: "A beautiful photography portfolio showcasing nature photography with a responsive design and smooth animations.",
-				bs: "Prekrasan fotografski portfolio koji prikazuje fotografije prirode s responzivnim dizajnom i glatkim animacijama.",
-			},
-			link: "/projects/photography",
-			github: "#",
-		},
+
 		{
 			id: 3,
 			title: "Glasnik",
@@ -55,19 +43,6 @@ const Portfolio = () => {
 				bs: "Web stranica s vijestima s modernim dizajnom, ažuriranjima u stvarnom vremenu i korisničkim sučeljem za čitanje i dijeljenje članaka.",
 			},
 			link: "/projects/news",
-			github: "#",
-		},
-		{
-			id: 4,
-			title: "Portfolio Website",
-			category: "web",
-			image: "/portfolio.png",
-			technologies: ["HTML5", "CSS3", "JavaScript", "GSAP"],
-			descriptions: {
-				en: "A creative portfolio website with smooth animations and responsive design for a photography client.",
-				bs: "Kreativna portfolio web stranica s glatkim animacijama i responzivnim dizajnom za klijenta koji se bavi fotografijom.",
-			},
-			link: "#",
 			github: "#",
 		},
 		{
@@ -94,6 +69,32 @@ const Portfolio = () => {
 				bs: "Sistem za rezervaciju frizera s kalendarom rezervacija, korisničkim profilima i obavijestima za termine i otkazivanja.",
 			},
 			link: "/projects/barber",
+			github: "#",
+		},
+		{
+			id: 4,
+			title: "Web stranica za kafić",
+			category: "web",
+			image: "/coffee.png",
+			technologies: ["React JS"],
+			descriptions: {
+				en: "A coffee shop website with a menu, online ordering, and contact form for customers to place orders and make reservations.",
+				bs: "Web stranica za kafić s jelovnikom, online naručivanjem i kontakt obrascem za korisnike koji žele naručiti i rezervirati stol.",
+			},
+			link: "/projects/coffee",
+			github: "#",
+		},
+		{
+			id: 2,
+			title: "Photography Portfolio",
+			category: "web",
+			image: "/photography.png",
+			technologies: ["HTML", "CSS", "JavaScript"],
+			descriptions: {
+				en: "A beautiful photography portfolio showcasing nature photography with a responsive design and smooth animations.",
+				bs: "Prekrasan fotografski portfolio koji prikazuje fotografije prirode s responzivnim dizajnom i glatkim animacijama.",
+			},
+			link: "/projects/photography",
 			github: "#",
 		},
 	];
@@ -128,7 +129,7 @@ const Portfolio = () => {
 				<h2 className="section-title">{strings.portfolio.title}</h2>
 				<p className="section-subtitle">{strings.portfolio.subtitle}</p>
 
-				<div className={styles.portfolioFilters}>
+				{/* <div className={styles.portfolioFilters}>
 					<button
 						className={`${styles.filterButton} ${
 							activeFilter === "all" ? styles.active : ""
@@ -161,7 +162,7 @@ const Portfolio = () => {
 					>
 						{strings.portfolio.filters.ui}
 					</button>
-				</div>
+				</div> */}
 
 				<div className={styles.portfolioGrid} ref={ref}>
 					{visibleProjects.map((project, index) => (

@@ -120,13 +120,18 @@
 
 /* Initial header state (at the top of the page) */
 .headerInitial {
-	background-color: transparent; /* Completely transparent */
+	background: linear-gradient(
+		to bottom,
+		rgba(0, 0, 0, 0.6) 0%,
+		rgba(0, 0, 0, 0.4) 40%,
+		transparent 100%
+	);
 }
 
 .headerInitial .logo h1,
 .headerInitial .nav li a {
 	color: white;
-	text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /* Add shadow for text visibility */
+	text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6); /* Enhanced shadow for better visibility */
 }
 
 .headerInitial .navToggle span {
@@ -170,11 +175,13 @@
 	font-size: 1.8rem;
 	margin: 0;
 	transition: color 0.3s ease;
+	letter-spacing: 0.5px;
 }
 
 .logo h1 span {
 	color: var(--primary);
 	font-style: italic;
+	font-weight: 600;
 }
 
 .navToggle {
@@ -269,6 +276,22 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
+}
+
+.heroGradientOverlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 40%;
+	background: linear-gradient(
+		to bottom,
+		rgba(0, 0, 0, 0.7) 0%,
+		rgba(0, 0, 0, 0.3) 70%,
+		rgba(0, 0, 0, 0) 100%
+	);
+	z-index: 3;
+	pointer-events: none;
 }
 
 .heroBackground {

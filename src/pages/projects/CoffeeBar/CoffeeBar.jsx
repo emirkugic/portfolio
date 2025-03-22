@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styles from "./CoffeeBar.module.css";
+import BackButton from "../../../components/common/BackButton/BackButton";
 
 const CoffeeBar = () => {
 	const [scrollPosition, setScrollPosition] = useState(0);
@@ -16,6 +17,7 @@ const CoffeeBar = () => {
 
 	return (
 		<div className={styles.container}>
+			<BackButton />
 			{/* Header */}
 			<header
 				className={`${styles.header} ${
@@ -25,15 +27,45 @@ const CoffeeBar = () => {
 				<div className={styles.headerContainer}>
 					<div className={styles.logo}>
 						<div className={styles.logoIcon}>
-							<svg width="36" height="36" viewBox="0 0 36 36">
+							<svg
+								width="36"
+								height="36"
+								viewBox="0 0 24 24"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+							>
 								<path
-									d="M18,0 C8.05884,0 0,8.05884 0,18 C0,27.94116 8.05884,36 18,36 C27.94116,36 36,27.94116 36,18 C36,8.05884 27.94116,0 18,0 Z M18,7 C20.76142,7 23,9.23858 23,12 C23,13.1 22.7,14.1 22.1,14.9 C25.3,15.5 27.8,18.3 27.8,21.7 C27.8,25.6 24.6,28.8 20.7,28.8 L11.9,28.8 C8,28.8 4.8,25.6 4.8,21.7 C4.8,18.3 7.3,15.5 10.5,14.9 C9.9,14.1 9.6,13.1 9.6,12 C9.6,9.23858 11.83858,7 14.6,7 L18,7 Z"
-									fill="#FF8934"
+									d="M2 8.5H4.5V16.5C4.5 18.43 6.07 20 8 20H16C17.93 20 19.5 18.43 19.5 16.5V8.5H22"
+									stroke="#FF8934"
+									strokeWidth="1.5"
+									strokeLinecap="round"
+									strokeLinejoin="round"
+								/>
+								<path
+									d="M12 4V15"
+									stroke="#FF8934"
+									strokeWidth="1.5"
+									strokeLinecap="round"
+									strokeLinejoin="round"
+								/>
+								<path
+									d="M8 11L12 15L16 11"
+									stroke="#FF8934"
+									strokeWidth="1.5"
+									strokeLinecap="round"
+									strokeLinejoin="round"
+								/>
+								<path
+									d="M19.5 8.5H4.5C4.09 7.4 4.91 4 8 4H16C19.09 4 19.91 7.4 19.5 8.5Z"
+									stroke="#FF8934"
+									strokeWidth="1.5"
+									strokeLinecap="round"
+									strokeLinejoin="round"
 								/>
 							</svg>
 						</div>
 						<h1>
-							Brew<span>Haven</span>
+							Kafa<span>Kutak</span>
 						</h1>
 					</div>
 
@@ -50,27 +82,27 @@ const CoffeeBar = () => {
 						<ul>
 							<li>
 								<a href="#home" onClick={() => setMenuActive(false)}>
-									Home
+									Početna
 								</a>
 							</li>
 							<li>
 								<a href="#menu" onClick={() => setMenuActive(false)}>
-									Menu
+									Meni
 								</a>
 							</li>
 							<li>
 								<a href="#story" onClick={() => setMenuActive(false)}>
-									Our Story
+									O Nama
 								</a>
 							</li>
 							<li>
 								<a href="#location" onClick={() => setMenuActive(false)}>
-									Visit Us
+									Lokacija
 								</a>
 							</li>
 							<li className={styles.orderBtn}>
 								<a href="#order" onClick={() => setMenuActive(false)}>
-									Order Now
+									Naruči Odmah
 								</a>
 							</li>
 						</ul>
@@ -81,30 +113,31 @@ const CoffeeBar = () => {
 			{/* Hero Section */}
 			<section className={styles.hero} id="home">
 				<div className={styles.heroBackground}></div>
+				<div className={styles.heroGradientOverlay}></div>
 
 				<div className={styles.heroOverlayGrid}>
 					<div className={styles.heroGridItem}>
 						<img
 							src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
-							alt="Coffee close-up"
+							alt="Kafa izbliza"
 						/>
 					</div>
 					<div className={styles.heroGridItem}>
 						<img
-							src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
-							alt="Latte art"
+							src="https://i.ytimg.com/vi/nlTn2blovRs/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLDdWbr-KHJraoWnQI4z7xFeH52yRA"
+							alt="Bosanska kafa"
 						/>
 					</div>
 					<div className={styles.heroGridItem}>
 						<img
 							src="https://images.unsplash.com/photo-1521302080334-4bebac2763a6?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
-							alt="Coffee brewing"
+							alt="Priprema kafe"
 						/>
 					</div>
 					<div className={styles.heroGridItem}>
 						<img
 							src="https://images.unsplash.com/photo-1513267048331-5611cad62e41?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
-							alt="Coffee shop"
+							alt="Kafić"
 						/>
 					</div>
 				</div>
@@ -112,22 +145,22 @@ const CoffeeBar = () => {
 				<div className={styles.heroContentWrapper}>
 					<div className={styles.heroHeadlineContainer}>
 						<h2 className={styles.heroHeadline}>
-							<span className={styles.heroHeadlineTop}>CRAFT</span>
+							<span className={styles.heroHeadlineTop}>BOSANSKA</span>
 							<div className={styles.heroHeadlineMiddle}>
-								<span className={styles.heroHeadlineEmphasis}>COFFEE</span>
+								<span className={styles.heroHeadlineEmphasis}>KAFA</span>
 								<div className={styles.heroHeadlineDot}></div>
 							</div>
-							<span className={styles.heroHeadlineBottom}>CULTURE</span>
+							<span className={styles.heroHeadlineBottom}>TRADICIJA</span>
 						</h2>
 					</div>
 
 					<div className={styles.heroTaglineContainer}>
 						<p className={styles.heroTagline}>
-							Elevating the ordinary into extraordinary
+							Uživajte u tradicionalnom ukusu sa modernim dodirom
 						</p>
 						<div className={styles.heroButtons}>
 							<button className={styles.heroButton}>
-								<span>TASTE THE EXPERIENCE</span>
+								<span>DOŽIVITE UKUS</span>
 								<svg
 									className={styles.heroButtonArrow}
 									width="24"
@@ -151,18 +184,18 @@ const CoffeeBar = () => {
 
 				<div className={styles.heroStats}>
 					<div className={styles.heroStat}>
-						<span className={styles.heroStatNumber}>7+</span>
-						<span className={styles.heroStatLabel}>YEARS</span>
+						<span className={styles.heroStatNumber}>70+</span>
+						<span className={styles.heroStatLabel}>GODINA</span>
 					</div>
 					<div className={styles.heroStatDivider}></div>
 					<div className={styles.heroStat}>
-						<span className={styles.heroStatNumber}>23</span>
-						<span className={styles.heroStatLabel}>BLENDS</span>
+						<span className={styles.heroStatNumber}>18</span>
+						<span className={styles.heroStatLabel}>VRSTA</span>
 					</div>
 					<div className={styles.heroStatDivider}></div>
 					<div className={styles.heroStat}>
 						<span className={styles.heroStatNumber}>100%</span>
-						<span className={styles.heroStatLabel}>PASSION</span>
+						<span className={styles.heroStatLabel}>STRAST</span>
 					</div>
 				</div>
 
@@ -177,17 +210,15 @@ const CoffeeBar = () => {
 			{/* Menu Section */}
 			<section className={styles.menuSection} id="menu">
 				<div className={styles.sectionIntro}>
-					<h2>Our Selections</h2>
-					<p>Crafted with love, precision, and the finest ingredients</p>
+					<h2>Naša Ponuda</h2>
+					<p>Pripremljeno s ljubavlju, tradicijom i najfinijim sastojcima</p>
 				</div>
 
 				<div className={styles.menuTabs}>
-					<button className={`${styles.menuTab} ${styles.active}`}>
-						Coffee
-					</button>
-					<button className={styles.menuTab}>Food</button>
-					<button className={styles.menuTab}>Desserts</button>
-					<button className={styles.menuTab}>Specials</button>
+					<button className={`${styles.menuTab} ${styles.active}`}>Kafa</button>
+					<button className={styles.menuTab}>Hrana</button>
+					<button className={styles.menuTab}>Kolači</button>
+					<button className={styles.menuTab}>Specijaliteti</button>
 					<div className={styles.menuTabIndicator}></div>
 				</div>
 
@@ -196,23 +227,23 @@ const CoffeeBar = () => {
 						<div className={styles.menuItem}>
 							<div className={styles.menuItemImage}>
 								<img
-									src="https://images.unsplash.com/photo-1541167760496-1628856ab772?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
-									alt="Espresso"
+									src="https://i.ytimg.com/vi/nlTn2blovRs/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLDdWbr-KHJraoWnQI4z7xFeH52yRA"
+									alt="Bosanska kafa"
 								/>
 								<div className={styles.menuItemOverlay}></div>
 							</div>
 							<div className={styles.menuItemContent}>
 								<div className={styles.menuItemHeader}>
-									<h3>Classic Espresso</h3>
-									<span className={styles.price}>$3.50</span>
+									<h3>Bosanska Kafa</h3>
+									<span className={styles.price}>3.50 KM</span>
 								</div>
 								<p>
-									Our signature blend with notes of chocolate, caramel, and a
-									smooth finish.
+									Tradicionalno kuhana na žaru u džezvi, servirana s
+									rahatlokumom i u findzanu.
 								</p>
 								<div className={styles.menuItemTags}>
-									<span>House Specialty</span>
-									<span>Rich</span>
+									<span>Tradicionalna</span>
+									<span>Jaka</span>
 								</div>
 							</div>
 						</div>
@@ -220,23 +251,23 @@ const CoffeeBar = () => {
 						<div className={styles.menuItem}>
 							<div className={styles.menuItemImage}>
 								<img
-									src="https://images.unsplash.com/photo-1585437471859-9f656e63a9fb?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+									src="https://www.allrecipes.com/thmb/chsZz0jqIHWYz39ViZR-9k_BkkE=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/8624835-how-to-make-a-cappuccino-beauty-4x3-0301-13d55eaad60b42058f24369c292d4ccb.jpg"
 									alt="Cappuccino"
 								/>
 								<div className={styles.menuItemOverlay}></div>
 							</div>
 							<div className={styles.menuItemContent}>
 								<div className={styles.menuItemHeader}>
-									<h3>Artisan Cappuccino</h3>
-									<span className={styles.price}>$4.75</span>
+									<h3>Cappuccino</h3>
+									<span className={styles.price}>4.00 KM</span>
 								</div>
 								<p>
-									Equal parts espresso, steamed milk, and silky microfoam,
-									perfectly balanced.
+									Savršen spoj espresa, vrućeg mlijeka i kremaste pjene,
+									uravnoteženog ukusa.
 								</p>
 								<div className={styles.menuItemTags}>
-									<span>Creamy</span>
-									<span>Balanced</span>
+									<span>Kremasto</span>
+									<span>Blago</span>
 								</div>
 							</div>
 						</div>
@@ -244,23 +275,23 @@ const CoffeeBar = () => {
 						<div className={styles.menuItem}>
 							<div className={styles.menuItemImage}>
 								<img
-									src="https://images.unsplash.com/photo-1592318723821-0d29cbce3f54?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
-									alt="Pour Over"
+									src="https://www.tastingtable.com/img/gallery/what-is-white-coffee-and-how-is-it-made/intro-1682029648.jpg"
+									alt="Bijela Kafa"
 								/>
 								<div className={styles.menuItemOverlay}></div>
 							</div>
 							<div className={styles.menuItemContent}>
 								<div className={styles.menuItemHeader}>
-									<h3>Single-Origin Pour Over</h3>
-									<span className={styles.price}>$5.25</span>
+									<h3>Bijela Kafa</h3>
+									<span className={styles.price}>3.75 KM</span>
 								</div>
 								<p>
-									Ethiopian Yirgacheffe, hand-poured for bright citrus notes and
-									a floral aroma.
+									Tradicionalna bosanska bijela kafa s mlijekom, kuhana na
+									starinski način.
 								</p>
 								<div className={styles.menuItemTags}>
-									<span>Bright</span>
-									<span>Complex</span>
+									<span>Domaće</span>
+									<span>Klasik</span>
 								</div>
 							</div>
 						</div>
@@ -268,23 +299,23 @@ const CoffeeBar = () => {
 						<div className={styles.menuItem}>
 							<div className={styles.menuItemImage}>
 								<img
-									src="https://images.unsplash.com/photo-1579888944880-d98341245702?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
-									alt="Cold Brew"
+									src="https://images.pexels.com/photos/2615323/pexels-photo-2615323.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+									alt="Ledena Kafa"
 								/>
 								<div className={styles.menuItemOverlay}></div>
 							</div>
 							<div className={styles.menuItemContent}>
 								<div className={styles.menuItemHeader}>
-									<h3>24-Hour Cold Brew</h3>
-									<span className={styles.price}>$4.95</span>
+									<h3>Ledena Kafa</h3>
+									<span className={styles.price}>4.50 KM</span>
 								</div>
 								<p>
-									Steeped for 24 hours, creating a naturally sweet,
-									ultra-smooth, low-acid coffee.
+									Bosanska kafa ohlađena s ledom i servirana s domaćim
+									sladoledom od vanilije.
 								</p>
 								<div className={styles.menuItemTags}>
-									<span>Refreshing</span>
-									<span>Bold</span>
+									<span>Osvježavajuće</span>
+									<span>Jedinstveno</span>
 								</div>
 							</div>
 						</div>
@@ -293,22 +324,22 @@ const CoffeeBar = () => {
 							<div className={styles.menuItemImage}>
 								<img
 									src="https://images.unsplash.com/photo-1572442388796-11668a67e53d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
-									alt="Cortado"
+									alt="Makijato"
 								/>
 								<div className={styles.menuItemOverlay}></div>
 							</div>
 							<div className={styles.menuItemContent}>
 								<div className={styles.menuItemHeader}>
-									<h3>Cortado</h3>
-									<span className={styles.price}>$4.25</span>
+									<h3>Makijato</h3>
+									<span className={styles.price}>3.00 KM</span>
 								</div>
 								<p>
-									Equal parts espresso and warm milk, creating a perfect balance
-									of intensity and smoothness.
+									Espreso s malom količinom mlijeka, savršen spoj intenziteta i
+									blagosti.
 								</p>
 								<div className={styles.menuItemTags}>
-									<span>Strong</span>
-									<span>Velvety</span>
+									<span>Jako</span>
+									<span>Brzo</span>
 								</div>
 							</div>
 						</div>
@@ -316,23 +347,20 @@ const CoffeeBar = () => {
 						<div className={styles.menuItem}>
 							<div className={styles.menuItemImage}>
 								<img
-									src="https://images.unsplash.com/photo-1606791405792-1004f1718d0c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
-									alt="Vanilla Latte"
+									src="https://www.health.com/thmb/YXxmAuCsJHtTWvSWPorjVx1F7AQ=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Health-GettyImages-TypesOfCoffee-b8f6f7382a1443109f74edb1050f9808.jpg"
+									alt="Kafa s Rahatlokumom"
 								/>
 								<div className={styles.menuItemOverlay}></div>
 							</div>
 							<div className={styles.menuItemContent}>
 								<div className={styles.menuItemHeader}>
-									<h3>Vanilla Bean Latte</h3>
-									<span className={styles.price}>$5.50</span>
+									<h3>Kafa s Rahatlokumom</h3>
+									<span className={styles.price}>5.00 KM</span>
 								</div>
-								<p>
-									House-made vanilla syrup, espresso, and steamed milk topped
-									with a delicate latte art.
-								</p>
+								<p>Kafa s rahatlokumom, tradicionalnim turskim slatkišem.</p>
 								<div className={styles.menuItemTags}>
-									<span>Sweet</span>
-									<span>Aromatic</span>
+									<span>Slatko</span>
+									<span>Aromatično</span>
 								</div>
 							</div>
 						</div>
@@ -340,80 +368,82 @@ const CoffeeBar = () => {
 				</div>
 
 				<div className={styles.menuFooter}>
-					<p>Ask our baristas about our rotating seasonal specials</p>
-					<button className={styles.viewFullMenu}>View Full Menu</button>
+					<p>Pitajte naše bariste o sezonskim specijalitetima</p>
+					<button className={styles.viewFullMenu}>
+						Pogledaj Kompletan Meni
+					</button>
 				</div>
 			</section>
 
 			{/* Food Menu Highlight Section */}
 			<section className={styles.foodSection}>
 				<div className={styles.foodContent}>
-					<h2>Pair Your Coffee</h2>
+					<h2>Uz Našu Kafu</h2>
 					<p>
-						Locally sourced, freshly made delights to complement your perfect
-						brew
+						Lokalno nabavljeni, svježe pripremljeni delikatesi koji savršeno
+						nadopunjuju vašu kafu
 					</p>
 
 					<div className={styles.foodHighlights}>
 						<div className={styles.foodItem}>
-							<h3>Avocado Toast</h3>
-							<p>
-								Sourdough, smashed avocado, cherry tomatoes, microgreens, sea
-								salt
-							</p>
-							<span className={styles.price}>$8.95</span>
+							<h3>Avokado tost</h3>
+							<p>Bezglutenski tost, avokado, jaje, zacini</p>
+							<span className={styles.price}>6.50 KM</span>
 						</div>
 
 						<div className={styles.foodItem}>
-							<h3>Breakfast Sandwich</h3>
+							<h3>Veganska salata</h3>
 							<p>
-								Free-range egg, cheddar, bacon, arugula, housemade aioli on
-								brioche
+								Svježa sezonska salata s organskim povrćem i prelivom od
+								balsamika
 							</p>
-							<span className={styles.price}>$9.50</span>
+							<span className={styles.price}>8.50 KM</span>
 						</div>
 
 						<div className={styles.foodItem}>
-							<h3>Overnight Oats</h3>
+							<h3>Hurmašice</h3>
 							<p>
-								Steel-cut oats, almond milk, chia seeds, seasonal fruits, maple
-								syrup
+								Tradicionalni bosanski kolačići u slatkom sirupu od meda i
+								vanilije
 							</p>
-							<span className={styles.price}>$7.25</span>
+							<span className={styles.price}>4.00 KM</span>
 						</div>
 
 						<div className={styles.foodItem}>
-							<h3>Chocolate Croissant</h3>
-							<p>Buttery, flaky pastry filled with premium dark chocolate</p>
-							<span className={styles.price}>$4.75</span>
+							<h3>Baklava</h3>
+							<p>
+								Slojevito tijesto s orasima i medom, pripremljeno po porodičnom
+								receptu
+							</p>
+							<span className={styles.price}>4.75 KM</span>
 						</div>
 					</div>
 
-					<button className={styles.secondaryBtn}>Explore Food Menu</button>
+					<button className={styles.secondaryBtn}>Istražite Jelovnik</button>
 				</div>
 				<div className={styles.foodImageGrid}>
 					<div className={styles.foodImageWrap}>
 						<img
 							src="https://images.unsplash.com/photo-1525351484163-7529414344d8?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
-							alt="Avocado Toast"
+							alt="toast"
 						/>
 					</div>
 					<div className={styles.foodImageWrap}>
 						<img
 							src="https://images.unsplash.com/photo-1600289031464-74d374b64991?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
-							alt="Pastries"
+							alt="salad"
 						/>
 					</div>
 					<div className={styles.foodImageWrap}>
 						<img
-							src="https://images.unsplash.com/photo-1584147833683-250ad2c5fc5a?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
-							alt="Breakfast Sandwich"
+							src="https://iftarskimeni.com/wp-content/uploads/2012/06/Hurma%C5%A1ice.png"
+							alt="Hurmasice"
 						/>
 					</div>
 					<div className={styles.foodImageWrap}>
 						<img
-							src="https://images.unsplash.com/photo-1612240498936-65f5101365d2?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
-							alt="Overnight Oats"
+							src="https://www.365daysofbakingandmore.com/wp-content/uploads/2011/08/Baklava-1-1.jpg"
+							alt="Baklava"
 						/>
 					</div>
 				</div>
@@ -425,17 +455,47 @@ const CoffeeBar = () => {
 					<div className={styles.footerBrand}>
 						<div className={styles.footerLogo}>
 							<div className={styles.logoIcon}>
-								<svg width="36" height="36" viewBox="0 0 36 36">
+								<svg
+									width="36"
+									height="36"
+									viewBox="0 0 24 24"
+									fill="none"
+									xmlns="http://www.w3.org/2000/svg"
+								>
 									<path
-										d="M18,0 C8.05884,0 0,8.05884 0,18 C0,27.94116 8.05884,36 18,36 C27.94116,36 36,27.94116 36,18 C36,8.05884 27.94116,0 18,0 Z M18,7 C20.76142,7 23,9.23858 23,12 C23,13.1 22.7,14.1 22.1,14.9 C25.3,15.5 27.8,18.3 27.8,21.7 C27.8,25.6 24.6,28.8 20.7,28.8 L11.9,28.8 C8,28.8 4.8,25.6 4.8,21.7 C4.8,18.3 7.3,15.5 10.5,14.9 C9.9,14.1 9.6,13.1 9.6,12 C9.6,9.23858 11.83858,7 14.6,7 L18,7 Z"
-										fill="#FF8934"
+										d="M2 8.5H4.5V16.5C4.5 18.43 6.07 20 8 20H16C17.93 20 19.5 18.43 19.5 16.5V8.5H22"
+										stroke="#FF8934"
+										strokeWidth="1.5"
+										strokeLinecap="round"
+										strokeLinejoin="round"
+									/>
+									<path
+										d="M12 4V15"
+										stroke="#FF8934"
+										strokeWidth="1.5"
+										strokeLinecap="round"
+										strokeLinejoin="round"
+									/>
+									<path
+										d="M8 11L12 15L16 11"
+										stroke="#FF8934"
+										strokeWidth="1.5"
+										strokeLinecap="round"
+										strokeLinejoin="round"
+									/>
+									<path
+										d="M19.5 8.5H4.5C4.09 7.4 4.91 4 8 4H16C19.09 4 19.91 7.4 19.5 8.5Z"
+										stroke="#FF8934"
+										strokeWidth="1.5"
+										strokeLinecap="round"
+										strokeLinejoin="round"
 									/>
 								</svg>
 							</div>
-							<h3>BrewHaven</h3>
+							<h3>KafaKutak</h3>
 						</div>
 						<p className={styles.tagline}>
-							Creating moments, one cup at a time
+							Stvaramo trenutke, jedna šalica kafe odjednom
 						</p>
 						<div className={styles.socialLinks}>
 							<a href="#" aria-label="Instagram">
@@ -489,43 +549,43 @@ const CoffeeBar = () => {
 					</div>
 					<div className={styles.footerInfo}>
 						<div className={styles.footerSection}>
-							<h4>Visit Us</h4>
-							<p>123 Coffee Lane</p>
-							<p>Brewville, CA 98765</p>
-							<p>Mon-Fri: 6am - 8pm</p>
-							<p>Sat-Sun: 7am - 9pm</p>
+							<h4>Posjetite Nas</h4>
+							<p>Ulica Baščaršija 15</p>
+							<p>Sarajevo, 71000</p>
+							<p>Pon-Pet: 7:00 - 22:00</p>
+							<p>Sub-Ned: 8:00 - 23:00</p>
 						</div>
 						<div className={styles.footerSection}>
-							<h4>Contact</h4>
-							<p>hello@brewhaven.com</p>
-							<p>(555) 123-4567</p>
-							<button className={styles.contactBtn}>Contact Us</button>
+							<h4>Kontakt</h4>
+							<p>info@kafakutak.ba</p>
+							<p>(033) 123-456</p>
+							<button className={styles.contactBtn}>Kontaktirajte Nas</button>
 						</div>
 						<div className={styles.footerSection}>
-							<h4>Links</h4>
+							<h4>Linkovi</h4>
 							<ul>
 								<li>
-									<a href="#">About Us</a>
+									<a href="#">O Nama</a>
 								</li>
 								<li>
-									<a href="#">Careers</a>
+									<a href="#">Karijera</a>
 								</li>
 								<li>
-									<a href="#">Events</a>
+									<a href="#">Događaji</a>
 								</li>
 								<li>
 									<a href="#">Blog</a>
 								</li>
 								<li>
-									<a href="#">Privacy Policy</a>
+									<a href="#">Privatnost</a>
 								</li>
 							</ul>
 						</div>
 					</div>
 				</div>
 				<div className={styles.footerBottom}>
-					<p>&copy; 2025 BrewHaven Coffee. All rights reserved.</p>
-					<p>Crafted with ♥ and lots of caffeine</p>
+					<p>&copy; 2025 KafaKutak. Sva prava zadržana.</p>
+					<p>Napravljeno s ♥ i mnogo kafe</p>
 				</div>
 				<div className={styles.backToTop}>
 					<a href="#home">
