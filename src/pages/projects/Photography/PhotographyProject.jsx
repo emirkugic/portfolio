@@ -403,7 +403,7 @@ const PhotographyProject = () => {
 						<div className={styles.photoContactInfo}>
 							<div className={styles.photoContactItem}>
 								<h4>Email</h4>
-								<p>hello@ajlahodzic.ba</p>
+								<p>hello@amrahotic.ba</p>
 							</div>
 							<div className={styles.photoContactItem}>
 								<h4>Studio</h4>
@@ -416,13 +416,13 @@ const PhotographyProject = () => {
 							<div className={styles.photoContactItem}>
 								<h4>Pratite me</h4>
 								<div className={styles.photoSocial}>
-									<a href="#" aria-label="Instagram">
+									<a href="https://www.instagram.com/" aria-label="Instagram">
 										Instagram
 									</a>
-									<a href="#" aria-label="Twitter">
+									<a href="https://www.twitter.com" aria-label="Twitter">
 										Twitter
 									</a>
-									<a href="#" aria-label="Behance">
+									<a href="https://www.behance.net/" aria-label="Behance">
 										Behance
 									</a>
 								</div>
