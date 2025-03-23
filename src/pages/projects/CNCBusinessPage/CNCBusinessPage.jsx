@@ -275,7 +275,7 @@ const CNCBusinessPage = () => {
 				<section className={styles.heroSection}>
 					<div className={styles.heroBackgroundVideo}>
 						<img
-							src="/cnc.gif"
+							src="/cnc.webp"
 							alt="CNC machining animation"
 							className={styles.videoBackground}
 						/>
