@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, videoRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styles from "./BarberReservation.module.css";
 import BackButton from "../../../components/common/BackButton/BackButton";
 import {
@@ -571,15 +571,6 @@ const BarberReservation = () => {
 					>
 						<X size={24} />
 					</button>
-					<div className={styles.videoContainer}>
-						<video ref={videoRef} controls className={styles.videoPlayer}>
-							<source
-								src="https://samplelib.com/lib/preview/mp4/sample-5s.mp4"
-								type="video/mp4"
-							/>
-							Your browser does not support the video tag.
-						</video>
-					</div>
 				</div>
 
 				{/* Hero Section */}
