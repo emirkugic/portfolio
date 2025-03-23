@@ -64,7 +64,7 @@ const Contact = () => {
 		return errors;
 	};
 
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
 
 		const errors = validateForm();
@@ -76,27 +76,56 @@ const Contact = () => {
 
 		setIsSubmitting(true);
 
-		// Simulate form submission
-		setTimeout(() => {
-			setIsSubmitting(false);
+		try {
+			const response = await fetch(
+				"https://portfolio-contact.emirkugic0.workers.dev/",
+				{
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+					},
+					body: JSON.stringify({
+						...formData,
+						timestamp: new Date().toISOString(),
+					}),
+				}
+			);
+
+			if (response.ok) {
+				setSubmitMessage({
+					type: "success",
+					text:
+						strings.contact.form.success ||
+						"Message sent successfully! I'll get back to you soon.",
+				});
+
+				// Reset form
+				setFormData({
+					name: "",
+					email: "",
+					subject: "",
+					message: "",
+				});
+
+				// Clear success message after 5 seconds
+				setTimeout(() => {
+					setSubmitMessage(null);
+				}, 5000);
+			} else {
+				const errorData = await response.json();
+				throw new Error(errorData.error || "Failed to send message");
+			}
+		} catch (error) {
+			console.error("Contact form submission error:", error);
 			setSubmitMessage({
-				type: "success",
-				text: strings.contact.form.success,
+				type: "error",
+				text:
+					strings.contact.form.error ||
+					"Failed to send message. Please try again later.",
 			});
-
-			// Reset form
-			setFormData({
-				name: "",
-				email: "",
-				subject: "",
-				message: "",
-			});
-
-			// Clear success message after 5 seconds
-			setTimeout(() => {
-				setSubmitMessage(null);
-			}, 5000);
-		}, 1500);
+		} finally {
+			setIsSubmitting(false);
+		}
 	};
 
 	const contactInfo = [
