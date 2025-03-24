@@ -28,7 +28,7 @@ const Portfolio = () => {
 				en: "A fully functional School Management System with many roles, permissions, and features for teachers, students, and parents.",
 				bs: "Potpuno funkcionalni sistem za upravljanje školom s mnogo uloga, dozvola i značajki za nastavnike, učenike i roditelje.",
 			},
-			link: "https://mojdnevnik.com.alamelschools.ba/",
+			link: "https://mojdnevnik.araneum.ba/",
 			github: "https://github.com/emirkugic/al-amel-ednevnik",
 		},
 
