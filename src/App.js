@@ -1,9 +1,6 @@
-// First, install react-router-dom:
-// npm install react-router-dom
-
-// src/App.js (updated with routing)
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { HelmetProvider } from "react-helmet-async";
 import { ThemeProvider } from "./context/ThemeContext";
 import { LanguageProvider } from "./context/LanguageContext";
 import MainLayout from "./components/layout/MainLayout";
@@ -31,37 +28,45 @@ function App() {
 	}, []);
 
 	return (
-		<Router>
-			<LanguageProvider>
-				<ThemeProvider>
-					{isLoading ? (
-						<div className="loading-screen">
-							<div className="spinner"></div>
-							<div className="loading-text">Loading amazing things...</div>
-						</div>
-					) : (
-						<Routes>
-							<Route
-								path="/"
-								element={
-									<MainLayout>
-										<Home />
-									</MainLayout>
-								}
-							/>
-							<Route
-								path="/projects/photography"
-								element={<PhotographyProject />}
-							/>
-							<Route path="/projects/news" element={<NewsPage />} />
-							<Route path="/projects/metalprec" element={<CNCBusinessPage />} />
-							<Route path="/projects/barber" element={<BarberReservation />} />
-							<Route path="/projects/coffee" element={<CoffeeBar />} />
-						</Routes>
-					)}
-				</ThemeProvider>
-			</LanguageProvider>
-		</Router>
+		<HelmetProvider>
+			<Router>
+				<LanguageProvider>
+					<ThemeProvider>
+						{isLoading ? (
+							<div className="loading-screen">
+								<div className="spinner"></div>
+								<div className="loading-text">Loading amazing things...</div>
+							</div>
+						) : (
+							<Routes>
+								<Route
+									path="/"
+									element={
+										<MainLayout>
+											<Home />
+										</MainLayout>
+									}
+								/>
+								<Route
+									path="/projects/photography"
+									element={<PhotographyProject />}
+								/>
+								<Route path="/projects/news" element={<NewsPage />} />
+								<Route
+									path="/projects/metalprec"
+									element={<CNCBusinessPage />}
+								/>
+								<Route
+									path="/projects/barber"
+									element={<BarberReservation />}
+								/>
+								<Route path="/projects/coffee" element={<CoffeeBar />} />
+							</Routes>
+						)}
+					</ThemeProvider>
+				</LanguageProvider>
+			</Router>
+		</HelmetProvider>
 	);
 }
 

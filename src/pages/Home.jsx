@@ -6,9 +6,12 @@ import Portfolio from "../components/sections/Portfolio/Portfolio";
 import Services from "../components/sections/Services/Services";
 import Contact from "../components/sections/Contact/Contact";
 
+import SEO from "../components/common/SEO/SEO";
+
 const Home = () => {
 	return (
 		<>
+			<SEO />
 			<Hero />
 			<About />
 			<Skills />
