@@ -284,7 +284,7 @@ const BarberReservation = () => {
 
 	return (
 		<div className={styles.container}>
-			<BackButton />
+			{/* <BackButton /> */}
 			{/* Loading Screen */}
 			<div
 				className={`${styles.loadingScreen} ${

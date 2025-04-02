@@ -152,7 +152,7 @@ const PhotographyProject = () => {
 	return (
 		<div className={styles.photoContainer}>
 			{/* Reusable Back to Portfolio Button Component */}
-			<BackButton />
+			{/* <BackButton /> */}
 
 			{/* Photography Site Header (standalone) */}
 			<header

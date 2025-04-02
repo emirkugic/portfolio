@@ -669,9 +669,7 @@ const NewsPage = () => {
 			}`}
 		>
 			{/* Back button to portfolio */}
-			<div className={styles.np_backButtonWrapper}>
-				<BackButton />
-			</div>
+			<div className={styles.np_backButtonWrapper}>{/* <BackButton /> */}</div>
 
 			{/* Breaking news ticker */}
 			{showBreakingNews && (

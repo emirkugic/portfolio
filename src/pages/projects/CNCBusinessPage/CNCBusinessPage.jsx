@@ -143,9 +143,7 @@ const CNCBusinessPage = () => {
 			className={`${styles.businessContainer} ${isLoaded ? styles.loaded : ""}`}
 		>
 			{/* Back button to portfolio */}
-			<div className={styles.backButtonWrapper}>
-				<BackButton />
-			</div>
+			<div className={styles.backButtonWrapper}>{/* <BackButton /> */}</div>
 
 			{/* Header */}
 			<header className={styles.header} ref={headerRef}>

@@ -17,7 +17,7 @@ const CoffeeBar = () => {
 
 	return (
 		<div className={styles.container}>
-			<BackButton />
+			{/* <BackButton /> */}
 			{/* Header */}
 			<header
 				className={`${styles.header} ${
