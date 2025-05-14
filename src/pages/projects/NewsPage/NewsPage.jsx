@@ -4,6 +4,16 @@ import styles from "./NewsPage.module.css";
 import data from "./data.json";
 
 const NewsPage = () => {
+	useEffect(() => {
+		const originalTitle = document.title;
+		document.title = "Glasnik - Vijesti iz svijeta i regije";
+
+		// Cleanup: restore original title when component unmounts
+		return () => {
+			document.title = originalTitle;
+		};
+	}, []);
+
 	const [activeCategory, setActiveCategory] = useState("front");
 	const [searchTerm, setSearchTerm] = useState("");
 	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);

@@ -3,6 +3,16 @@ import styles from "./CoffeeBar.module.css";
 import BackButton from "../../../components/common/BackButton/BackButton";
 
 const CoffeeBar = () => {
+	useEffect(() => {
+		const originalTitle = document.title;
+		document.title = "KafaKutak - Bosanska Kafa";
+
+		// Cleanup: restore original title when component unmounts
+		return () => {
+			document.title = originalTitle;
+		};
+	}, []);
+
 	const [scrollPosition, setScrollPosition] = useState(0);
 	const [menuActive, setMenuActive] = useState(false);
 

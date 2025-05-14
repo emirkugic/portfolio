@@ -21,6 +21,16 @@ import {
 } from "lucide-react";
 
 const BarberReservation = () => {
+	useEffect(() => {
+		const originalTitle = document.title;
+		document.title = "NOIR Barber Shop - Rezervacija";
+
+		// Cleanup: restore original title when component unmounts
+		return () => {
+			document.title = originalTitle;
+		};
+	}, []);
+
 	// State management
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	const [activeSection, setActiveSection] = useState("home");

@@ -3,6 +3,15 @@ import BackButton from "../../../components/common/BackButton/BackButton";
 import styles from "./CNCBusinessPage.module.css";
 
 const CNCBusinessPage = () => {
+	useEffect(() => {
+		const originalTitle = document.title;
+		document.title = "MetalPrec - CNC Obrada Metala";
+
+		return () => {
+			document.title = originalTitle;
+		};
+	}, []);
+
 	const [isLoaded, setIsLoaded] = useState(false);
 	const [activeService, setActiveService] = useState("cnc");
 	const [activeFaq, setActiveFaq] = useState(null);

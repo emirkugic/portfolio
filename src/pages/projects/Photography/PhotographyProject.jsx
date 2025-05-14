@@ -5,6 +5,16 @@ import BackButton from "../../../components/common/BackButton/BackButton";
 import styles from "./PhotographyProject.module.css";
 
 const PhotographyProject = () => {
+	useEffect(() => {
+		const originalTitle = document.title;
+		document.title = "Amra Hotić - Fotografija";
+
+		// Cleanup: restore original title when component unmounts
+		return () => {
+			document.title = originalTitle;
+		};
+	}, []);
+
 	// State for nav menu
 	const [menuOpen, setMenuOpen] = useState(false);
 
